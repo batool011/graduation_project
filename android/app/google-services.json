@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "357116136876",
+    "project_id": "hr-savingcard",
+    "storage_bucket": "hr-savingcard.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:357116136876:android:8c1986ed0fbeee10313e09",
+        "android_client_info": {
+          "package_name": "com.example.career"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlUIv_4e7zYs_D0Kr3awk2dBTGphdnr9k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
