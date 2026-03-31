@@ -2,6 +2,7 @@ class AppString {
   static const String notification = "Notification";
 
   static const String careerNow = "career Now";
+  static const String leaveRequest = "Leave Request";
   static const String getStarted = "Get Started";
   static const String findYourDreamJob = "Find Your Dream Job";
   static const String loginHere = "Login Here!";
@@ -99,6 +100,7 @@ class AppString {
   static const String aboutUs="About Us";
   static const String logOut="Log Out";
   static const String chats="Chats";
+  static const String deleteAll="Delete All";
 
 
 

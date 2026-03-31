@@ -28,18 +28,31 @@ class CustomNotificationContainer extends StatelessWidget {
         padding:  EdgeInsets.symmetric(horizontal: 0.03.w(context)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-
-            Text(
-              "رصيدك الحالي",
-              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                fontWeight: FontWeight.w600,
-              ),
+            Row(
+              children: [
+                Text(
+                  "your balance ",
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 17
+                  ),
+                ),
+                Spacer(),
+                Text(
+                  "2/6/2003",
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                    fontSize: 10,
+                    fontWeight: FontWeight.w300,
+                  color: AppColor.darkGrey),
+                ),
+              ],
             ),
             Text(
               "3000",
               style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-
+               fontSize: 13,
                 fontWeight: FontWeight.w300,
               ),
             ),

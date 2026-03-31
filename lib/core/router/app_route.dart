@@ -5,16 +5,18 @@ import 'package:career/features/auth/presentation/screen/log_in_screen.dart';
 import 'package:career/features/auth/presentation/screen/register_screen.dart';
 import 'package:career/features/auth/presentation/screen/verification_screen.dart';
 import 'package:career/features/detail-job/presentation/screen/detail_job_screen.dart';
+import 'package:career/features/notification/presentation/screen/notification_screen.dart';
 import 'package:career/features/on%20boarding/presentation/getx/binding/onboarding_binding.dart';
 import 'package:career/features/on%20boarding/presentation/screen/on_boarding_screen.dart';
-import 'package:career/features/setting/presentation/screen/my_job_screen.dart';
 import 'package:career/features/setting/presentation/screen/setting_screen.dart';
 import 'package:career/features/splash/presentation/screen/splash_screen.dart';
+import 'package:career/features/vacation/presentation/screen/vacation_screen.dart';
 import 'package:get/get.dart';
 import '../../features/app-main/presentation/getx/main_binding.dart';
 import '../../features/app-main/presentation/screens/main_screen.dart';
 import '../../features/detail-job/presentation/getx/binding/detail_job_binding.dart';
 import '../../features/splash/presentation/getx/binding/splash_binding.dart';
+import '../../features/vacation/presentation/getx/binding/vacation_binding.dart';
 
 class AppRoute {
   static final routes = [
@@ -63,11 +65,16 @@ class AppRoute {
       page: () =>  SettingScreen(),
       binding: DetailJobBinding(),
     ),
-    GetPage(
-      name: RoutesName.myJob,
-      page: () =>  MyJobScreen(),
-      binding: DetailJobBinding(),
-    ),
 
+    GetPage(
+      name: RoutesName.notification,
+      page: () => const NotificationScreen(),
+   //   binding: No(),
+    ),
+    GetPage(
+      name: RoutesName.vacation,
+      page: () => const VacationScreen(),
+       binding: VacationBinding(),
+    ),
   ];
 }

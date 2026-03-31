@@ -6,6 +6,9 @@ class RoutesName {
   static const verify = '/verify';
   static const register = '/register';
   static const home = '/home';
+  static const notification = '/notification';
+  static const vacation = '/vacation';
+
   static const detailJob = '/detailJob';
   static const setting = '/setting';
   static const myJob = '/MyJob';

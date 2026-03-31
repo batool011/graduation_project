@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../../../../../core/constant/class/app_asset.dart';
 import '../../../../../core/constant/class/app_string.dart';
 import '../../getx/controller/register_controller.dart';
-import '../../widget/custom_drop_down_button.dart';
+import '../../../../../core/widget/custom_drop_down_button.dart';
 import '../../widget/custom_text_field.dart';
 import '../../widget/sub_title_steps.dart';
 

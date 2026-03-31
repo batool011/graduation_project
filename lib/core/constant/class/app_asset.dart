@@ -19,6 +19,8 @@ class AppAsset{
 
  //lottie
  static const savingMoney = '$baseUrlLottie/savingMoney1.json';
+ static const calendar = '$baseUrlLottie/calendar.json';
+
 
 
  //icons

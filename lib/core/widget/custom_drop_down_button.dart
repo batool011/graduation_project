@@ -2,7 +2,7 @@ import 'package:career/core/constant/class/app_size.dart';
 import 'package:flutter/material.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-import '../../../../core/constant/class/app_color.dart';
+import '../constant/class/app_color.dart';
 
 class CustomDropdown extends StatelessWidget {
   final String? value;

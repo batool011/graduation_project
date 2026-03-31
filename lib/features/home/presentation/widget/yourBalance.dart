@@ -46,7 +46,7 @@ class Yourbalance extends StatelessWidget {
               fontWeight: FontWeight.w800,
             ),
           ),
-          Lottie.asset(AppAsset.savingMoney,height: 120)
+          Lottie.asset(AppAsset.savingMoney,height: 130)
         ],
       ),
     );

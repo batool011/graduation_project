@@ -21,7 +21,7 @@ class CustomHomeAppBar extends StatelessWidget {
             Text("Amer Abo Saeed",style: Theme.of(context).textTheme.bodySmall,),
             Spacer(),
 
-            CustomWhiteContainer(icon: AppAsset.notification,withRadius: true,),
+            GestureDetector(onTap:(){Get.toNamed(RoutesName.notification);},child: CustomWhiteContainer(icon: AppAsset.notification,withRadius: true,)),
             //CustomWhiteContainer(icon: AppAsset.setting,withRadius: true,onTap: (){Get.toNamed(RoutesName.setting);},)
 
 

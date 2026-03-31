@@ -8,16 +8,15 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import '../../../../../../core/constant/class/app_string.dart';
 import '../../../../../../core/widget/under_line_text.dart';
-import '../widget/wheel.dart';
 
-class AdvertisementScreen extends StatelessWidget {
-  const AdvertisementScreen({super.key});
+class NotificationScreen extends StatelessWidget {
+  const NotificationScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(preferredSize: Size(double.infinity,70),
-      child: CustomAppBar(text: AppString.bookmarks.tr,)),
+          child: CustomAppBar(text: AppString.notifications.tr,)),
       backgroundColor: AppColor.scaffoldColor,
       body: Column(
         children: [
@@ -27,13 +26,24 @@ class AdvertisementScreen extends StatelessWidget {
             child: Row(children: [
               Text("10 items"),
               Spacer(),
-              SvgPicture.asset(AppAsset.sort),
+              Icon(Icons.delete_outline,color: AppColor.errorColor,size: 20,),
               4.horizontalSpace(),
-              UnderLineText(text: AppString.seeAll.tr),
+              UnderLineText(text: AppString.deleteAll.tr),
             ],),
           ),
           16.verticalSpace(),
+          Expanded(
+              child: ListView(
+                children: [
+                  CustomNotificationContainer(),
+                  10.verticalSpace(),
+                  CustomNotificationContainer(),
+                  10.verticalSpace(),
 
+                  CustomNotificationContainer()
+                ],
+              )
+          )
         ],
       ),
     );

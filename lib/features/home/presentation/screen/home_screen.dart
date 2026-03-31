@@ -1,5 +1,6 @@
 import 'package:career/core/constant/class/app_color.dart';
 import 'package:career/core/constant/class/app_size.dart';
+import 'package:career/core/router/routes_name.dart';
 import 'package:career/features/home/presentation/widget/custom_button_sign.dart';
 import 'package:career/features/home/presentation/widget/custom_card_home.dart';
 import 'package:career/features/home/presentation/widget/statics.dart';
@@ -63,23 +64,24 @@ class HomeScreen extends GetView<HomeController> {
                   childAspectRatio: 0.9,
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
-                  children: const [
+                  children: [
                     CustomCardHome(
+                      onTap: (){Get.toNamed(RoutesName.vacation);},
                       icon: Icons.beach_access,
                       title: 'الإجازات',
                       subtitle: 'عرض التفاصيل',
                     ),
-                    CustomCardHome(
+                    const CustomCardHome(
                       icon: Icons.checklist,
                       title: 'المهام',
                       subtitle: 'عرض التفاصيل',
                     ),
-                    CustomCardHome(
+                    const CustomCardHome(
                       icon: Icons.calendar_today,
                       title: 'جدول حضوري',
                       subtitle: 'عرض التفاصيل',
                     ),
-                    CustomCardHome(
+                    const CustomCardHome(
                       icon: Icons.savings_outlined,
                       title: 'الادخار',
                       subtitle: 'عرض التفاصيل',
