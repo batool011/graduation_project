@@ -1,53 +1,60 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mobile_scanner/mobile_scanner.dart';
+import 'package:qr_code_scanner_plus/qr_code_scanner_plus.dart';
 
-class HomeController extends GetxController{
+class HomeController extends GetxController {
   RxInt currentIndex = 0.obs;
+  final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
+  QRViewController? qrController;
+  bool isScanned = false;
 
   void changeIndex(int index) {
     currentIndex.value = index;
   }
 
-  final MobileScannerController cameraController = MobileScannerController();
-  bool isScanned = false;
+  // عند اكتشاف QR
+  void onDetect(String value, String scanMode) {
+    if (isScanned) return;
+    isScanned = true;
 
-  void onDetect(BarcodeCapture capture) {
-  if (isScanned) return;
+    print("QR Value: $value"); // <--- هنا يطبع القيمة في terminal
 
-  final List<Barcode> barcodes = capture.barcodes;
-  if (barcodes.isNotEmpty) {
-  isScanned = true;
-  final value = barcodes.first.rawValue ?? '';
-  handleQrResult(value);
-  }
-  }
+    if (scanMode == 'in') {
+      handleCheckIn(value);
+    } else {
+      handleCheckOut(value);
+    }
 
-  void handleQrResult(String value) {
-  if (value.contains('checkin')) {
-  showMessage('تم تسجيل الحضور بنجاح');
-  } else if (value.contains('checkout')) {
-  showMessage('تم تسجيل الانصراف بنجاح');
-  } else {
-  showMessage('رمز غير صالح');
-  }
+    // بعد ثانيتين، يسمح بالمسح مرة أخرى
+    Future.delayed(const Duration(seconds: 2), () {
+      isScanned = false;
+    });
   }
 
-  void showMessage(String msg) {
-  Get.snackbar(
-  "نتيجة المسح",
-  msg,
-  snackPosition: SnackPosition.BOTTOM,
-  duration: const Duration(seconds: 2),
-  );
-
-  Future.delayed(const Duration(seconds: 2), () {
-  Get.back();
-  });
+  // مثال: تسجيل الدخول
+  Future<void> handleCheckIn(String qrCode) async {
+    print("Check In: $qrCode");
+    // هنا ترسلي للbackend
+    // await sendAttendance(qrCode: qrCode, type: 'check_in');
+    Get.snackbar('نجاح', 'تم تسجيل الدخول');
   }
 
+  // مثال: تسجيل الخروج
+  Future<void> handleCheckOut(String qrCode) async {
+    print("Check Out: $qrCode");
+    // هنا ترسلي للbackend
+    // await sendAttendance(qrCode: qrCode, type: 'check_out');
+    Get.snackbar('نجاح', 'تم تسجيل الخروج');
+  }
+
+  // للتحكم بالفلاش
   void toggleFlash() {
-  cameraController.toggleTorch();
+    qrController?.toggleFlash();
   }
 
-
+  @override
+  void onClose() {
+    qrController?.dispose();
+    super.onClose();
+  }
 }

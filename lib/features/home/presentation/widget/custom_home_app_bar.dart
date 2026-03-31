@@ -18,19 +18,7 @@ class CustomHomeAppBar extends StatelessWidget {
         padding:  EdgeInsets.symmetric(horizontal: 0.05.w(context)),
         child: Row(
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("Amer Abo Saeed",style: Theme.of(context).textTheme.bodySmall,),
-                Row(
-                  children: [
-                    SvgPicture.asset(AppAsset.locationHome,height: 10,),
-                    10.horizontalSpace(),
-                    Text("Damascus, Syria",style: Theme.of(context).textTheme.bodySmall!.copyWith(fontWeight: FontWeight.w700 ),)
-                  ],
-                )
-              ],
-            ),
+            Text("Amer Abo Saeed",style: Theme.of(context).textTheme.bodySmall,),
             Spacer(),
 
             CustomWhiteContainer(icon: AppAsset.notification,withRadius: true,),

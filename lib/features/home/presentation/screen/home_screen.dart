@@ -22,11 +22,7 @@ class HomeScreen extends GetView<HomeController> {
 
           25.verticalSpace(),
           CustomHomeAppBar(),
-          10.verticalSpace(),
-
-          
           CustomSlider(),
-
           10.verticalSpace(),
           
           Expanded(
