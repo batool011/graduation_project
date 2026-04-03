@@ -14,7 +14,10 @@ class RoutesName {
   static const myJob = '/MyJob';
 
 
-
+//saving 
+static const savingCards='/savingCards';
+static const savingCardsDetails='/savingCardsDetails';
+static const subscriptionPlans='/subscriptionPlans';
 
 
 }

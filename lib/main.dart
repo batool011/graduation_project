@@ -1,5 +1,6 @@
 import 'package:career/core/router/app_route.dart';
 import 'package:career/core/router/routes_name.dart';
+import 'package:career/features/saving_money/pressentations/binding/savings_binding.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -13,7 +14,7 @@ import 'firebase_options.dart';
 
  Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  //await AppTranslation.init();
+  await AppTranslation.init();
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -31,11 +32,11 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       translations: AppTranslation(),
-      // locale: const Locale('en', 'US'),
-      // fallbackLocale: const Locale('en', 'US'),
+      locale: const Locale('ar', 'AR'),
+      fallbackLocale: const Locale('ar', 'AR'),
       theme: getApplicationTheme(context),
-      initialRoute: RoutesName.splash,
-      initialBinding: SplashBinding(),
+      initialRoute: RoutesName.savingCards,
+      initialBinding: SavingsBinding(),
       getPages: AppRoute.routes,
 
     );
