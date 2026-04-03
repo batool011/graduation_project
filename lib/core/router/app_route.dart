@@ -8,10 +8,10 @@ import 'package:career/features/detail-job/presentation/screen/detail_job_screen
 import 'package:career/features/notification/presentation/screen/notification_screen.dart';
 import 'package:career/features/on%20boarding/presentation/getx/binding/onboarding_binding.dart';
 import 'package:career/features/on%20boarding/presentation/screen/on_boarding_screen.dart';
-import 'package:career/features/saving_money/pressentations/binding/savings_binding.dart';
-import 'package:career/features/saving_money/pressentations/screens/saving_card_details_screen.dart';
-import 'package:career/features/saving_money/pressentations/screens/saving_money_cards_screen.dart';
-import 'package:career/features/saving_money/pressentations/screens/subscription_plan_screen.dart';
+import 'package:career/features/saving_money/presentation/binding/savings_binding.dart';
+import 'package:career/features/saving_money/presentation/screens/saving_card_details_screen.dart';
+import 'package:career/features/saving_money/presentation/screens/saving_money_cards_screen.dart';
+import 'package:career/features/saving_money/presentation/screens/subscription_plan_screen.dart';
 import 'package:career/features/setting/presentation/screen/setting_screen.dart';
 import 'package:career/features/splash/presentation/screen/splash_screen.dart';
 import 'package:career/features/vacation/presentation/screen/vacation_screen.dart';

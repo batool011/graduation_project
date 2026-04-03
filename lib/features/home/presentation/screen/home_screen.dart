@@ -1,10 +1,11 @@
 import 'package:career/core/constant/class/app_color.dart';
 import 'package:career/core/constant/class/app_size.dart';
+import 'package:career/core/constant/class/app_string.dart';
 import 'package:career/core/router/routes_name.dart';
 import 'package:career/features/home/presentation/widget/custom_button_sign.dart';
 import 'package:career/features/home/presentation/widget/custom_card_home.dart';
 import 'package:career/features/home/presentation/widget/statics.dart';
-import 'package:career/features/home/presentation/widget/yourBalance.dart';
+import 'package:career/features/home/presentation/widget/your_balance.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../getx/controller/home_controller.dart';
@@ -22,19 +23,18 @@ class HomeScreen extends GetView<HomeController> {
         children: [
 
           25.verticalSpace(),
-          CustomHomeAppBar(),
+          CustomHomeAppBar(name: 'Batoul Ramadan',),
           CustomSlider(),
           10.verticalSpace(),
-          
           Expanded(
             child: ListView(
               padding: EdgeInsets.zero,
               children: [
                 CustomButtonSign(),
                 15.verticalSpace(),
-                Yourbalance(),
+                YourBalance(balance: '2000',),
                 10.verticalSpace(),
-                Statics(),
+                Statics(sale: '20', point: '100',),
 
                 Padding(
                   padding: EdgeInsets.symmetric(
@@ -45,7 +45,7 @@ class HomeScreen extends GetView<HomeController> {
                     children: [
                       Expanded(child: Divider(indent: 10, endIndent: 10)),
                       Text(
-                        "الاشعارات",
+                        AppString.more.tr,
                         style: Theme.of(context).textTheme.titleMedium!.copyWith(
                           color: AppColor.primaryColor,
                           fontWeight: FontWeight.bold,

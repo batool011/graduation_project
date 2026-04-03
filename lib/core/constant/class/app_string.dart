@@ -107,6 +107,27 @@ class AppString {
   static const String numberOfSubscribers="numberOfSubscribers";
   static const String courseDuration="courseDuration";
   static const String totalSavings="totalSavings";
+  static const String title11="Manage Your";
+  static const String title21="Work Smartly!";
+  static const String title12="Save More,";
+  static const String title22="Achieve More!";
+  static const String title13="Check In";
+  static const String title23="With Ease!";
+  static const String title14="Track Your";
+  static const String title24="Work Easily!";
+  static const String yourBalance="Your Balance";
+  static const String subtitle1="Track attendance easily, manage your savings, receive HR rewards, and access employee services in one smart platform designed to support your daily work life.";
+  static const String subtitle2= "Monitor your savings balance, collect reward points, and stay connected with HR services through a simple and efficient employee experience.";
+  static const String subtitle3= "Use QR code attendance, track working hours, and manage daily tasks with a secure and fast employee management system.";
+  static const String subtitle4="Manage attendance, savings, rewards, and HR services in one simple employee platform.";
+  static const String yourSale ="your sale";
+  static const String yourPoint ="your Point";
+  static const String numberOfDay ="Number Of Day";
+  static const String reason ="Reason";
+  static const String more ="More";
+  static const String uploadAttachment = "Upload Attachment";
+  static const String filesSelected = "files selected";
+  static const String selectVacationType = "select Vacation Type";
 
 
 }

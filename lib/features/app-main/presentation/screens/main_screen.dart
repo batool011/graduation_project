@@ -3,8 +3,8 @@ import 'package:career/features/profile/presentation/screens/profile_screen.dart
 import 'package:career/features/setting/presentation/screen/setting_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
-import '../../../book-mark/presentation/screen/advertisement_screen.dart';
 import '../../../home/presentation/screen/home_screen.dart';
+import '../../../saving_money/presentation/screens/saving_money_cards_screen.dart';
 
 
 class MainScreen extends StatelessWidget {
@@ -17,7 +17,7 @@ class MainScreen extends StatelessWidget {
   List<Widget> _buildScreens() {
     return [
       HomeScreen(),
-      AdvertisementScreen(),
+      SavingsCardsScreen(),
       SettingScreen(),
       ProfileScreen()
 

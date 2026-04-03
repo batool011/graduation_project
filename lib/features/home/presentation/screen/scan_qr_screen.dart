@@ -5,7 +5,7 @@ import '../../../../core/constant/class/app_color.dart';
 import '../getx/controller/home_controller.dart';
 
 class ScanQrScreen extends StatelessWidget {
-  final String scanMode; // "in" or "out"
+  final String scanMode;
   ScanQrScreen({super.key, required this.scanMode});
 
   final HomeController controller = Get.put(HomeController());

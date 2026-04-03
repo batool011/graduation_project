@@ -12,12 +12,11 @@ class HomeController extends GetxController {
     currentIndex.value = index;
   }
 
-  // عند اكتشاف QR
   void onDetect(String value, String scanMode) {
     if (isScanned) return;
     isScanned = true;
 
-    print("QR Value: $value"); // <--- هنا يطبع القيمة في terminal
+    print("QR Value: $value");
 
     if (scanMode == 'in') {
       handleCheckIn(value);
@@ -25,29 +24,23 @@ class HomeController extends GetxController {
       handleCheckOut(value);
     }
 
-    // بعد ثانيتين، يسمح بالمسح مرة أخرى
     Future.delayed(const Duration(seconds: 2), () {
       isScanned = false;
     });
   }
 
-  // مثال: تسجيل الدخول
   Future<void> handleCheckIn(String qrCode) async {
     print("Check In: $qrCode");
-    // هنا ترسلي للbackend
     // await sendAttendance(qrCode: qrCode, type: 'check_in');
     Get.snackbar('نجاح', 'تم تسجيل الدخول');
   }
 
-  // مثال: تسجيل الخروج
   Future<void> handleCheckOut(String qrCode) async {
     print("Check Out: $qrCode");
-    // هنا ترسلي للbackend
     // await sendAttendance(qrCode: qrCode, type: 'check_out');
     Get.snackbar('نجاح', 'تم تسجيل الخروج');
   }
 
-  // للتحكم بالفلاش
   void toggleFlash() {
     qrController?.toggleFlash();
   }

@@ -1,13 +1,13 @@
-import 'package:flutter/cupertino.dart';
+import 'package:career/core/constant/class/app_string.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-
 import '../../../../core/constant/class/app_asset.dart';
 import '../../../../core/constant/class/app_color.dart';
 import '../../../../core/constant/class/app_size.dart';
 
-class Yourbalance extends StatelessWidget {
-  const Yourbalance({super.key});
+class YourBalance extends StatelessWidget {
+  final String balance;
+  const YourBalance({super.key, required this.balance});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,6 @@ class Yourbalance extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 0.06.w(context)),
       padding: EdgeInsets.symmetric(
           horizontal: 0.06.w(context)
-        // vertical: 0.05.h(context),
       ),
       decoration: BoxDecoration(
         color: AppColor.secondryColor,
@@ -30,23 +29,24 @@ class Yourbalance extends StatelessWidget {
         ],
       ),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
 
           Text(
-            "رصيدك الحالي",
+            AppString.yourBalance,
             style: Theme.of(context).textTheme.bodyLarge!.copyWith(
               color: AppColor.lightBlue.withAlpha(120),
               fontWeight: FontWeight.w800,
             ),
           ),
           Text(
-            "3000",
+            balance,
             style: Theme.of(context).textTheme.bodyLarge!.copyWith(
               color: AppColor.lightBlue.withAlpha(120),
               fontWeight: FontWeight.w800,
             ),
           ),
-          Lottie.asset(AppAsset.savingMoney,height: 130)
+          Lottie.asset(AppAsset.savingMoney,height: 0.13.h(context))
         ],
       ),
     );

@@ -1,6 +1,6 @@
-import 'package:career/core/router/app_route.dart';
+import'package:career/core/router/app_route.dart';
 import 'package:career/core/router/routes_name.dart';
-import 'package:career/features/saving_money/pressentations/binding/savings_binding.dart';
+import 'package:career/features/saving_money/presentation/binding/savings_binding.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -35,8 +35,8 @@ class MyApp extends StatelessWidget {
       locale: const Locale('ar', 'AR'),
       fallbackLocale: const Locale('ar', 'AR'),
       theme: getApplicationTheme(context),
-      initialRoute: RoutesName.savingCards,
-      initialBinding: SavingsBinding(),
+      initialRoute: RoutesName.splash,
+      initialBinding: SplashBinding(),
       getPages: AppRoute.routes,
 
     );

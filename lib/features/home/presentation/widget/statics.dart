@@ -1,12 +1,13 @@
-import 'package:flutter/cupertino.dart';
+import 'package:career/core/constant/class/app_string.dart';
 import 'package:flutter/material.dart';
-
 import '../../../../core/constant/class/app_asset.dart';
 import '../../../../core/constant/class/app_color.dart';
 import '../../../../core/constant/class/app_size.dart';
 
 class Statics extends StatelessWidget {
-  const Statics({super.key});
+  final String sale;
+  final String point;
+  const Statics({super.key, required this.sale, required this.point});
 
   @override
   Widget build(BuildContext context) {
@@ -25,22 +26,23 @@ class Statics extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
           ),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Image.asset(AppAsset.star,height: 20,),
               Text(
-                "نقاطك ",
+                AppString.yourPoint,
                 style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                     color: AppColor.secondryColor,
                     fontWeight: FontWeight.w800,
-                    fontSize: 10
+                    fontSize: 12
                 ),
               ),
               Text(
-                "3000",
+               point,
                 style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                     color: AppColor.secondryColor,
                     fontWeight: FontWeight.w800,
-                    fontSize: 10
+                    fontSize: 12
                 ),
               ),
             ],
@@ -58,13 +60,14 @@ class Statics extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
           ),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Text(
-                "الخصومات",
+                AppString.yourSale,
                 style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                     color: AppColor.secondryColor,
                     fontWeight: FontWeight.w800,
-                    fontSize: 10
+                    fontSize: 12
                 ),
               ),
               Text(
@@ -72,7 +75,7 @@ class Statics extends StatelessWidget {
                 style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                     color: AppColor.secondryColor,
                     fontWeight: FontWeight.w800,
-                    fontSize: 10
+                    fontSize: 12
                 ),
               ),
             ],
