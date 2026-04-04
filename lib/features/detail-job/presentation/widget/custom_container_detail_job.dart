@@ -16,7 +16,7 @@ class CustomContainerDetailJob extends StatelessWidget {
         borderRadius: BorderRadius.circular(30)
       ),child: Center(
         child: Text(text,
-        style: Theme.of(context).textTheme.labelSmall!.copyWith(fontWeight: FontWeight.w600,color: isActive ? AppColor.secondryColor : AppColor.primaryColor.withAlpha(50)),),
+        style: Theme.of(context).textTheme.labelSmall!.copyWith(fontWeight: FontWeight.w600,color: isActive ? AppColor.white : AppColor.primaryColor.withAlpha(50)),),
       ),
     );
   }

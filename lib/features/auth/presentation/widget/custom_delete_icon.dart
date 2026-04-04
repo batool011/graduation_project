@@ -13,10 +13,10 @@ class CustomDeleteIcon extends StatelessWidget {
         padding: EdgeInsets.all(0.002.w(context)),
         margin: EdgeInsets.all(0.03.w(context)),
         decoration: BoxDecoration(
-          color: AppColor.lightCyan,
+          color: AppColor.secondryColor,
           borderRadius: BorderRadius.circular(30),
         ),
-        child: Icon(Icons.close,size: 12,color: AppColor.secondryColor,),
+        child: Icon(Icons.close,size: 12,color: AppColor.white,),
       ),
     );
   }

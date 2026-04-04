@@ -26,7 +26,7 @@ class CustomSlider extends GetView<HomeController> {
                       vertical: 0.01.h(context),
                     ),
                     decoration: BoxDecoration(
-                      color: AppColor.blue,
+                      color: AppColor.primaryColor,
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Row(
@@ -40,14 +40,14 @@ class CustomSlider extends GetView<HomeController> {
                               Text(
                                 "Start Your",
                                 style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                                  color: AppColor.secondryColor,
+                                  color: AppColor.white,
                                   fontWeight: FontWeight.w800,
                                 ),
                               ),
                               Text(
                                 "Career NOW!",
                                 style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                                  color: AppColor.secondryColor,
+                                  color: AppColor.white,
                                   fontWeight: FontWeight.w800,
                                 ),
                               ),
@@ -55,7 +55,7 @@ class CustomSlider extends GetView<HomeController> {
                               Text(
                                 "Lorem ipsum is place holder text commonly used",
                                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                  color: AppColor.secondryColor,
+                                  color: AppColor.white,
                                   fontSize: 11,
                                 ),
                               ),
@@ -85,7 +85,7 @@ class CustomSlider extends GetView<HomeController> {
                       vertical: 0.01.h(context),
                     ),
                     decoration: BoxDecoration(
-                      color: AppColor.blue,
+                      color: AppColor.primaryColor,
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Row(
@@ -99,14 +99,14 @@ class CustomSlider extends GetView<HomeController> {
                               Text(
                                 "Start Your",
                                 style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                                  color: AppColor.secondryColor,
+                                  color: AppColor.white,
                                   fontWeight: FontWeight.w800,
                                 ),
                               ),
                               Text(
                                 "Career NOW!",
                                 style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                                  color: AppColor.secondryColor,
+                                  color: AppColor.white,
                                   fontWeight: FontWeight.w800,
                                 ),
                               ),
@@ -114,7 +114,7 @@ class CustomSlider extends GetView<HomeController> {
                               Text(
                                 "Lorem ipsum is place holder text commonly used",
                                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                  color: AppColor.secondryColor,
+                                  color: AppColor.white,
                                   fontSize: 11,
                                 ),
                               ),
@@ -144,7 +144,7 @@ class CustomSlider extends GetView<HomeController> {
                       vertical: 0.01.h(context),
                     ),
                     decoration: BoxDecoration(
-                      color: AppColor.blue,
+                      color: AppColor.primaryColor,
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Row(
@@ -158,14 +158,14 @@ class CustomSlider extends GetView<HomeController> {
                               Text(
                                 "Start Your",
                                 style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                                  color: AppColor.secondryColor,
+                                  color: AppColor.white,
                                   fontWeight: FontWeight.w800,
                                 ),
                               ),
                               Text(
                                 "Career NOW!",
                                 style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                                  color: AppColor.secondryColor,
+                                  color: AppColor.white,
                                   fontWeight: FontWeight.w800,
                                 ),
                               ),
@@ -173,7 +173,7 @@ class CustomSlider extends GetView<HomeController> {
                               Text(
                                 "Lorem ipsum is place holder text commonly used",
                                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                  color: AppColor.secondryColor,
+                                  color: AppColor.white,
                                   fontSize: 11,
                                 ),
                               ),
@@ -216,7 +216,7 @@ class CustomSlider extends GetView<HomeController> {
                 width: controller.currentIndex.value == index ? 20 : 5,
                 decoration: BoxDecoration(
                   color: controller.currentIndex.value == index
-                      ? AppColor.blue
+                      ? AppColor.primaryColor
                       : AppColor.darkGrey,
                   borderRadius: BorderRadius.circular(10),
                 ),

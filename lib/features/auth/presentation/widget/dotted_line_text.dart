@@ -18,14 +18,14 @@ class DottedLineText extends StatelessWidget {
             dashLength: 3,
             dashGapLength: 3,
             lineThickness: 1,
-            dashColor: AppColor.lightCyan,
+            dashColor: AppColor.secondryColor,
           ),
         ),
         Padding(
           padding:  EdgeInsets.symmetric(horizontal:  0.05.w(context)),
           child: Text(
             AppString.or.tr,
-            style:Theme.of(context).textTheme.bodySmall!.copyWith(color: AppColor.lightCyan,fontWeight: FontWeight.w700),
+            style:Theme.of(context).textTheme.bodySmall!.copyWith(color: AppColor.secondryColor,fontWeight: FontWeight.w700),
           ),
         ),
         const Expanded(
@@ -33,7 +33,7 @@ class DottedLineText extends StatelessWidget {
             dashLength: 3,
             dashGapLength: 3,
             lineThickness: 1,
-            dashColor: AppColor.lightCyan,
+            dashColor: AppColor.secondryColor,
 
           ),
         ),

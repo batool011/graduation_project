@@ -1,4 +1,5 @@
 import 'package:career/core/constant/class/app_asset.dart';
+import 'package:career/core/constant/class/app_color.dart';
 import 'package:career/core/constant/class/app_size.dart';
 import 'package:career/features/vacation/presentation/getx/controller/vacation_controller.dart';
 import 'package:career/features/vacation/presentation/widget/custom_drop_down_vacation.dart';
@@ -8,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import '../../../../core/constant/class/app_string.dart';
 import '../../../../core/widget/custom_app_bar.dart';
+import '../../../../core/widget/custom_button_primary.dart';
 
 class VacationScreen extends GetView<VacationController> {
   const VacationScreen({super.key});
@@ -19,14 +21,14 @@ class VacationScreen extends GetView<VacationController> {
         child: CustomAppBar(text: AppString.leaveRequest.tr,)),
     body: ListView(
       children: [
-       Lottie.asset(AppAsset.calendar,height: 0.2.h(context),width: 500),
+       Lottie.asset(AppAsset.permission,height: 0.2.h(context),width: 500),
         Obx(() {
           return CustomDropDownVacation(
             value: controller.selectedVacation.value,
             items: controller.vacationType,
             hint: AppString.selectVacationType.tr,
             onChanged: controller.setSelectedGender,
-            prefixIcon: Icon(Icons.beach_access_outlined),
+            prefixIcon: Icon(Icons.beach_access_outlined,color: AppColor.primaryColor,),
           );
         }),
         10.verticalSpace(),
@@ -34,23 +36,29 @@ class VacationScreen extends GetView<VacationController> {
           children: [
             Obx(() {
               return Expanded(
-                child: CustomDropDownVacation(
-                  value: controller.selectedVacation.value,
-                  items: controller.vacationType,
-                  hint: AppString.dateFrom.tr,
-                  onChanged: controller.setSelectedGender,
-                  prefixIcon: Icon(Icons.calendar_today),
+                child: CustomTextFieldVacation(
+                  hintText: controller.dateFrom.value.isEmpty
+                      ? AppString.dateFrom.tr
+                      : controller.dateFrom.value,
+                  readOnly: true,
+                  prefix: Icon(Icons.calendar_today, color: AppColor.primaryColor),
+                  onTap: () {
+                    controller.selectDateFrom(context);
+                  },
                 ),
               );
             }),
             Obx(() {
               return Expanded(
-                child: CustomDropDownVacation(
-                  value: controller.selectedVacation.value,
-                  items: controller.vacationType,
-                  hint: AppString.dateTo.tr,
-                  onChanged: controller.setSelectedGender,
-                  prefixIcon: Icon(Icons.calendar_today),
+                child: CustomTextFieldVacation(
+                  hintText: controller.dateTo.value.isEmpty
+                      ? AppString.dateTo.tr
+                      : controller.dateTo.value,
+                  readOnly: true,
+                  prefix: Icon(Icons.calendar_today, color: AppColor.primaryColor),
+                  onTap: () {
+                    controller.selectDateTo(context);
+                  },
                 ),
               );
             }),
@@ -71,7 +79,7 @@ class VacationScreen extends GetView<VacationController> {
                 padding: const EdgeInsets.symmetric(vertical: 2.0),
                 child: Row(
                   children: [
-                    Icon(Icons.insert_drive_file, size: 20),
+                    Icon(Icons.insert_drive_file, size: 20,color: AppColor.primaryColor,),
                     SizedBox(width: 8),
                     Expanded(child: Text(file, overflow: TextOverflow.ellipsis)),
                   ],
@@ -79,7 +87,10 @@ class VacationScreen extends GetView<VacationController> {
               );
             }).toList(),
           );
-        })
+        }),
+        15.verticalSpace(),
+        CustomButtonPrimary(text: AppString.applyNow.tr,),
+        CustomButtonPrimary(text: AppString.showLastVacation.tr,)
       ],
     ),
   );

@@ -15,11 +15,11 @@ final void Function()? onTap;
         textAlign: TextAlign.end,
         style: TextStyle(
           fontSize: 12,
-          color: AppColor.lightCyan,
+          color: AppColor.secondryColor,
           fontWeight: FontWeight.w700,
           decoration: TextDecoration.underline,
           decorationThickness: 1,
-          decorationColor: AppColor.lightCyan,
+          decorationColor: AppColor.secondryColor,
         ),
       ),
     );

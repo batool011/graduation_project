@@ -4,7 +4,6 @@ import 'package:career/features/auth/presentation/screen/create_new_account_scre
 import 'package:career/features/auth/presentation/screen/log_in_screen.dart';
 import 'package:career/features/auth/presentation/screen/register_screen.dart';
 import 'package:career/features/auth/presentation/screen/verification_screen.dart';
-import 'package:career/features/detail-job/presentation/screen/detail_job_screen.dart';
 import 'package:career/features/notification/presentation/screen/notification_screen.dart';
 import 'package:career/features/on%20boarding/presentation/getx/binding/onboarding_binding.dart';
 import 'package:career/features/on%20boarding/presentation/screen/on_boarding_screen.dart';
@@ -12,13 +11,14 @@ import 'package:career/features/saving_money/presentation/binding/savings_bindin
 import 'package:career/features/saving_money/presentation/screens/saving_card_details_screen.dart';
 import 'package:career/features/saving_money/presentation/screens/saving_money_cards_screen.dart';
 import 'package:career/features/saving_money/presentation/screens/subscription_plan_screen.dart';
+import 'package:career/features/setting/presentation/screen/about_app_screen.dart';
+import 'package:career/features/setting/presentation/screen/help_center_screen.dart';
 import 'package:career/features/setting/presentation/screen/setting_screen.dart';
 import 'package:career/features/splash/presentation/screen/splash_screen.dart';
 import 'package:career/features/vacation/presentation/screen/vacation_screen.dart';
 import 'package:get/get.dart';
 import '../../features/app-main/presentation/getx/main_binding.dart';
 import '../../features/app-main/presentation/screens/main_screen.dart';
-import '../../features/detail-job/presentation/getx/binding/detail_job_binding.dart';
 import '../../features/splash/presentation/getx/binding/splash_binding.dart';
 import '../../features/vacation/presentation/getx/binding/vacation_binding.dart';
 
@@ -59,15 +59,11 @@ class AppRoute {
       page: () =>  MainScreen(),
       binding: MainBinding(),
     ),
-    GetPage(
-      name: RoutesName.detailJob,
-      page: () =>  DetailJobScreen(),
-      binding: DetailJobBinding(),
-    ),
+
     GetPage(
       name: RoutesName.setting,
       page: () =>  SettingScreen(),
-      binding: DetailJobBinding(),
+    //  binding: DetailJobBinding(),
     ),
 
     GetPage(
@@ -93,10 +89,20 @@ class AppRoute {
       page: () =>  SavingsCardDetailsScreen(card: Get.arguments),
       binding: SavingsBinding(),
     ),
-      GetPage(
+    GetPage(
       name: RoutesName.subscriptionPlans,
       page: () => SubscriptionPlansScreen(card: Get.arguments),
       binding: SavingsBinding(),
+    ),
+    GetPage(
+      name: RoutesName.aboutApp,
+      page: () => AboutAppScreen(),
+    //  binding: SavingsBinding(),
+    ),
+    GetPage(
+      name: RoutesName.helpCenter,
+      page: () => HelpCenterScreen(),
+      //binding: SavingsBinding(),
     ),
   ];
 }

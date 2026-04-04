@@ -13,7 +13,7 @@ class CustomCard extends StatelessWidget {
       children: [
         Container(
           decoration: BoxDecoration(
-            color: AppColor.secondryColor,
+            color: AppColor.white,
             borderRadius: BorderRadius.circular(20),
           ),
           child: Row(
@@ -36,19 +36,19 @@ class CustomCard extends StatelessWidget {
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 0.02.w(context),vertical: 0.002.h(context)),
                           decoration: BoxDecoration(
-                            color: AppColor.lightBlue.withAlpha(25),
+                            color: AppColor.primaryColor.withAlpha(25),
                             borderRadius: BorderRadius.circular(20),
                           ),
-                          child: Text("On Site",style: Theme.of(context).textTheme.labelSmall!.copyWith(color: AppColor.lightBlue,fontSize: 8),),
+                          child: Text("On Site",style: Theme.of(context).textTheme.labelSmall!.copyWith(color: AppColor.primaryColor,fontSize: 8),),
                         ),
                         5.horizontalSpace(),
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 0.02.w(context),vertical: 0.003.h(context)),
                           decoration: BoxDecoration(
-                            color: AppColor.lightCyan.withAlpha(25),
+                            color: AppColor.secondryColor.withAlpha(25),
                             borderRadius: BorderRadius.circular(20),
                           ),
-                          child: Text("On Site",style: Theme.of(context).textTheme.labelSmall!.copyWith(color: AppColor.cyan,fontSize: 8),),
+                          child: Text("On Site",style: Theme.of(context).textTheme.labelSmall!.copyWith(color: AppColor.secondryColor,fontSize: 8),),
                         ),
                       ],
                     )

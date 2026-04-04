@@ -77,7 +77,7 @@ class VerificationScreen extends StatelessWidget {
 
                    SvgPicture.asset(AppAsset.alarm),
                     29.verticalSpace(),
-                    Text(AppString.youCanResendTheCodeWithin45Seconds.tr,style: Theme.of(context).textTheme.bodySmall!.copyWith(color: AppColor.secondryColor.withAlpha(50)),),
+                    Text(AppString.youCanResendTheCodeWithin45Seconds.tr,style: Theme.of(context).textTheme.bodySmall!.copyWith(color: AppColor.white.withAlpha(50)),),
                     13.verticalSpace(),
                     UnderLineText(text: AppString.resendCode.tr)
                   ]

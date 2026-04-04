@@ -26,7 +26,7 @@ class ProfileScreen extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(Icons.add,size: 14,color: AppColor.lightCyan,),
+              Icon(Icons.add,size: 14,color: AppColor.secondryColor,),
               UnderLineText(text: AppString.addAPhoto.tr),
             ],
           ),

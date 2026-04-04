@@ -13,7 +13,7 @@ final void Function()? onTap;
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 0.03.w(context), horizontal: 0.05.w(context)),
         decoration: BoxDecoration(
-          color: AppColor.secondryColor,
+          color: AppColor.white,
           borderRadius: BorderRadius.circular(50)
         ),
         child: Text(text,style: Theme.of(context).textTheme.labelSmall!.copyWith(color: AppColor.primaryColor,fontWeight: FontWeight.w500),),

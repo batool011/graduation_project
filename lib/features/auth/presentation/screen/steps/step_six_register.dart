@@ -43,7 +43,7 @@ class StepSixRegister extends GetView<RegisterController> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.add,color: AppColor.lightCyan,size: 14,),
+            Icon(Icons.add,color: AppColor.secondryColor,size: 14,),
             UnderLineText(text: AppString.addAPhoto.tr,onTap: (){
               controller.pickImageFromGallery();
               },

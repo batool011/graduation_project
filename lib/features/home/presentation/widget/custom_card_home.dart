@@ -23,7 +23,7 @@ class CustomCardHome extends StatelessWidget {
         width: 120,
         height: 140,
         decoration: BoxDecoration(
-          color: AppColor.blue,
+          color: AppColor.primaryColor,
           borderRadius: BorderRadius.circular(24),
           boxShadow: [
             BoxShadow(
@@ -47,7 +47,7 @@ class CustomCardHome extends StatelessWidget {
               ),
               child: Icon(
                 icon,
-                color: AppColor.lightBlue.withAlpha(120),
+                color: AppColor.primaryColor.withAlpha(120),
                 size: 22,
               ),
             ),

@@ -18,7 +18,7 @@ class CustomAuthButton extends StatelessWidget {
         padding: EdgeInsets.symmetric(vertical: 0.05.w(context), horizontal: 0.15.w(context)),
         margin: EdgeInsets.symmetric(vertical: 0.01.h(context)),
         decoration:
-        BoxDecoration(color: AppColor.secondryColor,
+        BoxDecoration(color: AppColor.white,
           borderRadius: BorderRadius.circular(50),),
         child: Row(
           children: [

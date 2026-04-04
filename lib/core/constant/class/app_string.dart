@@ -128,6 +128,9 @@ class AppString {
   static const String uploadAttachment = "Upload Attachment";
   static const String filesSelected = "files selected";
   static const String selectVacationType = "select Vacation Type";
+  static const String scanQr = "scanQr";
+  static const String showLastVacation = "showLastVacation";
+
 
 
 }

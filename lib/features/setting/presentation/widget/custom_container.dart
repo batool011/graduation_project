@@ -21,7 +21,7 @@ class CustomContainer extends StatelessWidget {
       children: [
         SvgPicture.asset(AppAsset.building),
         12.horizontalSpace(),
-        Text(AppString.registerAsACompany.tr,style: Theme.of(context).textTheme.bodySmall!.copyWith(color: AppColor.secondryColor,fontWeight: FontWeight.w500),)
+        Text(AppString.registerAsACompany.tr,style: Theme.of(context).textTheme.bodySmall!.copyWith(color: AppColor.white,fontWeight: FontWeight.w500),)
       ],
     ),
     );

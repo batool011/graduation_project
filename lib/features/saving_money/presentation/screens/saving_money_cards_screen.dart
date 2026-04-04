@@ -24,8 +24,8 @@ class SavingsCardsScreen extends StatelessWidget {
     decoration: BoxDecoration(
       gradient: LinearGradient(
         colors: [
-          AppColor.lightPrimaryColor,
-             AppColor.lightPrimaryColor,
+          AppColor.primaryColor,
+             AppColor.primaryColor,
           Colors.white70,
         ],
         begin: Alignment.topCenter,

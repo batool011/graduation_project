@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:qr_code_scanner_plus/qr_code_scanner_plus.dart';
 import '../../../../core/constant/class/app_color.dart';
+import '../../../../core/constant/class/app_string.dart';
+import '../../../../core/widget/custom_app_bar.dart';
 import '../getx/controller/home_controller.dart';
 
 class ScanQrScreen extends StatelessWidget {
@@ -13,10 +15,8 @@ class ScanQrScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('مسح QR للحضور'),
-        centerTitle: true,
-      ),
+      appBar: PreferredSize(preferredSize: Size(double.infinity,70),
+          child: CustomAppBar(text: AppString.scanQr.tr,)),
       body: Stack(
         children: [
           QRView(

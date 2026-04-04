@@ -54,7 +54,7 @@ class CustomDropDownVacation extends StatelessWidget {
                   ),
                 ),
                 const Icon(Icons.keyboard_arrow_down,
-                    size: 22, color: AppColor.lightCyan),
+                    size: 22, color: AppColor.secondryColor),
               ],
             ),
           ),

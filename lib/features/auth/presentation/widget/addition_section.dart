@@ -15,12 +15,12 @@ class AdditionSection extends StatelessWidget {
       padding:  EdgeInsets.symmetric(horizontal: 0.05.w(context)),
       child: Row(
         children: [
-          Icon(Icons.add,color:AppColor.lightCyan,size: 13,),
+          Icon(Icons.add,color:AppColor.secondryColor,size: 13,),
           GestureDetector(
             onTap: onTap,
               child: UnderLineText(text:text)),
           12.verticalSpace(),
-          Expanded(child: Divider(color: AppColor.lightCyan,thickness: 0.2,endIndent: 0.05.w(context),indent: 5,))
+          Expanded(child: Divider(color: AppColor.secondryColor,thickness: 0.2,endIndent: 0.05.w(context),indent: 5,))
         ],
       ),
     );

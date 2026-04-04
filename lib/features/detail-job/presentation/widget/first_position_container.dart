@@ -11,7 +11,7 @@ class FirstPositionContainer extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 0.04.w(context),vertical: 0.013.h(context)),
       margin: EdgeInsets.symmetric(horizontal: 0.04.w(context)),
       decoration: BoxDecoration(
-          color: AppColor.secondryColor,
+          color: AppColor.white,
           borderRadius: BorderRadius.circular(23)
       ),
       child:  Row(
@@ -19,19 +19,19 @@ class FirstPositionContainer extends StatelessWidget {
           Container(
             padding: EdgeInsets.symmetric(horizontal: 0.045.w(context),vertical: 0.015.h(context)),
             decoration: BoxDecoration(
-              color: AppColor.lightBlue.withAlpha(25),
+              color: AppColor.primaryColor.withAlpha(25),
               borderRadius: BorderRadius.circular(30),
             ),
-            child: Text("Full time",style: Theme.of(context).textTheme.labelSmall!.copyWith(color: AppColor.lightBlue),),
+            child: Text("Full time",style: Theme.of(context).textTheme.labelSmall!.copyWith(color: AppColor.primaryColor),),
           ),
           14.horizontalSpace(),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 0.045.w(context),vertical: 0.015.h(context)),
             decoration: BoxDecoration(
-              color: AppColor.lightCyan.withAlpha(25),
+              color: AppColor.secondryColor.withAlpha(25),
               borderRadius: BorderRadius.circular(30),
             ),
-            child: Text("On Site",style: Theme.of(context).textTheme.labelSmall!.copyWith(color: AppColor.cyan),),
+            child: Text("On Site",style: Theme.of(context).textTheme.labelSmall!.copyWith(color: AppColor.secondryColor),),
           ),
           Spacer(),
           Text("10k/month",style: Theme.of(context).textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w700,color: AppColor.primaryColor),),

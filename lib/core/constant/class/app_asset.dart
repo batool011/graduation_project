@@ -14,12 +14,15 @@ class AppAsset{
  static const slider = '$baseUrlImage/slider.png';
  static const profileImage = '$baseUrlImage/profile.png';
  static const neuw = '$baseUrlImage/new.png';
- static const Image = '$baseUrlImage/Image.png';
  static const star = '$baseUrlImage/star.png';
 
  //lottie
- static const savingMoney = '$baseUrlLottie/savingMoney1.json';
+ static const savingMoney = '$baseUrlLottie/savingMoney.json';
  static const calendar = '$baseUrlLottie/calendar.json';
+ static const permission = '$baseUrlLottie/Permission.json';
+ static const bell = '$baseUrlLottie/Bell.json';
+ static const setting = '$baseUrlLottie/Settings.json';
+
 
 
 
@@ -79,7 +82,6 @@ class AppAsset{
  static const language ='$baseUrlIcons/language.svg';
  static const home ='$baseUrlIcons/home.svg';
  static const homeBold ='$baseUrlIcons/homeBold.svg';
- static const setting ='$baseUrlIcons/setting.svg';
  static const advCyan ='$baseUrlIcons/advCyan.svg';
  static const edites ='$baseUrlIcons/edites.svg';
  static const building ='$baseUrlIcons/building.svg';

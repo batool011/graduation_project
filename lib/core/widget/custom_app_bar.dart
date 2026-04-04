@@ -14,7 +14,7 @@ final String text;
         decoration: BoxDecoration(
           color: AppColor.primaryColor,
         ),
-        child: Center(child: Text(text,style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: AppColor.secondryColor,fontWeight: FontWeight.w700),)),
+        child: Center(child: Text(text,style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: AppColor.white,fontWeight: FontWeight.w700),)),
       ),
     );
   }

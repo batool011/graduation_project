@@ -17,7 +17,7 @@ class YourBalance extends StatelessWidget {
           horizontal: 0.06.w(context)
       ),
       decoration: BoxDecoration(
-        color: AppColor.secondryColor,
+        color: AppColor.white,
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
@@ -35,14 +35,14 @@ class YourBalance extends StatelessWidget {
           Text(
             AppString.yourBalance,
             style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-              color: AppColor.lightBlue.withAlpha(120),
+              color: AppColor.primaryColor.withAlpha(120),
               fontWeight: FontWeight.w800,
             ),
           ),
           Text(
             balance,
             style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-              color: AppColor.lightBlue.withAlpha(120),
+              color: AppColor.primaryColor.withAlpha(120),
               fontWeight: FontWeight.w800,
             ),
           ),

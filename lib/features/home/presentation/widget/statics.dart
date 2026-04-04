@@ -22,7 +22,7 @@ class Statics extends StatelessWidget {
               horizontal: 0.03.w(context)
           ),
           decoration: BoxDecoration(
-            color: AppColor.lightBlue.withAlpha(120),
+            color: AppColor.primaryColor.withAlpha(120),
             borderRadius: BorderRadius.circular(20),
           ),
           child: Row(
@@ -32,7 +32,7 @@ class Statics extends StatelessWidget {
               Text(
                 AppString.yourPoint,
                 style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                    color: AppColor.secondryColor,
+                    color: AppColor.white,
                     fontWeight: FontWeight.w800,
                     fontSize: 12
                 ),
@@ -40,7 +40,7 @@ class Statics extends StatelessWidget {
               Text(
                point,
                 style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                    color: AppColor.secondryColor,
+                    color: AppColor.white,
                     fontWeight: FontWeight.w800,
                     fontSize: 12
                 ),
@@ -56,7 +56,7 @@ class Statics extends StatelessWidget {
               horizontal: 0.03.w(context)
           ),
           decoration: BoxDecoration(
-            color: AppColor.lightBlue.withAlpha(120),
+            color: AppColor.primaryColor.withAlpha(120),
             borderRadius: BorderRadius.circular(20),
           ),
           child: Row(
@@ -65,7 +65,7 @@ class Statics extends StatelessWidget {
               Text(
                 AppString.yourSale,
                 style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                    color: AppColor.secondryColor,
+                    color: AppColor.white,
                     fontWeight: FontWeight.w800,
                     fontSize: 12
                 ),
@@ -73,7 +73,7 @@ class Statics extends StatelessWidget {
               Text(
                 "3000",
                 style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                    color: AppColor.secondryColor,
+                    color: AppColor.white,
                     fontWeight: FontWeight.w800,
                     fontSize: 12
                 ),

@@ -14,7 +14,7 @@ final String percent;
       padding: EdgeInsets.symmetric(horizontal: 0.04.w(context),vertical: 0.02.h(context)),
       margin: EdgeInsets.symmetric(horizontal: 0.04.w(context),vertical: 0.008.h(context)),
       decoration: BoxDecoration(
-          color: AppColor.secondryColor,
+          color: AppColor.white,
           borderRadius: BorderRadius.circular(20)
       ),child: Row(
       children: [
@@ -22,7 +22,7 @@ final String percent;
         11.horizontalSpace(),
         Text(text,style: Theme.of(context).textTheme.bodySmall,),
         Spacer(),
-        Text(percent,style: Theme.of(context).textTheme.bodySmall!.copyWith(color: AppColor.percent),)
+        Text(percent,style: Theme.of(context).textTheme.bodySmall!.copyWith(color: AppColor.primaryColor),)
       ],
     ),
     );

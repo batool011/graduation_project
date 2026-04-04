@@ -41,7 +41,7 @@ class CustomTextFieldSearch extends StatelessWidget {
             vertical:  0.02.h(context),
           ),
           filled: true,
-          fillColor: AppColor.secondryColor,
+          fillColor: AppColor.white,
         ),
       ),
     );

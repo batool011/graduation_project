@@ -32,7 +32,7 @@ class CustomBottomContainer extends GetView<OnBoardingController> {
               Text(
                 page["subtitle"]!,
                 textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.bodySmall!.copyWith(color: AppColor.secondryColor),
+                style: Theme.of(context).textTheme.bodySmall!.copyWith(color: AppColor.white),
               ),
               39.verticalSpace(),
               Row(

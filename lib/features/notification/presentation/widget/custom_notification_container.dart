@@ -13,7 +13,7 @@ class CustomNotificationContainer extends StatelessWidget {
         vertical: 0.02.h(context),
       ),
       decoration: BoxDecoration(
-        color: AppColor.secondryColor,
+        color: AppColor.white,
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(

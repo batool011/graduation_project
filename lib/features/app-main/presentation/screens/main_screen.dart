@@ -27,19 +27,19 @@ class MainScreen extends StatelessWidget {
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       PersistentBottomNavBarItem(
-        icon:Icon(Icons.home_outlined,size: 30,),
+        icon:Icon(Icons.home_outlined,size: 30,color: AppColor.primaryColor,),
         inactiveIcon:Icon(Icons.home_outlined,size: 25,color: AppColor.blackLight,),
       ),
       PersistentBottomNavBarItem(
-        icon:Icon(Icons.savings_outlined,size: 30,),
+        icon:Icon(Icons.savings_outlined,size: 30,color: AppColor.primaryColor,),
         inactiveIcon:Icon(Icons.savings_outlined,size: 25,color: AppColor.blackLight,),
       ),
       PersistentBottomNavBarItem(
-        icon:Icon(Icons.settings,size: 30,),
+        icon:Icon(Icons.settings,size: 30,color: AppColor.primaryColor,),
         inactiveIcon:Icon(Icons.settings,size: 25,color: AppColor.blackLight,),
       ),
       PersistentBottomNavBarItem(
-        icon:Icon(Icons.person,size: 30,),
+        icon:Icon(Icons.person,size: 30,color: AppColor.primaryColor,),
         inactiveIcon:Icon(Icons.person,size: 25,color: AppColor.blackLight,),
       ),
     ];
@@ -52,7 +52,7 @@ class MainScreen extends StatelessWidget {
       context,
       screens: _buildScreens(),
       items: _navBarsItems(),
-      backgroundColor:AppColor.secondryColor,
+      backgroundColor:AppColor.white,
       navBarStyle: NavBarStyle.style12,
     );
 

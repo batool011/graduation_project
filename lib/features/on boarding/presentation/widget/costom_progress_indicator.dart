@@ -21,7 +21,7 @@ class CustomProgressIndicator extends GetView<OnBoardingController> {
                 width: controller.currentPage.value == i ? 21 : 5,
                 height: 6,
                 decoration: BoxDecoration(
-                  color:  AppColor.secondryColor,
+                  color:  AppColor.white,
                   borderRadius: BorderRadius.circular(50),
                 ),
               ),

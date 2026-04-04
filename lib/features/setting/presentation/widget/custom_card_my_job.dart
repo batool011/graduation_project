@@ -14,7 +14,7 @@ class CustomCardMyJob extends StatelessWidget {
       children: [
         Container(
           decoration: BoxDecoration(
-            color: AppColor.secondryColor,
+            color: AppColor.white,
             borderRadius: BorderRadius.circular(20),
           ),
           child: Row(

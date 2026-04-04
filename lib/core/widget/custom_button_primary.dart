@@ -12,7 +12,7 @@ final void Function()? onTap;
       onTap: onTap,
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 0.04.w(context), horizontal: 0.05.w(context)),
-        margin: EdgeInsets.symmetric(vertical: 0.04.w(context), horizontal: 0.05.w(context)),
+        margin: EdgeInsets.symmetric(vertical: 0.02.w(context), horizontal: 0.05.w(context)),
         decoration:
         BoxDecoration(color: AppColor.primaryColor,
           borderRadius: BorderRadius.circular(50),),

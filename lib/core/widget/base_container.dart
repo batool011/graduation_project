@@ -12,7 +12,7 @@ final String body;
       padding: EdgeInsets.symmetric(horizontal: 0.04.w(context),vertical: 0.02.h(context)),
       margin: EdgeInsets.symmetric(horizontal: 0.04.w(context),vertical: 0.003.h(context)),
       decoration: BoxDecoration(
-        color: AppColor.secondryColor,
+        color: AppColor.white,
         borderRadius: BorderRadius.circular(23)
       ),
       child: Column(

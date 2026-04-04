@@ -123,7 +123,7 @@ class CountryDropdown extends GetView<RegisterController> {
             fillColor: AppColor.lightGrey,
             prefixIcon: SvgPicture.asset(AppAsset.nationality,fit: BoxFit.scaleDown,),
             suffixIcon: const  Icon(Icons.keyboard_arrow_down,
-                size: 22, color: AppColor.lightCyan),
+                size: 22, color: AppColor.secondryColor),
             border: InputBorder.none,
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(50),

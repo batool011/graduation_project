@@ -16,7 +16,7 @@ class AboutCompanyWidget extends StatelessWidget {
         Container(
           padding: EdgeInsets.all( 0.02.h(context)),
           margin: EdgeInsets.symmetric(horizontal: 0.02.h(context)),
-          decoration: BoxDecoration(color: AppColor.secondryColor,
+          decoration: BoxDecoration(color: AppColor.white,
           borderRadius: BorderRadius.circular(16)),
             child:Column(
               crossAxisAlignment: CrossAxisAlignment.start,

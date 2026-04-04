@@ -26,7 +26,7 @@ class SplashScreen extends GetView<SplashController> {
                 Image.asset(AppAsset.logo,alignment: Alignment.center,),
                 20.verticalSpace(),
                 Text(AppString.careerNow.tr,
-                    style: Theme.of(context).textTheme.headlineLarge!.copyWith(color: AppColor.secondryColor,fontWeight: FontWeight.w900))
+                    style: Theme.of(context).textTheme.headlineLarge!.copyWith(color: AppColor.white,fontWeight: FontWeight.w900))
               ],
             ),
           )

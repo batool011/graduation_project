@@ -4,8 +4,8 @@ import 'package:career/core/constant/class/app_size.dart';
 import 'package:career/core/widget/custom_app_bar.dart';
 import 'package:career/features/notification/presentation/widget/custom_notification_container.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import '../../../../../../core/constant/class/app_string.dart';
 import '../../../../../../core/widget/under_line_text.dart';
 
@@ -35,6 +35,7 @@ class NotificationScreen extends StatelessWidget {
           Expanded(
               child: ListView(
                 children: [
+                  Lottie.asset(AppAsset.bell,height: 200),
                   CustomNotificationContainer(),
                   10.verticalSpace(),
                   CustomNotificationContainer(),
