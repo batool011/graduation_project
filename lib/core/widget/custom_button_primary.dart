@@ -16,7 +16,7 @@ final void Function()? onTap;
         decoration:
         BoxDecoration(color: AppColor.primaryColor,
           borderRadius: BorderRadius.circular(50),),
-        child: Center(child: Text(text,style: Theme.of(context).textTheme.labelSmall,)),),
+        child: Center(child: Text(text,style: Theme.of(context).textTheme.labelLarge,)),),
     );
   }
 }

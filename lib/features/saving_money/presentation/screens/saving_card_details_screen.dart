@@ -1,4 +1,6 @@
 import 'package:career/core/constant/class/app_string.dart';
+import 'package:career/core/widget/custom_app_bar.dart';
+import 'package:career/core/widget/custom_button_primary.dart';
 import 'package:career/features/saving_money/data/models/saving_card_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -6,20 +8,13 @@ import 'package:get/get.dart';
 class SavingsCardDetailsScreen extends StatelessWidget {
   final SavingCardModel card;
 
-  const SavingsCardDetailsScreen({required this.card});
+  const SavingsCardDetailsScreen({super.key, required this.card});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("تفاصيل ${card.name}", style: TextStyle(color: Colors.white)),
-        backgroundColor: Colors.blue,
-        elevation: 0,
-        actions: [
-          CircleAvatar(),
-          SizedBox(width: 12),
-        ],
-      ),
+       appBar: PreferredSize(preferredSize: Size(double.infinity,70),
+          child: CustomAppBar(text: "${AppString.details.tr}${card.name}",)),
 
       body: SingleChildScrollView(
         child: Column(
@@ -67,19 +62,10 @@ class SavingsCardDetailsScreen extends StatelessWidget {
             ),
 
             SizedBox(height: 20),
+CustomButtonPrimary(text: AppString.subscribeToThisCard.tr,onTap: () {
+                  Get.toNamed('/subscriptionPlans',arguments: card);
 
-            ElevatedButton(
-              onPressed: () {
-                Get.toNamed('/subscriptionPlans',arguments: card);
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
-                padding: EdgeInsets.symmetric(horizontal: 32, vertical: 14),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-              ),
-              child: Text(AppString.subscribeToThisCard.tr,
-                  style: TextStyle(fontSize: 18, color: Colors.white)),
-            ),
+},)
           ],
         ),
       ),

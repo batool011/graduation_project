@@ -1,3 +1,6 @@
+import 'package:career/core/constant/class/app_color.dart';
+import 'package:career/core/widget/custom_app_bar.dart';
+import 'package:career/core/widget/custom_button_primary.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:career/features/saving_money/data/models/saving_card_model.dart';
@@ -11,17 +14,8 @@ class SubscriptionPlansScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("خطط الإشتراك", style: TextStyle(color: Colors.white)),
-        backgroundColor: Colors.blue,
-        elevation: 0,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 12),
-            child: CircleAvatar(),
-          ),
-        ],
-      ),
+      appBar: PreferredSize(preferredSize: Size(double.infinity,70),
+          child: CustomAppBar(text: AppString.subscriptionPlans.tr,)),
 
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -51,6 +45,7 @@ class SubscriptionPlansScreen extends StatelessWidget {
             duration: "سنتان (24 شهر)",
             monthly: card.monthlyAmount,
             total: "480,000 رس",
+            color: AppColor.primaryColor
           ),
 
           SizedBox(height: 16),
@@ -61,25 +56,15 @@ class SubscriptionPlansScreen extends StatelessWidget {
             duration: "أربع سنوات (48 شهر)",
             monthly: card.monthlyAmount,
             total: "960,000 رس",
+            color: AppColor.secondryColor
           ),
 
           SizedBox(height: 30),
 
           // زر تأكيد الاشتراك
-          ElevatedButton(
-            onPressed: () {},
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.blue,
-              padding: EdgeInsets.symmetric(horizontal: 40, vertical: 14),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-            ),
-            child: Text(
-              "تأكيد الإشتراك",
-              style: TextStyle(fontSize: 18, color: Colors.white),
-            ),
-          ),
+          CustomButtonPrimary(text: AppString.confirmSubscription.tr,
+          onTap: (){},
+          )
         ],
       ),
 
@@ -92,13 +77,14 @@ class SubscriptionPlansScreen extends StatelessWidget {
     required String duration,
     required String monthly,
     required String total,
+    required Color color,
   }) {
     return Container(
       width: double.infinity,
       margin: EdgeInsets.symmetric(horizontal: 16),
       padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: color,
         borderRadius: BorderRadius.circular(16),
         boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 6)],
       ),

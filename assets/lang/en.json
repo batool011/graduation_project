@@ -106,5 +106,37 @@
   "monthlyAmount":"Monthly Amount",
   "numberOfSubscribers":"number Of Subscribers",
   "courseDuration":"course Duration",
-  "totalSavings":"total Savings"
+  "totalSavings":"total Savings",
+  
+  "title11": "Manage Your",
+  "title21": "Work Smartly!",
+  "title12": "Save More,",
+  "title22": "Achieve More!",
+  "title13": "Check In",
+  "title23": "With Ease!",
+  "title14": "Track Your",
+  "title24": "Work Easily!",
+
+  "yourBalance": "Your Balance",
+
+  "subtitle1": "Track attendance easily, manage your savings, receive HR rewards, and access employee services in one smart platform designed to support your daily work life.",
+  "subtitle2": "Monitor your savings balance, collect reward points, and stay connected with HR services through a simple and efficient employee experience.",
+  "subtitle3": "Use QR code attendance, track working hours, and manage daily tasks with a secure and fast employee management system.",
+  "subtitle4": "Manage attendance, savings, rewards, and HR services in one simple employee platform.",
+
+  "yourSale": "yourSale",
+  "yourPoint": "yourPoint",
+  "numberOfDay": "numberOfDay",
+  "reason": "reason",
+  "more": "more",
+  "uploadAttachment": "uploadAttachment",
+  "filesSelected": "filesSelected",
+  "selectVacationType": "selectVacationType",
+  "scanQr": "scanQr",
+  "showLastVacation": "showLastVacation",
+  "details": "details",
+  "subscriptionPlans": "subscriptionPlans",
+ "confirmSubscription":"confirm Subscription"
 }
+
+

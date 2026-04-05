@@ -1,5 +1,6 @@
 import 'package:career/core/constant/class/app_color.dart';
 import 'package:career/core/constant/class/app_string.dart';
+import 'package:career/core/widget/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controller/savings_controller.dart';
@@ -12,32 +13,8 @@ class SavingsCardsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-   
-        leading:  CircleAvatar(backgroundColor:Colors.white,),
-        title: Text(AppString.availableSavingsCards.tr,
-    style: TextStyle(color: Colors.white),
-  ),
-  backgroundColor: Colors.transparent,
-  elevation: 0,
-  flexibleSpace: Container(
-    decoration: BoxDecoration(
-      gradient: LinearGradient(
-        colors: [
-          AppColor.primaryColor,
-             AppColor.primaryColor,
-          Colors.white70,
-        ],
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter,
-        stops: [0.0, 0.8, 1.0], 
-      ),
-    ),
-  ),
-  iconTheme: IconThemeData(color: Colors.black),
-       
-        
-      ),
+       appBar: PreferredSize(preferredSize: Size(double.infinity,70),
+          child: CustomAppBar(text: AppString.availableSavingsCards.tr,)),
 
       body: Column(
         children: [
