@@ -71,7 +71,8 @@ class HomeScreen extends GetView<HomeController> {
                       title: 'الإجازات',
                       subtitle: 'عرض التفاصيل',
                     ),
-                    const CustomCardHome(
+                    CustomCardHome(
+                      onTap: (){Get.toNamed(RoutesName.task);},
                       icon: Icons.checklist,
                       title: 'المهام',
                       subtitle: 'عرض التفاصيل',

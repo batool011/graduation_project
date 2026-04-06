@@ -15,6 +15,8 @@ import 'package:career/features/setting/presentation/screen/about_app_screen.dar
 import 'package:career/features/setting/presentation/screen/help_center_screen.dart';
 import 'package:career/features/setting/presentation/screen/setting_screen.dart';
 import 'package:career/features/splash/presentation/screen/splash_screen.dart';
+import 'package:career/features/tasks/presentation/getx/binding/tasks_binding.dart';
+import 'package:career/features/tasks/presentation/screen/tasks_screen.dart';
 import 'package:career/features/vacation/presentation/screen/vacation_screen.dart';
 import 'package:get/get.dart';
 import '../../features/app-main/presentation/getx/main_binding.dart';
@@ -103,6 +105,11 @@ class AppRoute {
       name: RoutesName.helpCenter,
       page: () => HelpCenterScreen(),
       //binding: SavingsBinding(),
+    ),
+    GetPage(
+      name: RoutesName.task,
+      page: () => TasksScreen(),
+      binding: TasksBinding(),
     ),
   ];
 }

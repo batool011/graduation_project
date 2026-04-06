@@ -1,3 +1,4 @@
+import 'package:career/core/constant/class/app_color.dart';
 import 'package:career/core/constant/class/app_size.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
@@ -70,8 +71,10 @@ class _FAQTileState extends State<FAQTile> {
   Widget build(BuildContext context) {
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      margin: EdgeInsets.symmetric(vertical: 8),
+      margin: EdgeInsets.symmetric(vertical: 0.02.h(context)),
       child: ExpansionTile(
+        iconColor: AppColor.secondryColor,
+        collapsedIconColor: AppColor.secondryColor,
         title: Text(widget.question,
             style: TextStyle(fontWeight: FontWeight.bold)),
         initiallyExpanded: isExpanded,

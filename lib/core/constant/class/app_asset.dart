@@ -22,6 +22,8 @@ class AppAsset{
  static const permission = '$baseUrlLottie/Permission.json';
  static const bell = '$baseUrlLottie/Bell.json';
  static const setting = '$baseUrlLottie/Settings.json';
+ static const about = '$baseUrlLottie/about.json';
+ static const task = '$baseUrlLottie/task.json';
 
 
 
@@ -32,7 +34,6 @@ class AppAsset{
  static const createNewAccount = '$baseUrlIcons/createNewAccount.svg';
  static const alarm = '$baseUrlIcons/alarm.svg';
  static const previous = '$baseUrlIcons/previous.svg';
- static const about = '$baseUrlIcons/about.svg';
  static const age = '$baseUrlIcons/age.svg';
  static const dateOfBirth = '$baseUrlIcons/dateOfBirth.svg';
  static const fullName = '$baseUrlIcons/fullName.svg';

@@ -1,6 +1,8 @@
+import 'package:career/core/constant/class/app_asset.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/constant/class/app_color.dart';
 import '../../../../core/constant/class/app_size.dart';
+import '../../../../core/widget/image_widget.dart';
 
 class CustomNotificationContainer extends StatelessWidget {
   const CustomNotificationContainer({super.key});
@@ -26,11 +28,12 @@ class CustomNotificationContainer extends StatelessWidget {
       ),
       child: Padding(
         padding:  EdgeInsets.symmetric(horizontal: 0.03.w(context)),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
+            ImageWidget(width: 80,height: 80,imageUrl: AppAsset.splash,borderRadius: BorderRadius.circular(20),),
+            13.horizontalSpace(),
+            Column(
               children: [
                 Text(
                   "your balance ",
@@ -39,7 +42,18 @@ class CustomNotificationContainer extends StatelessWidget {
                     fontSize: 17
                   ),
                 ),
-                Spacer(),
+                20.verticalSpace(),
+                Text(
+                  "your balance ",
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
+              ],
+            ),
+            Spacer(),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
                 Text(
                   "2/6/2003",
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
@@ -47,14 +61,15 @@ class CustomNotificationContainer extends StatelessWidget {
                     fontWeight: FontWeight.w300,
                   color: AppColor.darkGrey),
                 ),
+                50.verticalSpace(),
+                Text(
+                  "3000",
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w300,
+                  ),
+                ),
               ],
-            ),
-            Text(
-              "3000",
-              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-               fontSize: 13,
-                fontWeight: FontWeight.w300,
-              ),
             ),
           ],
         ),

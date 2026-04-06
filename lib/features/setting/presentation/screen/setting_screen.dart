@@ -3,7 +3,6 @@ import 'package:career/core/constant/class/app_color.dart';
 import 'package:career/core/constant/class/app_size.dart';
 import 'package:career/core/router/routes_name.dart';
 import 'package:career/core/widget/under_line_text.dart';
-import 'package:career/features/setting/presentation/widget/custom_container.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';

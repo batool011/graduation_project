@@ -1,7 +1,9 @@
+import 'package:career/core/constant/class/app_string.dart';
 import 'package:career/features/home/presentation/screen/scan_qr_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import '../../../../core/constant/class/app_color.dart';
 import '../../../../core/constant/class/app_size.dart';
 
@@ -22,7 +24,7 @@ mainAxisAlignment: MainAxisAlignment.center,
               color: AppColor.primaryColor.withAlpha(25),
               borderRadius: BorderRadius.circular(20),
             ),
-            child: Center(child: Text("تسجيل دحول ",style: Theme.of(context).textTheme.labelSmall!.copyWith(color: AppColor.primaryColor,fontSize: 12),)),
+            child: Center(child: Text(AppString.checkIn.tr,style: Theme.of(context).textTheme.labelSmall!.copyWith(color: AppColor.primaryColor,fontSize: 12),)),
           ),
         ),
         5.horizontalSpace(),
@@ -35,7 +37,7 @@ mainAxisAlignment: MainAxisAlignment.center,
               color: AppColor.secondryColor.withAlpha(25),
               borderRadius: BorderRadius.circular(20),
             ),
-            child: Center(child: Text("تسجيل حروج",style: Theme.of(context).textTheme.labelSmall!.copyWith(color: AppColor.secondryColor,fontSize: 12),)),
+            child: Center(child: Text(AppString.checkOut.tr,style: Theme.of(context).textTheme.labelSmall!.copyWith(color: AppColor.secondryColor,fontSize: 12),)),
           ),
         ),
       ],

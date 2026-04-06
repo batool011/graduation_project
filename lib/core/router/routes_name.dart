@@ -14,6 +14,7 @@ class RoutesName {
   static const myJob = '/MyJob';
   static const aboutApp = '/aboutApp';
   static const helpCenter = '/helpCenter';
+  static const task = '/task';
 
 
 //saving 

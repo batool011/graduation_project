@@ -134,10 +134,17 @@ static const String filesSelected = "filesSelected";
 static const String selectVacationType = "selectVacationType";
 static const String scanQr = "scanQr";
 static const String showLastVacation = "showLastVacation";
-
 static const String details = "details";
 static const String subscriptionPlans = "subscriptionPlans";
 static const String confirmSubscription="confirmSubscription";
+//////new for safaaaa
+  static const String task="task";
+  static const String checkIn="checkIn";
+  static const String checkOut="checkOut";
+  static const String assignedBy="assignedBy";
+  static const String startDate="startDate";
+  static const String endDate="endDate";
+
 
 
 
