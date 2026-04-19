@@ -10,28 +10,28 @@ class HelpCenterScreen extends StatelessWidget {
 
   final List<Map<String, String>> faqData = const [
     {
-      "question": "How can I request a leave?",
-      "answer": "Go to the Vacation section, select your leave type and dates, and submit your request."
+      "questionKey": "faqQuestion1",
+      "answerKey": "faqAnswer1",
     },
     {
-      "question": "How can I check my attendance?",
-      "answer": "In the Attendance section, you can see your daily check-in and check-out history."
+      "questionKey": "faqQuestion2",
+      "answerKey": "faqAnswer2",
     },
     {
-      "question": "How do I manage my savings?",
-      "answer": "Go to the Savings section to see your current balance, history, and receipts."
+      "questionKey": "faqQuestion3",
+      "answerKey": "faqAnswer3",
     },
     {
-      "question": "How do I earn reward points?",
-      "answer": "HR assigns reward points based on performance, attendance, and achievements."
+      "questionKey": "faqQuestion4",
+      "answerKey": "faqAnswer4",
     },
     {
-      "question": "How do I mark my attendance?",
-      "answer": "Open the Attendance section and tap 'Check In' when you arrive at work and 'Check Out' when you leave. You can also view your daily attendance history."
+      "questionKey": "faqQuestion5",
+      "answerKey": "faqAnswer5",
     },
     {
-      "question": "How do notifications help me?",
-      "answer": "The app sends notifications to remind you about upcoming meetings, scheduled breaks, or any important updates from HR."
+      "questionKey": "faqQuestion6",
+      "answerKey": "faqAnswer6",
     },
   ];
   @override
@@ -45,8 +45,8 @@ class HelpCenterScreen extends StatelessWidget {
         itemBuilder: (context, index) {
           final item = faqData[index];
           return FAQTile(
-            question: item['question']!,
-            answer: item['answer']!,
+            questionKey: item['questionKey']!,
+            answerKey: item['answerKey']!,
           );
         },
       ),
@@ -55,10 +55,10 @@ class HelpCenterScreen extends StatelessWidget {
 }
 
 class FAQTile extends StatefulWidget {
-  final String question;
-  final String answer;
+  final String questionKey;
+  final String answerKey;
 
-  const FAQTile({super.key, required this.question, required this.answer});
+  const FAQTile({super.key, required this.questionKey, required this.answerKey});
 
   @override
   State<FAQTile> createState() => _FAQTileState();
@@ -75,7 +75,7 @@ class _FAQTileState extends State<FAQTile> {
       child: ExpansionTile(
         iconColor: AppColor.secondryColor,
         collapsedIconColor: AppColor.secondryColor,
-        title: Text(widget.question,
+        title: Text(widget.questionKey.tr,
             style: TextStyle(fontWeight: FontWeight.bold)),
         initiallyExpanded: isExpanded,
         onExpansionChanged: (expanded) {
@@ -86,7 +86,7 @@ class _FAQTileState extends State<FAQTile> {
         children: [
           Padding(
             padding: EdgeInsets.all(0.013.h(context)),
-            child: Text(widget.answer),
+            child: Text(widget.answerKey.tr),
           ),
         ],
       ),

@@ -21,7 +21,7 @@ class AboutAppScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              "HR Management Application",
+              AppString.hrManagementApp.tr,
               style: TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
@@ -31,11 +31,11 @@ class AboutAppScreen extends StatelessWidget {
             Lottie.asset(AppAsset.about),
             10.verticalSpace(),
             Text(
-              "This application helps employees manage attendance, savings, leave requests, rewards, and HR services in one smart platform.",
+              AppString.appDescription.tr,
               style: TextStyle(fontSize: 16),
             ),
              100.verticalSpace(),
-            Text("Version: 1.0.0"),
+            Text(AppString.appVersion.tr),
           ],
         ),
       ),

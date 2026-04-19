@@ -10,16 +10,20 @@ class AppString {
   static const String or = "or";
   static const String emailAddress = "emailAddress";
   static const String password = "password";
+  static const String confirmPassword = "confirmPassword";
   static const String forgetPassword = "forgetPassword";
   static const String createAFreeAccountNow = "createAFreeAccountNow";
   static const String doItLater = "doItLater";
   static const String continueWithGoogle = "continueWithGoogle";
   static const String newAccount = "newAccount";
-  static const String pleaseEnterYourAccountInformationToContinue = "pleaseEnterYourAccountInformationToContinue";
-  static const String pleaseEnterYourEmailAddressToVerifyIt = "pleaseEnterYourEmailAddressToVerifyIt";
+  static const String pleaseEnterYourAccountInformationToContinue =
+      "pleaseEnterYourAccountInformationToContinue";
+  static const String pleaseEnterYourEmailAddressToVerifyIt =
+      "pleaseEnterYourEmailAddressToVerifyIt";
   static const String Continue = "Continue";
   static const String resendCode = "resendCode";
-  static const String youCanResendTheCodeWithin45Seconds = "youCanResendTheCodeWithin45Seconds";
+  static const String youCanResendTheCodeWithin45Seconds =
+      "youCanResendTheCodeWithin45Seconds";
   static const String enterTheCodeSentTo = "enterTheCodeSentTo";
   static const String someoneEmail = "someoneEmail";
   static const String previous = "previous";
@@ -28,7 +32,13 @@ class AppString {
   static const String nationality = "nationality";
   static const String male = "male";
   static const String female = "female";
+  static const String maritalStatus = "maritalStatus";
+  static const String single = "single";
+  static const String married = "married";
+  static const String divorced = "divorced";
+  static const String widowed = "widowed";
   static const String fullName = "fullName";
+  static const String userName = "userName";
   static const String gender = "gender";
   static const String age = "age";
   static const String about = "about";
@@ -62,6 +72,7 @@ class AppString {
   static const String workExperiences = "workExperiences";
   static const String accessYourAccount = "accessYourAccount";
   static const String companyName = "companyName";
+  static const String selectCompany = "selectCompany";
   static const String position = "position";
   static const String linksOrObject = "linksOrObject";
   static const String search = "search";
@@ -98,55 +109,81 @@ class AppString {
   static const String helpCenter = "helpCenter";
   static const String aboutUs = "aboutUs";
   static const String logOut = "logOut";
+  static const String logoutConfirmationTitle = "logoutConfirmationTitle";
+  static const String logoutConfirmationMessage = "logoutConfirmationMessage";
+  static const String cancel = "cancel";
+  static const String confirmLogout = "confirmLogout";
   static const String chats = "chats";
   static const String deleteAll = "deleteAll";
   static const String subscribeNow = "subscribeNow";
   static const String availableSavingsCards = "availableSavingsCards";
-  static const String subscribeToThisCard="subscribeToThisCard";
-  static const String monthlyAmount="monthlyAmount";
-  static const String numberOfSubscribers="numberOfSubscribers";
-  static const String courseDuration="courseDuration";
-  static const String totalSavings="totalSavings";
+  static const String subscribeToThisCard = "subscribeToThisCard";
+  static const String monthlyAmount = "monthlyAmount";
+  static const String numberOfSubscribers = "numberOfSubscribers";
+  static const String courseDuration = "courseDuration";
+  static const String totalSavings = "totalSavings";
 
-static const String title11 = "title11";
-static const String title21 = "title21";
-static const String title12 = "title12";
-static const String title22 = "title22";
-static const String title13 = "title13";
-static const String title23 = "title23";
-static const String title14 = "title14";
-static const String title24 = "title24";
+  static const String title11 = "title11";
+  static const String title21 = "title21";
+  static const String title12 = "title12";
+  static const String title22 = "title22";
+  static const String title13 = "title13";
+  static const String title23 = "title23";
+  static const String title14 = "title14";
+  static const String title24 = "title24";
 
-static const String yourBalance = "yourBalance";
+  static const String yourBalance = "yourBalance";
 
-static const String subtitle1 = "subtitle1";
-static const String subtitle2 = "subtitle2";
-static const String subtitle3 = "subtitle3";
-static const String subtitle4 = "subtitle4";
+  static const String subtitle1 = "subtitle1";
+  static const String subtitle2 = "subtitle2";
+  static const String subtitle3 = "subtitle3";
+  static const String subtitle4 = "subtitle4";
 
-static const String yourSale = "yourSale";
-static const String yourPoint = "yourPoint";
-static const String numberOfDay = "numberOfDay";
-static const String reason = "reason";
-static const String more = "more";
-static const String uploadAttachment = "UploadAttachment";
-static const String filesSelected = "filesSelected";
-static const String selectVacationType = "selectVacationType";
-static const String scanQr = "scanQr";
-static const String showLastVacation = "showLastVacation";
-static const String details = "details";
-static const String subscriptionPlans = "subscriptionPlans";
-static const String confirmSubscription="confirmSubscription";
-//////new for safaaaa
-  static const String task="task";
-  static const String checkIn="checkIn";
-  static const String checkOut="checkOut";
-  static const String assignedBy="assignedBy";
-  static const String startDate="startDate";
-  static const String endDate="endDate";
+  static const String yourSale = "yourSale";
+  static const String yourPoint = "yourPoint";
+  static const String numberOfDay = "numberOfDay";
+  static const String reason = "reason";
+  static const String more = "more";
+  static const String uploadAttachment = "UploadAttachment";
+  static const String filesSelected = "filesSelected";
+  static const String selectVacationType = "selectVacationType";
+  static const String annualLeave = "annualLeave";
+  static const String sickLeave = "sickLeave";
+  static const String emergencyLeave = "emergencyLeave";
+  static const String scanQr = "scanQr";
+  static const String showLastVacation = "showLastVacation";
+  static const String details = "details";
+  static const String subscriptionPlans = "subscriptionPlans";
+  static const String confirmSubscription = "confirmSubscription";
+  //////new for safaaaa
+  static const String task = "task";
+  static const String checkIn = "checkIn";
+  static const String checkOut = "checkOut";
+  static const String assignedBy = "assignedBy";
+  static const String startDate = "startDate";
+  static const String endDate = "endDate";
 
+  // Help Center FAQs
+  static const String faqQuestion1 = "faqQuestion1";
+  static const String faqAnswer1 = "faqAnswer1";
+  static const String faqQuestion2 = "faqQuestion2";
+  static const String faqAnswer2 = "faqAnswer2";
+  static const String faqQuestion3 = "faqQuestion3";
+  static const String faqAnswer3 = "faqAnswer3";
+  static const String faqQuestion4 = "faqQuestion4";
+  static const String faqAnswer4 = "faqAnswer4";
+  static const String faqQuestion5 = "faqQuestion5";
+  static const String faqAnswer5 = "faqAnswer5";
+  static const String faqQuestion6 = "faqQuestion6";
+  static const String faqAnswer6 = "faqAnswer6";
 
+  // About App
+  static const String hrManagementApp = "hrManagementApp";
+  static const String appDescription = "appDescription";
+  static const String appVersion = "appVersion";
 
-
-
+  // Theme Settings
+  static const String darkMode = "darkMode";
+  static const String lightMode = "lightMode";
+  static const String appearance = "appearance";
 }

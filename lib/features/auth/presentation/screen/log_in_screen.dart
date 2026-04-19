@@ -2,6 +2,7 @@ import 'package:career/core/constant/class/app_asset.dart';
 import 'package:career/core/constant/class/app_color.dart';
 import 'package:career/core/constant/class/app_size.dart';
 import 'package:career/core/constant/class/app_string.dart';
+import 'package:career/core/router/routes_name.dart';
 import 'package:career/core/widget/custom_button_primary.dart';
 import 'package:career/core/widget/under_line_text.dart';
 import 'package:career/features/auth/presentation/widget/custom_auth_button.dart';
@@ -21,22 +22,41 @@ class LogInScreen extends GetView<LoginController> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(),
       body: Stack(
         children: [
           ListView(
             children: [
               CustomTitleAuth(text1: AppString.findYourDreamJob.tr, text2: AppString.loginHere.tr,),
               CustomTextAuth(text: AppString.pleaseEnterYourAccountInformationToContinue.tr),
-              CustomTextField(prefix: SvgPicture.asset(AppAsset.email,fit: BoxFit.scaleDown,),hintText: AppString.emailAddress.tr,controller: controller.email,),
+              CustomTextField(prefix: SvgPicture.asset(AppAsset.email,fit: BoxFit.scaleDown,),hintText: AppString.emailAddress.tr,controller: controller.userName,),
               16.verticalSpace(),
-              CustomTextField(prefix: SvgPicture.asset(AppAsset.password,fit: BoxFit.scaleDown,),hintText: AppString.password.tr,controller: controller.password,),
+              Obx(() {
+                return CustomTextField(
+                  prefix: SvgPicture.asset(AppAsset.password,fit: BoxFit.scaleDown,),
+                  hintText: AppString.password.tr,
+                  controller: controller.password,
+                  obscureText: !controller.isEyeOpen.value,
+                  suffixIcon: IconButton(
+                    onPressed: controller.toggleEye,
+                    icon: Icon(
+                      controller.isEyeOpen.value ? Icons.visibility : Icons.visibility_off,
+                      color: AppColor.secondryColor,
+                    ),
+                  ),
+                );
+              }),
               7.verticalSpace(),
               Padding(
                 padding:  EdgeInsets.symmetric(horizontal:  0.12.w(context) ),
                 child: UnderLineText(text: AppString.forgetPassword.tr),
               ),
-              CustomButtonPrimary(text: AppString.login.tr),
+              Obx(() {
+                return CustomButtonPrimary(
+                  text: AppString.login.tr,
+                  isLoading: controller.isLoading.value,
+                  onTap: controller.isLoading.value ? null : controller.login,
+                );
+              }),
 
             ],
           ),
@@ -52,8 +72,7 @@ class LogInScreen extends GetView<LoginController> {
                   children: [
                     DottedLineText(),
                     30.verticalSpace(),
-                    CustomAuthButton(text: AppString.createAFreeAccountNow.tr, icons: AppAsset.createNewAccount),
-                    CustomAuthButton(text: AppString.continueWithGoogle.tr, icons: AppAsset.google),
+                    CustomAuthButton(text: AppString.createAFreeAccountNow.tr, icons: AppAsset.createNewAccount,onTap: (){Get.toNamed(RoutesName.register);},),
                     30.verticalSpace(),
                     UnderLineText(text: AppString.doItLater.tr)
                   ]

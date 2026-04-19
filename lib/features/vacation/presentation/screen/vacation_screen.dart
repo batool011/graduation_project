@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import '../../../../core/constant/class/app_string.dart';
+import '../../../../core/widget/custom_date_picker_field.dart';
 import '../../../../core/widget/custom_app_bar.dart';
 import '../../../../core/widget/custom_button_primary.dart';
 
@@ -27,7 +28,7 @@ class VacationScreen extends GetView<VacationController> {
             value: controller.selectedVacation.value,
             items: controller.vacationType,
             hint: AppString.selectVacationType.tr,
-            onChanged: controller.setSelectedGender,
+            onChanged: controller.setSelectedVacationType,
             prefixIcon: Icon(Icons.beach_access_outlined,color: AppColor.primaryColor,),
           );
         }),
@@ -36,29 +37,21 @@ class VacationScreen extends GetView<VacationController> {
           children: [
             Obx(() {
               return Expanded(
-                child: CustomTextFieldVacation(
-                  hintText: controller.dateFrom.value.isEmpty
-                      ? AppString.dateFrom.tr
-                      : controller.dateFrom.value,
-                  readOnly: true,
-                  prefix: Icon(Icons.calendar_today, color: AppColor.primaryColor),
-                  onTap: () {
-                    controller.selectDateFrom(context);
-                  },
+                child: CustomDatePickerField(
+                  hintText: AppString.dateFrom.tr,
+                  value: controller.dateFrom.value,
+                  prefixIcon: const Icon(Icons.calendar_today_outlined, color: AppColor.primaryColor, size: 20),
+                  onTap: () => controller.selectDateFrom(context),
                 ),
               );
             }),
             Obx(() {
               return Expanded(
-                child: CustomTextFieldVacation(
-                  hintText: controller.dateTo.value.isEmpty
-                      ? AppString.dateTo.tr
-                      : controller.dateTo.value,
-                  readOnly: true,
-                  prefix: Icon(Icons.calendar_today, color: AppColor.primaryColor),
-                  onTap: () {
-                    controller.selectDateTo(context);
-                  },
+                child: CustomDatePickerField(
+                  hintText: AppString.dateTo.tr,
+                  value: controller.dateTo.value,
+                  prefixIcon: const Icon(Icons.calendar_today_outlined, color: AppColor.primaryColor, size: 20),
+                  onTap: () => controller.selectDateTo(context),
                 ),
               );
             }),
@@ -69,23 +62,75 @@ class VacationScreen extends GetView<VacationController> {
         10.verticalSpace(),
         CustomTextFieldVacation(hintText: AppString.numberOfDay.tr,textInputType: TextInputType.number,),
         10.verticalSpace(),
-        CustomTextFieldVacation( hintText: controller.selectedFiles.isEmpty
-            ? AppString.uploadAttachment.tr
-            : "${controller.selectedFiles.length} ${AppString.filesSelected}",readOnly: true,prefix: Icon(Icons.attach_file),onTap: (){controller.pickFiles();},),
         Obx(() {
-          return Column(
-            children: controller.selectedFiles.map((file) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 2.0),
+          return CustomTextFieldVacation(
+            hintText: AppString.uploadAttachment.tr,
+            readOnly: true,
+            prefix: const Icon(Icons.attach_file),
+            onTap: controller.pickFiles,
+            child: InkWell(
+              onTap: controller.pickFiles,
+              borderRadius: BorderRadius.circular(20),
+              child: Container(
+                width: double.infinity,
+                padding: EdgeInsets.symmetric(
+                  horizontal: 0.05.w(context),
+                  vertical: 0.02.h(context),
+                ),
+                decoration: BoxDecoration(
+                  color: AppColor.lightGrey,
+                  borderRadius: BorderRadius.circular(20),
+                ),
                 child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Icon(Icons.insert_drive_file, size: 20,color: AppColor.primaryColor,),
-                    SizedBox(width: 8),
-                    Expanded(child: Text(file, overflow: TextOverflow.ellipsis)),
+                    const Icon(Icons.attach_file, color: AppColor.primaryColor, size: 18),
+                    SizedBox(width: 0.02.w(context)),
+                    Expanded(
+                      child: Wrap(
+                        spacing: 6,
+                        runSpacing: 6,
+                        children: controller.selectedFiles.isEmpty
+                            ? [
+                                Padding(
+                                  padding: EdgeInsets.only(top: 4.0),
+                                  child: Text(
+                                    AppString.uploadAttachment.tr,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodySmall
+                                        ?.copyWith(color: AppColor.darkGrey),
+                                  ),
+                                ),
+                              ]
+                            : controller.selectedFiles
+                                .map(
+                                  (file) => InputChip(
+                                    label: Text(
+                                      file,
+                                      style: Theme.of(context).textTheme.bodySmall?.copyWith(fontSize: 11),
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                    visualDensity: VisualDensity.compact,
+                                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                    labelPadding: EdgeInsets.zero,
+                                    padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 0),
+                                    onDeleted: () => controller.removeFile(file),
+                                    deleteIconColor: AppColor.primaryColor,
+                                    deleteIcon: const Icon(Icons.close, size: 16),
+                                    backgroundColor: AppColor.white,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                  ),
+                                )
+                                .toList(),
+                      ),
+                    ),
                   ],
                 ),
-              );
-            }).toList(),
+              ),
+            ),
           );
         }),
         15.verticalSpace(),

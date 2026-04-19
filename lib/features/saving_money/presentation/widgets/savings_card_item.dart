@@ -1,5 +1,4 @@
 import 'package:career/core/constant/class/app_string.dart';
-import 'package:career/core/router/routes_name.dart';
 import 'package:career/features/saving_money/data/models/saving_card_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

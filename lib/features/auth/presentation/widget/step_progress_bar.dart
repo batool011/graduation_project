@@ -19,9 +19,9 @@ class StepProgressBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final int bars = steps - 1;
-
-    double percent = (currentStep / bars) * 100;
+    final int bars = steps ;
+    final int completedSteps = currentStep + 1;
+    double percent = (completedSteps / steps) * 100;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,7 +33,9 @@ class StepProgressBar extends StatelessWidget {
                 height: 5,
                 margin: EdgeInsets.only(right: index == bars - 1 ? 0 : 6),
                 decoration: BoxDecoration(
-                  color: index < currentStep ? AppColor.secondryColor : AppColor.grey,
+                  color: completedSteps > index
+                      ? AppColor.secondryColor
+                      : AppColor.grey,
                   borderRadius: BorderRadius.circular(20),
                 ),
               ),
@@ -54,10 +56,11 @@ class StepProgressBar extends StatelessWidget {
                   .copyWith(color: AppColor.primaryColor),
             ),
             GestureDetector(
-                onTap: (){
-                  Get.toNamed(RoutesName.home);
-                },
-                child: UnderLineText(text: AppString.skip.tr)),
+              onTap: () {
+                Get.toNamed(RoutesName.home);
+              },
+              child: UnderLineText(text: AppString.skip.tr),
+            ),
           ],
         )
       ],

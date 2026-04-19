@@ -1,6 +1,6 @@
 import'package:career/core/router/app_route.dart';
 import 'package:career/core/router/routes_name.dart';
-import 'package:career/features/saving_money/presentation/binding/savings_binding.dart';
+import 'package:career/core/theme/theme_controller.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -20,26 +20,30 @@ import 'firebase_options.dart';
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await FirebaseMessagingService().initNotificationsSettings();
+  Get.put(ThemeController());
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      translations: AppTranslation(),
-      locale: const Locale('ar', 'AR'),
-      fallbackLocale: const Locale('ar', 'AR'),
-      theme: getApplicationTheme(context),
-      initialRoute: RoutesName.splash,
-      initialBinding: SplashBinding(),
-      getPages: AppRoute.routes,
-
-    );
+    final themeController = Get.find<ThemeController>();
+    return Obx(() {
+      return GetMaterialApp(
+        debugShowCheckedModeBanner: false,
+        translations: AppTranslation(),
+        locale: const Locale('ar', 'AR'),
+        fallbackLocale: const Locale('ar', 'AR'),
+        themeMode: themeController.themeMode.value,
+        theme: getLightTheme(context),
+        darkTheme: getDarkTheme(context),
+        initialRoute: RoutesName.splash,
+        initialBinding: SplashBinding(),
+        getPages: AppRoute.routes,
+      );
+    });
   }
 }
 

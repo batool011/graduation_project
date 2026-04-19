@@ -1,4 +1,5 @@
 import 'package:career/core/constant/class/app_color.dart';
+import 'package:career/core/constant/class/app_size.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import '../getx/controller/onboarding_controller.dart';
@@ -11,15 +12,14 @@ class CustomProgressIndicator extends GetView<OnBoardingController> {
     return Obx(() {
       return Column(
         children: [
-          // Indicator
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: List.generate(
               controller.pages.length,
                   (i) => Container(
-                margin: const EdgeInsets.symmetric(horizontal: 4),
-                width: controller.currentPage.value == i ? 21 : 5,
-                height: 6,
+                margin:  EdgeInsets.symmetric(horizontal: 0.002.h(context)),
+                width: controller.currentPage.value == i ? 0.06.w(context) : 0.015.w(context),
+                height: 0.007.h(context),
                 decoration: BoxDecoration(
                   color:  AppColor.white,
                   borderRadius: BorderRadius.circular(50),

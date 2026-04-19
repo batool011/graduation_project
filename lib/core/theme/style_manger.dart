@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'font_constants.dart';
 
 // String getFontFamily() {

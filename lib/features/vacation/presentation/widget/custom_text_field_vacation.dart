@@ -11,6 +11,7 @@ class CustomTextFieldVacation extends StatelessWidget {
   final TextInputType ? textInputType;
   final bool readOnly;
   final void Function()?onTap;
+  final Widget? child;
   const CustomTextFieldVacation({
     super.key,
     this.controller,
@@ -20,17 +21,18 @@ class CustomTextFieldVacation extends StatelessWidget {
     this.onSuffixTap,
     this.textInputType,
     this.readOnly=false, this.onTap,
+    this.child,
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric( horizontal: 0.05.w(context)),
-      child: TextFormField(
+      child: child ?? TextFormField(
         keyboardType: textInputType,
         onTap: onTap,
         readOnly: readOnly,
-        style: const TextStyle(fontSize: 14, color: AppColor.black),
+        style: TextStyle(fontSize: 14, color: AppColor.black),
         controller: controller,
         decoration: InputDecoration(
           prefixIcon: prefix,

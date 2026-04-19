@@ -1,7 +1,9 @@
 import 'package:career/core/constant/class/app_color.dart';
+import 'package:career/core/theme/theme_controller.dart';
 import 'package:career/features/profile/presentation/screens/profile_screen.dart';
 import 'package:career/features/setting/presentation/screen/setting_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import '../../../home/presentation/screen/home_screen.dart';
 import '../../../saving_money/presentation/screens/saving_money_cards_screen.dart';
@@ -47,14 +49,17 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    return PersistentTabView(
-      context,
-      screens: _buildScreens(),
-      items: _navBarsItems(),
-      backgroundColor:AppColor.white,
-      navBarStyle: NavBarStyle.style12,
-    );
+    final themeController = Get.find<ThemeController>();
+    return Obx(() {
+      themeController.themeMode.value;
+      return PersistentTabView(
+        context,
+        screens: _buildScreens(),
+        items: _navBarsItems(),
+        backgroundColor: Theme.of(context).colorScheme.surface,
+        navBarStyle: NavBarStyle.style12,
+      );
+    });
 
   }
 }

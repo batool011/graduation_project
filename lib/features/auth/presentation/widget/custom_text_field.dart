@@ -9,8 +9,10 @@ class CustomTextField extends StatelessWidget {
   final Widget? prefix;
   final bool? obscureText;
   final VoidCallback? onSuffixTap;
-  final TextInputType ? textInputType;
-  final bool isComment ;
+  final VoidCallback? onTap;
+  final bool readOnly;
+  final TextInputType? textInputType;
+  final bool isComment;
   const CustomTextField({
     super.key,
     this.controller,
@@ -19,26 +21,33 @@ class CustomTextField extends StatelessWidget {
     this.prefix,
     this.obscureText = false,
     this.onSuffixTap,
+    this.onTap,
+    this.readOnly = false,
     this.textInputType,
-    this.isComment =false
+    this.isComment = false,
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-       padding: EdgeInsets.symmetric( horizontal: 0.05.w(context)),
+      padding: EdgeInsets.symmetric(horizontal: 0.05.w(context)),
       child: TextFormField(
-        maxLines: isComment?5:1,
+        maxLines: isComment ? 5 : 1,
 
         keyboardType: textInputType,
-        style: const TextStyle(fontSize: 14, color: AppColor.black),
+        style: TextStyle(fontSize: 14, color: AppColor.black),
         controller: controller,
         obscureText: obscureText!,
+        readOnly: readOnly,
+        onTap: onTap,
         decoration: InputDecoration(
-          prefixIcon: isComment?Padding(
-            padding:  EdgeInsets.only(bottom: 0.07.h(context)),
-            child: prefix,
-          ):prefix,
+          prefixIcon:
+              isComment
+                  ? Padding(
+                    padding: EdgeInsets.only(bottom: 0.07.h(context)),
+                    child: prefix,
+                  )
+                  : prefix,
           suffixIcon: suffixIcon,
           hintText: hintText,
           hintStyle: Theme.of(
@@ -55,13 +64,16 @@ class CustomTextField extends StatelessWidget {
               width: 1.0,
             ),
           ),
-          contentPadding: isComment? EdgeInsets.symmetric(
-            horizontal:  0.05.w(context),
-            vertical:  0.02.h(context),
-          ):EdgeInsets.symmetric(
-            horizontal:  0.05.w(context),
-            vertical:  0.02.h(context),
-          ),
+          contentPadding:
+              isComment
+                  ? EdgeInsets.symmetric(
+                    horizontal: 0.05.w(context),
+                    vertical: 0.02.h(context),
+                  )
+                  : EdgeInsets.symmetric(
+                    horizontal: 0.05.w(context),
+                    vertical: 0.02.h(context),
+                  ),
           filled: true,
           fillColor: AppColor.lightGrey,
         ),

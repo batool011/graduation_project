@@ -1,11 +1,9 @@
-import 'package:career/core/constant/class/app_color.dart';
 import 'package:career/core/constant/class/app_string.dart';
 import 'package:career/core/widget/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controller/savings_controller.dart';
 import '../widgets/savings_card_item.dart';
-import '../widgets/savings_type_tabs.dart';
 
 class SavingsCardsScreen extends StatelessWidget {
   final controller = Get.find<SavingsController>();

@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import '../../../../../core/constant/class/app_asset.dart';
 import '../../../../../core/constant/class/app_string.dart';
 import '../../getx/controller/register_controller.dart';
-import '../../../../../core/widget/custom_drop_down_button.dart';
 import '../../widget/custom_text_field.dart';
 import '../../widget/sub_title_steps.dart';
 
@@ -16,52 +15,26 @@ class StepTwoRegister extends GetView<RegisterController> {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        SubTitleSteps(text: AppString.jobDetails.tr,),
+        SubTitleSteps(text: AppString.contactInformation.tr,),
 
         23.verticalSpace(),
-        Obx(() {
-          return CustomDropdown(
-            value: controller.selectedGender.value,
-            items: controller.genderItems,
-            hint: AppString.jobTitle.tr,
-            onChanged: controller.setSelectedGender,
-            prefixIcon: SvgPicture.asset(AppAsset.jobTitle),
-          );
-        }),
+        CustomTextField(prefix: SvgPicture.asset(AppAsset.location,fit: BoxFit.scaleDown,),hintText: AppString.address.tr,controller: controller.addressController,),
         12.verticalSpace(),
-        CustomTextField(prefix: SvgPicture.asset(AppAsset.about,fit: BoxFit.scaleDown,),hintText: AppString.jobDescription.tr,isComment: true,),
+        CustomTextField(prefix: SvgPicture.asset(AppAsset.number,fit: BoxFit.scaleDown,),hintText: AppString.contactNumber.tr,controller: controller.numberController,),
         12.verticalSpace(),
-        Obx(() {
-          return CustomDropdown(
-            value: controller.selectedGender.value,
-            items: controller.genderItems,
-            hint: AppString.actualWork.tr,
-            onChanged: controller.setSelectedGender,
-            prefixIcon: SvgPicture.asset(AppAsset.actualWork),
-          );
-        }),
+        CustomTextField(
+          prefix: SvgPicture.asset(AppAsset.password, fit: BoxFit.scaleDown),
+          hintText: AppString.password.tr,
+          controller: controller.passwordController,
+          obscureText: true,
+        ),
         12.verticalSpace(),
-        Obx(() {
-          return CustomDropdown(
-            value: controller.selectedGender.value,
-            items: controller.genderItems,
-            hint: AppString.workTypePrefered.tr,
-            onChanged: controller.setSelectedGender,
-            prefixIcon: SvgPicture.asset(AppAsset.workTypePrefered),
-          );
-        }),
-        12.verticalSpace(),
-        Obx(() {
-          return CustomDropdown(
-            value: controller.selectedGender.value,
-            items: controller.genderItems,
-            hint: AppString.sitePrefered.tr,
-            onChanged: controller.setSelectedGender,
-            prefixIcon: SvgPicture.asset(AppAsset.sitePrefered),
-          );
-        }),
-        12.verticalSpace(),
-        CustomTextField(prefix: SvgPicture.asset(AppAsset.uploadCv,fit: BoxFit.scaleDown,),hintText: AppString.uploadCv.tr),
+        CustomTextField(
+          prefix: SvgPicture.asset(AppAsset.password, fit: BoxFit.scaleDown),
+          hintText: AppString.confirmPassword.tr,
+          controller: controller.confirmPasswordController,
+          obscureText: true,
+        ),
 
       ],
     );

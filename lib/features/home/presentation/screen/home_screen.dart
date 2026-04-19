@@ -23,7 +23,7 @@ class HomeScreen extends GetView<HomeController> {
         children: [
 
           25.verticalSpace(),
-          CustomHomeAppBar(name: 'Batoul Ramadan',),
+          Obx(() => CustomHomeAppBar(name: controller.userDisplayName.value)),
           CustomSlider(),
           10.verticalSpace(),
           Expanded(
@@ -77,7 +77,8 @@ class HomeScreen extends GetView<HomeController> {
                       title: 'المهام',
                       subtitle: 'عرض التفاصيل',
                     ),
-                    const CustomCardHome(
+                    CustomCardHome(
+                      onTap: (){Get.toNamed(RoutesName.workSchedule);},
                       icon: Icons.calendar_today,
                       title: 'جدول حضوري',
                       subtitle: 'عرض التفاصيل',

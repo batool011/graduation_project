@@ -40,7 +40,7 @@ class CountryDropdown extends GetView<RegisterController> {
                       child: TextField(
                         style: Theme.of(context).textTheme.bodyMedium,
                         decoration: InputDecoration(
-                          hintText: 'AppString.searchCountry.tr',
+                          hintText: AppString.search.tr,
                           // hintStyle: Styles.textStyle14.copyWith(
                           //   color: AppColors.lightGray,
                           // ),

@@ -3,17 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:career/core/constant/class/app_string.dart';
 import 'package:file_picker/file_picker.dart';
+import '../../../../../core/widget/custom_date_picker_field.dart';
 
 class VacationController extends GetxController {
 
   TextEditingController fileController = TextEditingController();
-  final vacationType = <String>[
-    AppString.female.tr,
-    AppString.male.tr
-  ].obs;
+  late final RxList<String> vacationType;
   final selectedVacation = RxnString();
 
-  void setSelectedGender(String? value) {
+  void setSelectedVacationType(String? value) {
     selectedVacation.value = value;
   }
 
@@ -41,7 +39,7 @@ class VacationController extends GetxController {
   RxString dateTo = ''.obs;
 
   Future<void> selectDateFrom(BuildContext context) async {
-  DateTime? picked = await showDatePicker(
+  DateTime? picked = await showAppDatePicker(
   context: context,
   initialDate: DateTime.now(),
   firstDate: DateTime(2024),
@@ -54,7 +52,7 @@ class VacationController extends GetxController {
   }
 
   Future<void> selectDateTo(BuildContext context) async {
-  DateTime? picked = await showDatePicker(
+  DateTime? picked = await showAppDatePicker(
   context: context,
   initialDate: DateTime.now(),
   firstDate: DateTime(2024),
@@ -68,6 +66,11 @@ class VacationController extends GetxController {
 
   @override
   void onInit() {
+    vacationType = <String>[
+      AppString.annualLeave.tr,
+      AppString.sickLeave.tr,
+      AppString.emergencyLeave.tr,
+    ].obs;
     super.onInit();
   }
 }

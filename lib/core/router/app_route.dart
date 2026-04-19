@@ -1,9 +1,7 @@
 import 'package:career/core/router/routes_name.dart';
-import 'package:career/features/auth/presentation/getx/auth_binding.dart';
-import 'package:career/features/auth/presentation/screen/create_new_account_screen.dart';
+import 'package:career/features/auth/presentation/getx/binding/auth_binding.dart';
 import 'package:career/features/auth/presentation/screen/log_in_screen.dart';
 import 'package:career/features/auth/presentation/screen/register_screen.dart';
-import 'package:career/features/auth/presentation/screen/verification_screen.dart';
 import 'package:career/features/notification/presentation/screen/notification_screen.dart';
 import 'package:career/features/on%20boarding/presentation/getx/binding/onboarding_binding.dart';
 import 'package:career/features/on%20boarding/presentation/screen/on_boarding_screen.dart';
@@ -12,12 +10,15 @@ import 'package:career/features/saving_money/presentation/screens/saving_card_de
 import 'package:career/features/saving_money/presentation/screens/saving_money_cards_screen.dart';
 import 'package:career/features/saving_money/presentation/screens/subscription_plan_screen.dart';
 import 'package:career/features/setting/presentation/screen/about_app_screen.dart';
+import 'package:career/features/setting/presentation/getx/binding/setting_binding.dart';
 import 'package:career/features/setting/presentation/screen/help_center_screen.dart';
 import 'package:career/features/setting/presentation/screen/setting_screen.dart';
 import 'package:career/features/splash/presentation/screen/splash_screen.dart';
 import 'package:career/features/tasks/presentation/getx/binding/tasks_binding.dart';
 import 'package:career/features/tasks/presentation/screen/tasks_screen.dart';
 import 'package:career/features/vacation/presentation/screen/vacation_screen.dart';
+import 'package:career/features/work_schedule/presentation/getx/binding/work_schedule_binding.dart';
+import 'package:career/features/work_schedule/presentation/screen/work_schedule_screen.dart';
 import 'package:get/get.dart';
 import '../../features/app-main/presentation/getx/main_binding.dart';
 import '../../features/app-main/presentation/screens/main_screen.dart';
@@ -41,16 +42,7 @@ class AppRoute {
       page: () => const LogInScreen(),
       binding: AuthBinding(),
     ),
-    GetPage(
-      name: RoutesName.createNewAccount,
-      page: () => const CreateNewAccountScreen(),
-      binding: AuthBinding(),
-    ),
-    GetPage(
-      name: RoutesName.verify,
-      page: () => const VerificationScreen(),
-      binding: AuthBinding(),
-    ),
+
     GetPage(
       name: RoutesName.register,
       page: () => const RegisterScreen(),
@@ -58,37 +50,36 @@ class AppRoute {
     ),
     GetPage(
       name: RoutesName.home,
-      page: () =>  MainScreen(),
+      page: () => MainScreen(),
       binding: MainBinding(),
     ),
 
     GetPage(
       name: RoutesName.setting,
-      page: () =>  SettingScreen(),
-    //  binding: DetailJobBinding(),
+      page: () => SettingScreen(),
+      binding: SettingBinding(),
     ),
 
     GetPage(
       name: RoutesName.notification,
       page: () => const NotificationScreen(),
-   //   binding: No(),
+      //   binding: No(),
     ),
     GetPage(
       name: RoutesName.vacation,
       page: () => const VacationScreen(),
-       binding: VacationBinding(),
+      binding: VacationBinding(),
     ),
-
 
     //الادخااار
-     GetPage(
+    GetPage(
       name: RoutesName.savingCards,
-      page: () =>  SavingsCardsScreen(),
+      page: () => SavingsCardsScreen(),
       binding: SavingsBinding(),
     ),
-       GetPage(
+    GetPage(
       name: RoutesName.savingCardsDetails,
-      page: () =>  SavingsCardDetailsScreen(card: Get.arguments),
+      page: () => SavingsCardDetailsScreen(card: Get.arguments),
       binding: SavingsBinding(),
     ),
     GetPage(
@@ -99,7 +90,7 @@ class AppRoute {
     GetPage(
       name: RoutesName.aboutApp,
       page: () => AboutAppScreen(),
-    //  binding: SavingsBinding(),
+      //  binding: SavingsBinding(),
     ),
     GetPage(
       name: RoutesName.helpCenter,
@@ -110,6 +101,11 @@ class AppRoute {
       name: RoutesName.task,
       page: () => TasksScreen(),
       binding: TasksBinding(),
+    ),
+    GetPage(
+      name: RoutesName.workSchedule,
+      page: () => const WorkScheduleScreen(),
+      binding: WorkScheduleBinding(),
     ),
   ];
 }

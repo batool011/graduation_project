@@ -9,13 +9,27 @@ final String? trailing;
 final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
+    final onSurfaceColor = Theme.of(context).colorScheme.onSurface;
     return GestureDetector(
      onTap:onTap ,
     child: ListTile(
         minTileHeight:40,
         leading: SvgPicture.asset(leading),
-        title: Text(title,style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontSize: 14,fontWeight: FontWeight.w400)),
-        trailing: Text(trailing??"",style: Theme.of(context).textTheme.labelSmall),
+        title: Text(
+          title,
+          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+            fontSize: 14,
+            fontWeight: FontWeight.w500,
+            color: onSurfaceColor,
+          ),
+        ),
+        trailing: Text(
+          trailing ?? "",
+          style: Theme.of(context).textTheme.bodySmall!.copyWith(
+            color: onSurfaceColor,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
       ),
     );
   }
