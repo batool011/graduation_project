@@ -1,7 +1,7 @@
 class ApiEndPoints {
   static const String baseUrl = String.fromEnvironment(
     'API_BASE_URL',
-    defaultValue: 'https://d096-149-34-244-172.ngrok-free.app',
+    defaultValue: 'https://ac1a-185-165-243-137.ngrok-free.app',
   );
   // Auth
   static const String login = "$baseUrl/api/v1/auth/login";
@@ -14,13 +14,22 @@ class ApiEndPoints {
 
   // Attendance
   static const String attendance = "$baseUrl/api/v1/attendance/scan";
+  static const String attendanceHistory = "$baseUrl/api/v1/attendance/history";
+
+  // Vacation
+  static const String vacations = "$baseUrl/api/v1/vacations";
+  static const String createVacation = "$baseUrl/api/v1/vacations";
+  static String getVacationDetail(int id) => "$baseUrl/api/v1/vacations/$id";
 
   // Complaints
-  static const String addComplaint = "$baseUrl/api/complaints";
-  static const String getAllComplaint = "$baseUrl/api/complaints";
+  static const String addComplaint = "$baseUrl/api/v1/complaints";
+  static const String getAllComplaint = "$baseUrl/api/v1/complaints";
   static String getComplaintDetail(int id) => "$baseUrl/api/complaints/$id";
 
   static const String updateComplaint = "$baseUrl/api/complaints";
+
+  // Tasks
+  static const String tasks = "$baseUrl/api/v1/tasks";
 
   // Properties
   static String getAllCompanies({int page = 1, int perPage = 15}) =>

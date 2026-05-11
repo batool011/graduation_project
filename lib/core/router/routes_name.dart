@@ -8,7 +8,10 @@ class RoutesName {
   static const home = '/home';
   static const notification = '/notification';
   static const vacation = '/vacation';
-  static const workSchedule = '/workSchedule';
+  static const vacationRequests = '/vacationRequests';
+  static const vacationRequestDetails = '/vacationRequestDetails';
+  static const attendanceHistory = '/attendanceHistory';
+  static const workSchedule = attendanceHistory;
 
   static const detailJob = '/detailJob';
   static const setting = '/setting';
@@ -16,6 +19,7 @@ class RoutesName {
   static const aboutApp = '/aboutApp';
   static const helpCenter = '/helpCenter';
   static const task = '/task';
+  static const complaints = '/complaints';
 
   //saving
   static const savingCards = '/savingCards';

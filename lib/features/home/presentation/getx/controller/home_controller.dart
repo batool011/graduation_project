@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:qr_code_scanner_plus/qr_code_scanner_plus.dart';
@@ -11,6 +13,7 @@ class HomeController extends GetxController {
   RxInt currentIndex = 0.obs;
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
   QRViewController? qrController;
+  StreamSubscription<Barcode>? _scanSubscription;
   bool isScanned = false;
 
   Future<void> loadUserName() async {
@@ -25,6 +28,7 @@ class HomeController extends GetxController {
   }
 
   void onDetect(String value, String scanMode) {
+    if (value.trim().isEmpty) return;
     if (isScanned) return;
     isScanned = true;
 
@@ -38,7 +42,39 @@ class HomeController extends GetxController {
 
     Future.delayed(const Duration(seconds: 2), () {
       isScanned = false;
+      qrController?.resumeCamera();
     });
+  }
+
+  void onQrViewCreated(QRViewController controller, String scanMode) {
+    qrController = controller;
+    _scanSubscription?.cancel();
+    _scanSubscription = controller.scannedDataStream.listen((scanData) {
+      qrController?.pauseCamera();
+      onDetect(scanData.code ?? '', scanMode);
+    });
+  }
+
+  void handleQrPermission(bool isGranted) {
+    if (!isGranted) {
+      SnackbarService.error('يرجى السماح بالوصول إلى الكاميرا');
+    }
+  }
+
+  Future<void> pauseQrCamera() async {
+    await qrController?.pauseCamera();
+  }
+
+  Future<void> resumeQrCamera() async {
+    await qrController?.resumeCamera();
+  }
+
+  Future<void> disposeQrResources() async {
+    await _scanSubscription?.cancel();
+    _scanSubscription = null;
+    qrController?.dispose();
+    qrController = null;
+    isScanned = false;
   }
 
   Future<void> handleCheckIn(String qrCode) async {
@@ -98,6 +134,7 @@ class HomeController extends GetxController {
 
   @override
   void onClose() {
+    _scanSubscription?.cancel();
     qrController?.dispose();
     super.onClose();
   }

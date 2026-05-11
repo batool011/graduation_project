@@ -8,33 +8,33 @@ import 'package:get/get.dart';
 class SettingController extends GetxController {
   final AuthRepository repo = AuthRepository();
   final ThemeController themeController = Get.find<ThemeController>();
+  var isLoading = false.obs;
 
-  Future<void> performLogout() async {
-    String message = 'تم تسجيل الخروج بنجاح';
+  Future<void> logout() async {
+    isLoading.value = true;
 
     try {
-      final result = await repo.logout().timeout(const Duration(seconds: 8));
+      final result = await repo.logout();
+
       result.fold(
-        (failure) {
-          message = 'تم تسجيل الخروج محليًا';
+            (failure) {
+          SnackbarService.error(failure.message);
         },
-        (response) {
-          final apiMessage =
-              response.data is Map<String, dynamic>
-                  ? (response.data['message']?.toString().trim() ?? '')
-                  : '';
-          if (apiMessage.isNotEmpty) {
-            message = apiMessage;
-          }
+            (response) async {
+          // حذف التوكن والبيانات من الجهاز
+          await TokenStorage.clearToken();
+          //await TokenStorage.clearUserName();
+
+          SnackbarService.success('تم تسجيل الخروج بنجاح');
+
+          // الرجوع لصفحة تسجيل الدخول
+          Get.offAllNamed(RoutesName.login);
         },
       );
-    } catch (_) {
-      message = 'تم تسجيل الخروج محليًا';
+    } catch (e) {
+      SnackbarService.error('حدث خطأ أثناء تسجيل الخروج');
+    } finally {
+      isLoading.value = false;
     }
-
-    await TokenStorage.clearToken();
-    await TokenStorage.clearDeviceToken();
-    SnackbarService.success(message);
-    Get.offAllNamed(RoutesName.login);
   }
 }

@@ -1,15 +1,25 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:career/core/constant/class/app_string.dart';
+import 'package:career/core/widget/snak_bar_service.dart';
 import 'package:file_picker/file_picker.dart';
 import '../../../../../core/widget/custom_date_picker_field.dart';
+import '../../../data/models/vacation_request_model.dart';
+import '../../../data/repository/vacation_repository.dart';
 
 class VacationController extends GetxController {
+  final VacationRepository repo = VacationRepository();
 
   TextEditingController fileController = TextEditingController();
   late final RxList<String> vacationType;
   final selectedVacation = RxnString();
+  final isLoading = false.obs;
+  final isVacationListLoading = false.obs;
+  final isVacationDetailLoading = false.obs;
+  final vacationRequests = <VacationRequest>[].obs;
+  final vacationMeta = Rxn<VacationPaginationMeta>();
+  final vacationDetail = Rxn<VacationRequest>();
+  final loadedVacationDetailId = RxnInt();
 
   void setSelectedVacationType(String? value) {
     selectedVacation.value = value;
@@ -37,6 +47,8 @@ class VacationController extends GetxController {
 
   RxString dateFrom = ''.obs;
   RxString dateTo = ''.obs;
+  TextEditingController reasonController = TextEditingController();
+  TextEditingController durationController = TextEditingController();
 
   Future<void> selectDateFrom(BuildContext context) async {
   DateTime? picked = await showAppDatePicker(
@@ -47,7 +59,7 @@ class VacationController extends GetxController {
   );
 
   if (picked != null) {
-  dateFrom.value = "${picked.day}/${picked.month}/${picked.year}";
+          dateFrom.value = "${picked.day}-${picked.month}-${picked.year}";
   }
   }
 
@@ -60,8 +72,100 @@ class VacationController extends GetxController {
   );
 
   if (picked != null) {
-  dateTo.value = "${picked.day}/${picked.month}/${picked.year}";
+          dateTo.value = "${picked.day}-${picked.month}-${picked.year}";
   }
+  }
+
+  Future<void> submitVacationRequest() async {
+    final from = dateFrom.value.trim();
+    final duration = durationController.text.trim();
+    final reason = reasonController.text.trim();
+
+    if (from.isEmpty || duration.isEmpty || reason.isEmpty) {
+      SnackbarService.error('يرجى ملء جميع الحقول');
+      return;
+    }
+
+    final durationInt = int.tryParse(duration);
+    if (durationInt == null || durationInt <= 0) {
+      SnackbarService.error('يرجى إدخال عدد أيام صحيح');
+      return;
+    }
+
+    isLoading.value = true;
+
+    try {
+      final result = await repo.createVacationRequest(
+        fromDate: from,
+        duration: durationInt,
+        reason: reason,
+      );
+
+      result.fold(
+        (failure) {
+          SnackbarService.error(failure.message);
+        },
+        (vacationRequest) {
+          dateFrom.value = '';
+          dateTo.value = '';
+          durationController.clear();
+          reasonController.clear();
+          selectedFiles.clear();
+          selectedVacation.value = null;
+          SnackbarService.success('تم إرسال طلب الإجازة بنجاح');
+        },
+      );
+    } finally {
+      isLoading.value = false;
+    }
+  }
+
+  Future<void> fetchVacationRequests() async {
+    isVacationListLoading.value = true;
+
+    try {
+      final result = await repo.getVacationRequests();
+
+      result.fold(
+        (failure) {
+          SnackbarService.error(failure.message);
+        },
+        (page) {
+          vacationRequests.assignAll(page.items);
+          vacationMeta.value = page.meta;
+          if (page.items.isEmpty) {
+            SnackbarService.error('لا توجد طلبات إجازة');
+          }
+        },
+      );
+    } finally {
+      isVacationListLoading.value = false;
+    }
+  }
+
+  Future<void> loadVacationRequestDetail(int id) async {
+    if (loadedVacationDetailId.value == id && vacationDetail.value?.id == id) {
+      return;
+    }
+
+    loadedVacationDetailId.value = id;
+    vacationDetail.value = null;
+    isVacationDetailLoading.value = true;
+
+    try {
+      final result = await repo.getVacationRequestDetail(id);
+
+      result.fold(
+        (failure) {
+          SnackbarService.error(failure.message);
+        },
+        (request) {
+          vacationDetail.value = request;
+        },
+      );
+    } finally {
+      isVacationDetailLoading.value = false;
+    }
   }
 
   @override
@@ -72,6 +176,14 @@ class VacationController extends GetxController {
       AppString.emergencyLeave.tr,
     ].obs;
     super.onInit();
+  }
+
+  @override
+  void onClose() {
+    reasonController.dispose();
+    durationController.dispose();
+    fileController.dispose();
+    super.onClose();
   }
 }
 

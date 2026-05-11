@@ -1,9 +1,8 @@
 import 'package:career/core/constant/class/app_asset.dart';
 import 'package:career/core/constant/class/app_color.dart';
 import 'package:career/core/constant/class/app_size.dart';
-import 'package:career/core/network/token_storage.dart';
 import 'package:career/core/router/routes_name.dart';
-import 'package:career/core/widget/under_line_text.dart';
+import 'package:career/core/widget/custom_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
@@ -11,7 +10,9 @@ import '../../../../core/constant/class/app_string.dart';
 import '../../../../core/widget/custom_app_bar.dart';
 import '../getx/controller/setting_controller.dart';
 import '../widget/custom_list_tile.dart';
-import '../widget/logout_confirmation_dialog.dart';
+import '../widget/setting_account_header.dart';
+import '../widget/setting_appearance_tile.dart';
+import '../widget/setting_section_divider.dart';
 
 class SettingScreen extends GetView<SettingController> {
   const SettingScreen({super.key});
@@ -26,30 +27,8 @@ class SettingScreen extends GetView<SettingController> {
       ),
       body: ListView(
         children: [
-          Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: 0.05.w(context),
-              vertical: 0.02.h(context),
-            ),
-            child: Row(
-              children: [
-                FutureBuilder<String?>(
-                  future: TokenStorage.getUserName(),
-                  builder: (context, snapshot) {
-                    final name = (snapshot.data ?? '').trim();
-                    return Text(
-                      name.isNotEmpty ? name : 'User',
-                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    );
-                  },
-                ),
-                Spacer(),
-                UnderLineText(text: AppString.accountSettings.tr),
-              ],
-            ),
+          SettingAccountHeader(
+            accountSettingsLabel: AppString.accountSettings.tr,
           ),
           12.verticalSpace(),
           Container(
@@ -72,12 +51,7 @@ class SettingScreen extends GetView<SettingController> {
                     title: AppString.language.tr,
                     onTap: () {},
                   ),
-                  Divider(
-                    color: AppColor.secondryColor,
-                    endIndent: 0.04.w(context),
-                    indent: 0.04.w(context),
-                    thickness: 0.7,
-                  ),
+                  const SettingSectionDivider(),
                   CustomListTile(
                     leading: AppAsset.helpSetting,
                     title: AppString.helpCenter.tr,
@@ -85,38 +59,16 @@ class SettingScreen extends GetView<SettingController> {
                       Get.toNamed(RoutesName.helpCenter);
                     },
                   ),
-                  Divider(
-                    color: AppColor.secondryColor,
-                    endIndent: 0.04.w(context),
-                    indent: 0.04.w(context),
-                    thickness: 0.7,
-                  ),
+                  const SettingSectionDivider(),
                   Obx(() {
                     final themeController = controller.themeController;
-                    return ListTile(
-                      minTileHeight: 40,
-                      leading: Icon(Icons.light_mode_outlined, color: Colors.cyan, size: 22),
-                      title: Text(
-                        AppString.appearance.tr,
-                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          color: Theme.of(context).colorScheme.onSurface,
-                        ),
-                      ),
-                      trailing: Switch(
-                        value: themeController.isDarkMode,
-                        onChanged: (_) => themeController.toggleTheme(),
-                        activeColor: AppColor.secondryColor,
-                      ),
+                    return SettingAppearanceTile(
+                      title: AppString.appearance.tr,
+                      value: themeController.isDarkMode,
+                      onChanged: (_) => themeController.toggleTheme(),
                     );
                   }),
-                  Divider(
-                    color: AppColor.secondryColor,
-                    endIndent: 0.04.w(context),
-                    indent: 0.04.w(context),
-                    thickness: 0.7,
-                  ),
+                  const SettingSectionDivider(),
                   CustomListTile(
                     leading: AppAsset.aboutUsSetting,
                     title: AppString.aboutUs.tr,
@@ -124,19 +76,23 @@ class SettingScreen extends GetView<SettingController> {
                       Get.toNamed(RoutesName.aboutApp);
                     },
                   ),
-                  Divider(
-                    color: AppColor.secondryColor,
-                    endIndent: 0.04.w(context),
-                    indent: 0.04.w(context),
-                    thickness: 0.7,
-                  ),
+                  const SettingSectionDivider(),
                   CustomListTile(
                     leading: AppAsset.logOutSetting,
                     title: AppString.logOut.tr,
                     onTap:
-                        () => showLogoutConfirmationDialog(
+                        () => showCustomDialog(
                           context,
-                          onConfirm: controller.performLogout,
+                          title: AppString.logoutConfirmationTitle.tr,
+                          subtitle: AppString.logoutConfirmationMessage.tr,
+                          image: Icon(
+                            Icons.logout_rounded,
+                            size: 42,
+                            color: AppColor.primaryColor,
+                          ),
+                          confirmText: AppString.confirmLogout.tr,
+                          cancelText: AppString.cancel.tr,
+                          onConfirm: controller.logout,
                         ),
                   ),
                 ],

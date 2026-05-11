@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import '../../../../core/constant/class/app_string.dart';
+import '../../../../core/router/routes_name.dart';
 import '../../../../core/widget/custom_date_picker_field.dart';
 import '../../../../core/widget/custom_app_bar.dart';
 import '../../../../core/widget/custom_button_primary.dart';
@@ -58,9 +59,16 @@ class VacationScreen extends GetView<VacationController> {
           ],
         ),
         10.verticalSpace(),
-        CustomTextFieldVacation(hintText: AppString.reason.tr,),
+        CustomTextFieldVacation(
+          hintText: AppString.reason.tr,
+          controller: controller.reasonController,
+        ),
         10.verticalSpace(),
-        CustomTextFieldVacation(hintText: AppString.numberOfDay.tr,textInputType: TextInputType.number,),
+        CustomTextFieldVacation(
+          hintText: AppString.numberOfDay.tr,
+          textInputType: TextInputType.number,
+          controller: controller.durationController,
+        ),
         10.verticalSpace(),
         Obx(() {
           return CustomTextFieldVacation(
@@ -134,8 +142,17 @@ class VacationScreen extends GetView<VacationController> {
           );
         }),
         15.verticalSpace(),
-        CustomButtonPrimary(text: AppString.applyNow.tr,),
-        CustomButtonPrimary(text: AppString.showLastVacation.tr,)
+        Obx(() {
+          return CustomButtonPrimary(
+            text: AppString.applyNow.tr,
+            onTap: controller.submitVacationRequest,
+            isLoading: controller.isLoading.value,
+          );
+        }),
+        CustomButtonPrimary(
+          text: AppString.showLastVacation.tr,
+          onTap: () => Get.toNamed(RoutesName.vacationRequests),
+        ),
       ],
     ),
   );

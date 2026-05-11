@@ -1,11 +1,9 @@
-import 'package:career/core/constant/class/app_asset.dart';
-import 'package:career/core/constant/class/app_size.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_utils/src/extensions/internacionalization.dart';
-import 'package:lottie/lottie.dart';
+import 'package:get/get.dart';
 
 import '../../../../core/constant/class/app_string.dart';
 import '../../../../core/widget/custom_app_bar.dart';
+import '../widget/about_app_content.dart';
 
 class AboutAppScreen extends StatelessWidget {
   const AboutAppScreen({super.key});
@@ -13,32 +11,11 @@ class AboutAppScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(preferredSize: Size(double.infinity,70),
-          child: CustomAppBar(text: AppString.aboutUs.tr,)),
-      body: Padding(
-        padding: EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              AppString.hrManagementApp.tr,
-              style: TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            10.verticalSpace(),
-            Lottie.asset(AppAsset.about),
-            10.verticalSpace(),
-            Text(
-              AppString.appDescription.tr,
-              style: TextStyle(fontSize: 16),
-            ),
-             100.verticalSpace(),
-            Text(AppString.appVersion.tr),
-          ],
-        ),
+      appBar: PreferredSize(
+        preferredSize: const Size(double.infinity, 70),
+        child: CustomAppBar(text: AppString.aboutUs.tr),
       ),
+      body: const AboutAppContent(),
     );
   }
 }

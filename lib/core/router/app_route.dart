@@ -2,6 +2,10 @@ import 'package:career/core/router/routes_name.dart';
 import 'package:career/features/auth/presentation/getx/binding/auth_binding.dart';
 import 'package:career/features/auth/presentation/screen/log_in_screen.dart';
 import 'package:career/features/auth/presentation/screen/register_screen.dart';
+import 'package:career/features/complaints/presentation/getx/binding/complaints_binding.dart';
+import 'package:career/features/complaints/presentation/screen/complaints_screen.dart';
+import 'package:career/features/attendance_history/presentation/getx/binding/attendance_history_binding.dart';
+import 'package:career/features/attendance_history/presentation/screen/attendance_history_screen.dart';
 import 'package:career/features/notification/presentation/screen/notification_screen.dart';
 import 'package:career/features/on%20boarding/presentation/getx/binding/onboarding_binding.dart';
 import 'package:career/features/on%20boarding/presentation/screen/on_boarding_screen.dart';
@@ -17,8 +21,8 @@ import 'package:career/features/splash/presentation/screen/splash_screen.dart';
 import 'package:career/features/tasks/presentation/getx/binding/tasks_binding.dart';
 import 'package:career/features/tasks/presentation/screen/tasks_screen.dart';
 import 'package:career/features/vacation/presentation/screen/vacation_screen.dart';
-import 'package:career/features/work_schedule/presentation/getx/binding/work_schedule_binding.dart';
-import 'package:career/features/work_schedule/presentation/screen/work_schedule_screen.dart';
+import 'package:career/features/vacation/presentation/screen/vacation_requests_screen.dart';
+import 'package:career/features/vacation/presentation/screen/vacation_request_detail_screen.dart';
 import 'package:get/get.dart';
 import '../../features/app-main/presentation/getx/main_binding.dart';
 import '../../features/app-main/presentation/screens/main_screen.dart';
@@ -70,6 +74,21 @@ class AppRoute {
       page: () => const VacationScreen(),
       binding: VacationBinding(),
     ),
+    GetPage(
+      name: RoutesName.vacationRequests,
+      page: () => const VacationRequestsScreen(),
+      binding: VacationBinding(),
+    ),
+    GetPage(
+      name: RoutesName.vacationRequestDetails,
+      page: () => const VacationRequestDetailScreen(),
+      binding: VacationBinding(),
+    ),
+    GetPage(
+      name: RoutesName.attendanceHistory,
+      page: () => const AttendanceHistoryScreen(),
+      binding: AttendanceHistoryBinding(),
+    ),
 
     //الادخااار
     GetPage(
@@ -103,9 +122,9 @@ class AppRoute {
       binding: TasksBinding(),
     ),
     GetPage(
-      name: RoutesName.workSchedule,
-      page: () => const WorkScheduleScreen(),
-      binding: WorkScheduleBinding(),
+      name: RoutesName.complaints,
+      page: () => const ComplaintsScreen(),
+      binding: ComplaintsBinding(),
     ),
   ];
 }

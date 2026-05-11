@@ -13,7 +13,9 @@ class AppColor {
   static const lightScaffoldColor = Color(0xFFF7F9F8);
   static const lightBlack = Colors.black;
   static const errorColor = Colors.red;
-
+  static const green = Color(0xFF2E7D32);
+  static const orange =Color(0xFFF57C00);
+  static const blue = Color(0xFF1565C0);
   // Dark Mode Colors
   static const darkPrimaryColor = Color(0xFF5566AD);
   static const darkBackgroundColor = Color(0xFF121212);
