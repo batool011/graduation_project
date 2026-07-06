@@ -172,7 +172,25 @@
   
   "darkMode": "الوضع الليلي",
   "lightMode": "الوضع النهاري",
-  "appearance": "المظهر"
+  "appearance": "المظهر",
+  
+  "employeeEvaluation": "تقييم الموظف",
+  "employeeProfile": "ملف الموظف",
+  "performanceReport": "تقرير الأداء",
+  "overallRating": "التقييم العام",
+  "numberOfEvaluations": "عدد التقييمات",
+  "percentageAboveFourStars": "نسبة الموظفين الممتازين",
+  "performanceBreakdown": "تفصيل الأداء",
+  "generalPerformance": "الأداء العام",
+  "commitment": "الالتزام",
+  "communication": "التواصل",
+  "problemSolving": "حل المشكلات",
+  "recentEvaluations": "آخر التقييمات",
+  "evaluationRecordForEmployee": "سجل زمني لنفس الموظف فقط",
+  "strengths": "نقاط القوة",
+  "focusAreas": "مجالات التركيز",
+  "noAdditionalContent": "لا يوجد محتوى إضافي",
+  "employeeId": "رقم الموظف"
 }
 
 

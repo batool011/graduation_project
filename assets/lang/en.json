@@ -172,7 +172,25 @@
   
   "darkMode": "Dark Mode",
   "lightMode": "Light Mode",
-  "appearance": "Appearance"
+  "appearance": "Appearance",
+  
+  "employeeEvaluation": "Employee Evaluation",
+  "employeeProfile": "Employee Profile",
+  "performanceReport": "Performance Report",
+  "overallRating": "Overall Rating",
+  "numberOfEvaluations": "Number of Evaluations",
+  "percentageAboveFourStars": "Percentage Above 4 Stars",
+  "performanceBreakdown": "Performance Breakdown",
+  "generalPerformance": "General Performance",
+  "commitment": "Commitment",
+  "communication": "Communication",
+  "problemSolving": "Problem Solving",
+  "recentEvaluations": "Recent Evaluations",
+  "evaluationRecordForEmployee": "Evaluation record for this employee only",
+  "strengths": "Strengths",
+  "focusAreas": "Focus Areas",
+  "noAdditionalContent": "No additional content",
+  "employeeId": "Employee ID"
 }
 
 

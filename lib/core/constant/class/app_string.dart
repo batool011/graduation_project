@@ -122,6 +122,23 @@ class AppString {
   static const String numberOfSubscribers = "numberOfSubscribers";
   static const String courseDuration = "courseDuration";
   static const String totalSavings = "totalSavings";
+  static const String employeeEvaluation = "employeeEvaluation";
+  static const String employeeProfile = "employeeProfile";
+  static const String performanceReport = "performanceReport";
+  static const String overallRating = "overallRating";
+  static const String numberOfEvaluations = "numberOfEvaluations";
+  static const String percentageAboveFourStars = "percentageAboveFourStars";
+  static const String performanceBreakdown = "performanceBreakdown";
+  static const String generalPerformance = "generalPerformance";
+  static const String commitment = "commitment";
+  static const String communication = "communication";
+  static const String problemSolving = "problemSolving";
+  static const String recentEvaluations = "recentEvaluations";
+  static const String evaluationRecordForEmployee = "evaluationRecordForEmployee";
+  static const String strengths = "strengths";
+  static const String focusAreas = "focusAreas";
+  static const String noAdditionalContent = "noAdditionalContent";
+  static const String employeeId = "employeeId";
 
   static const String title11 = "title11";
   static const String title21 = "title21";

@@ -7,6 +7,7 @@ class RoutesName {
   static const register = '/register';
   static const home = '/home';
   static const notification = '/notification';
+  static const employeeEvaluation = '/employeeEvaluation';
   static const vacation = '/vacation';
   static const vacationRequests = '/vacationRequests';
   static const vacationRequestDetails = '/vacationRequestDetails';

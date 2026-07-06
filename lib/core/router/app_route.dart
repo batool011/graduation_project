@@ -6,7 +6,10 @@ import 'package:career/features/complaints/presentation/getx/binding/complaints_
 import 'package:career/features/complaints/presentation/screen/complaints_screen.dart';
 import 'package:career/features/attendance_history/presentation/getx/binding/attendance_history_binding.dart';
 import 'package:career/features/attendance_history/presentation/screen/attendance_history_screen.dart';
+import 'package:career/features/notification/presentation/getx/binding/notification_binding.dart';
 import 'package:career/features/notification/presentation/screen/notification_screen.dart';
+import 'package:career/features/employee_evaluation/presentation/getx/binding/employee_evaluation_binding.dart';
+import 'package:career/features/employee_evaluation/presentation/screen/employee_evaluation_screen.dart';
 import 'package:career/features/on%20boarding/presentation/getx/binding/onboarding_binding.dart';
 import 'package:career/features/on%20boarding/presentation/screen/on_boarding_screen.dart';
 import 'package:career/features/saving_money/presentation/binding/savings_binding.dart';
@@ -67,7 +70,12 @@ class AppRoute {
     GetPage(
       name: RoutesName.notification,
       page: () => const NotificationScreen(),
-      //   binding: No(),
+      binding: NotificationBinding(),
+    ),
+    GetPage(
+      name: RoutesName.employeeEvaluation,
+      page: () => const EmployeeEvaluationScreen(),
+      binding: EmployeeEvaluationBinding(),
     ),
     GetPage(
       name: RoutesName.vacation,

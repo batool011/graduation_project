@@ -1,9 +1,14 @@
+import 'package:career/features/notification/data/service/notification_storage_service.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/widgets.dart';
 
 import '../network/token_storage.dart';
 
+@pragma('vm:entry-point')
 Future<void> handleBackgroundMessage(RemoteMessage message) async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await NotificationStorageService.storeRemoteMessage(message);
   print(
     '''Start `handleBackgroundMessage of vm:entry-point` |FirebaseMessagingService| 
             Notification title: ${message.notification?.title}
@@ -209,6 +214,8 @@ class FirebaseMessagingService {
     localMessage = message;
     if (localMessage?.notification == null) return;
 
+    await NotificationStorageService.storeRemoteMessage(message);
+
     if (message.data['type'] == 'accept_user') {
       // getIt<RouterService>().router.go(
       //   AppRoutes.mainScreen,
@@ -280,6 +287,7 @@ class FirebaseMessagingService {
       );
       return;
     }
+    await NotificationStorageService.storeRemoteMessage(message);
     await clearLocalNotifications(message);
     print(
       'End `onGetInitialMessagesWhenStartApp` |FirebaseMessagingService|` message: `$message`',

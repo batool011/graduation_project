@@ -1,7 +1,7 @@
 class ApiEndPoints {
   static const String baseUrl = String.fromEnvironment(
     'API_BASE_URL',
-    defaultValue: 'http://204.168.145.146',
+   defaultValue: 'http://204.168.145.146',
   );
   // Auth
   static const String login = "$baseUrl/api/v1/auth/login";

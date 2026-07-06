@@ -97,6 +97,14 @@ class HomeScreen extends GetView<HomeController> {
                       title: 'الشكاوي',
                       subtitle: 'عرض التفاصيل',
                     ),
+                    CustomCardHome(
+                      onTap: () {
+                        Get.toNamed(RoutesName.employeeEvaluation);
+                      },
+                      icon: Icons.badge_outlined,
+                      title: AppString.employeeEvaluation.tr,
+                      subtitle: AppString.employeeProfile.tr,
+                    ),
                     const CustomCardHome(
                       icon: Icons.savings_outlined,
                       title: 'الادخار',
