@@ -24,7 +24,7 @@ class RegisterScreen extends GetView<RegisterController> {
         return Column(
           children: [
             CustomTitleAuth(
-              text1: AppString.findYourDreamJob.tr,
+              text1: AppString.oneplatformforallyourneeds.tr,
               text2: AppString.loginHere.tr,
             ),
 

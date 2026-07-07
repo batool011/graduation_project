@@ -21,7 +21,6 @@ class HomeScreen extends GetView<HomeController> {
       backgroundColor: AppColor.scaffoldColor,
       body: Column(
         children: [
-
           25.verticalSpace(),
           Obx(() => CustomHomeAppBar(name: controller.userDisplayName.value)),
           CustomSlider(),
@@ -32,9 +31,9 @@ class HomeScreen extends GetView<HomeController> {
               children: [
                 CustomButtonSign(),
                 15.verticalSpace(),
-                YourBalance(balance: '2000',),
+                YourBalance(balance: '2000'),
                 10.verticalSpace(),
-                Statics(sale: '20', point: '100',),
+                Statics(sale: '20', point: '100'),
 
                 Padding(
                   padding: EdgeInsets.symmetric(
@@ -46,7 +45,9 @@ class HomeScreen extends GetView<HomeController> {
                       Expanded(child: Divider(indent: 10, endIndent: 10)),
                       Text(
                         AppString.more.tr,
-                        style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                        style: Theme.of(
+                          context,
+                        ).textTheme.titleMedium!.copyWith(
                           color: AppColor.primaryColor,
                           fontWeight: FontWeight.bold,
                         ),
@@ -55,38 +56,62 @@ class HomeScreen extends GetView<HomeController> {
                   ),
                 ),
 
-              
                 GridView.count(
                   crossAxisCount: 2,
                   crossAxisSpacing: 16,
                   mainAxisSpacing: 16,
-                  padding:  EdgeInsets.all(0.02.h(context)),
+                  padding: EdgeInsets.all(0.02.h(context)),
                   childAspectRatio: 0.9,
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                   children: [
                     CustomCardHome(
-                      onTap: (){Get.toNamed(RoutesName.vacation);},
+                      onTap: () {
+                        Get.toNamed(RoutesName.vacation);
+                      },
                       icon: Icons.beach_access,
-                      title: 'الإجازات',
-                      subtitle: 'عرض التفاصيل',
+                      title: AppString.vacations.tr,
+                      subtitle: AppString.viewDetails.tr,
                     ),
                     CustomCardHome(
-                      onTap: (){Get.toNamed(RoutesName.task);},
+                      onTap: () {
+                        Get.toNamed(RoutesName.task);
+                      },
                       icon: Icons.checklist,
-                      title: 'المهام',
-                      subtitle: 'عرض التفاصيل',
+                      title: AppString.tasks.tr,
+                      subtitle: AppString.viewDetails.tr,
                     ),
                     CustomCardHome(
-                      onTap: (){Get.toNamed(RoutesName.workSchedule);},
+                      onTap: () {
+                        Get.toNamed(RoutesName.attendanceHistory);
+                      },
                       icon: Icons.calendar_today,
-                      title: 'جدول حضوري',
-                      subtitle: 'عرض التفاصيل',
+                      title: AppString.attendanceSchedule.tr,
+                      subtitle: AppString.viewDetails.tr,
                     ),
-                    const CustomCardHome(
+                    CustomCardHome(
+                      onTap: () {
+                        Get.toNamed(RoutesName.complaints);
+                      },
+                      icon: Icons.campaign_outlined,
+                      title: AppString.complaints.tr,
+                      subtitle: AppString.viewDetails.tr,
+                    ),
+                    CustomCardHome(
+                      onTap: () {
+                        Get.toNamed(RoutesName.employeeEvaluation);
+                      },
+                      icon: Icons.badge_outlined,
+                      title: AppString.employeeEvaluation.tr,
+                      subtitle: AppString.viewDetails.tr,
+                    ),
+                    CustomCardHome(
+                      onTap: () {
+                        Get.toNamed(RoutesName.savingCards);
+                      },
                       icon: Icons.savings_outlined,
-                      title: 'الادخار',
-                      subtitle: 'عرض التفاصيل',
+                      title: AppString.savings.tr,
+                      subtitle: AppString.viewDetails.tr,
                     ),
                   ],
                 ),
@@ -96,6 +121,5 @@ class HomeScreen extends GetView<HomeController> {
         ],
       ),
     );
-
   }
 }

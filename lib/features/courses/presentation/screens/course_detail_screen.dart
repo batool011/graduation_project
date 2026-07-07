@@ -1,4 +1,3 @@
-// course_detail_screen.dart - نسخة معدلة نهائياً
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -42,12 +41,12 @@ class CourseDetailScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.error_outline, size: 60, color: Colors.grey[400]),
+                Icon(Icons.error_outline, size: 60, color: AppColor.darkGrey),
                 const SizedBox(height: 16),
                 Text(
                   AppString.unableToDisplayCourse.tr,
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        color: Colors.grey[600],
+                        color: AppColor.darkGrey,
                       ),
                 ),
               ],
@@ -59,165 +58,157 @@ class CourseDetailScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // ===== هيدر احترافي =====
-              Stack(
-                children: [
-                  Container(
-                    width: double.infinity,
-                    height: MediaQuery.of(context).size.height * 0.35,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [
-                          AppColor.primaryColor,
-                          AppColor.primaryColor.withOpacity(0.7),
-                          Colors.purple.shade700.withOpacity(0.5),
-                        ],
-                      ),
-                      borderRadius: const BorderRadius.only(
-                        bottomLeft: Radius.circular(40),
-                        bottomRight: Radius.circular(40),
+              // ===== هيدر =====
+              Container(
+                width: double.infinity,
+                height: MediaQuery.of(context).size.height * 0.35,
+                decoration: BoxDecoration(
+                  color: AppColor.primaryColor,
+                  borderRadius: const BorderRadius.only(
+                    bottomLeft: Radius.circular(40),
+                    bottomRight: Radius.circular(40),
+                  ),
+                ),
+                child: Stack(
+                  children: [
+                    // خلفية مزخرفة
+                    Positioned(
+                      right: -50,
+                      top: -50,
+                      child: Container(
+                        width: 150,
+                        height: 150,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.white.withOpacity(0.05),
+                        ),
                       ),
                     ),
-                    child: Stack(
-                      children: [
-                        // خلفية مزخرفة
-                        Positioned(
-                          right: -50,
-                          top: -50,
-                          child: Container(
-                            width: 150,
-                            height: 150,
+                    Positioned(
+                      left: -30,
+                      bottom: -30,
+                      child: Container(
+                        width: 200,
+                        height: 200,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.white.withOpacity(0.03),
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      right: 80,
+                      top: 30,
+                      child: Container(
+                        width: 80,
+                        height: 80,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.white.withOpacity(0.04),
+                        ),
+                      ),
+                    ),
+                    // المحتوى
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: MediaQuery.of(context).size.width * 0.06,
+                        vertical: MediaQuery.of(context).size.height * 0.03,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Spacer(),
+                          // أيقونة كبيرة
+                          Container(
+                            padding: const EdgeInsets.all(16),
                             decoration: BoxDecoration(
+                              color: AppColor.secondryColor.withOpacity(0.2),
                               shape: BoxShape.circle,
-                              color: Colors.white.withOpacity(0.05),
+                              border: Border.all(
+                                color: AppColor.secondryColor.withOpacity(0.3),
+                                width: 2,
+                              ),
+                            ),
+                            child: Icon(
+                              Icons.school_rounded,
+                              color: AppColor.secondryColor,
+                              size: 32,
                             ),
                           ),
-                        ),
-                        Positioned(
-                          left: -30,
-                          bottom: -30,
-                          child: Container(
-                            width: 200,
-                            height: 200,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.white.withOpacity(0.03),
-                            ),
-                          ),
-                        ),
-                        Positioned(
-                          right: 80,
-                          top: 30,
-                          child: Container(
-                            width: 80,
-                            height: 80,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.white.withOpacity(0.04),
-                            ),
-                          ),
-                        ),
-                        // المحتوى
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: MediaQuery.of(context).size.width * 0.06,
-                            vertical: MediaQuery.of(context).size.height * 0.03,
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Spacer(),
-                              // أيقونة كبيرة
-                              Container(
-                                padding: const EdgeInsets.all(16),
-                                decoration: BoxDecoration(
-                                  color: Colors.white.withOpacity(0.2),
-                                  shape: BoxShape.circle,
-                                  border: Border.all(
-                                    color: Colors.white.withOpacity(0.3),
-                                    width: 2,
-                                  ),
-                                ),
-                                child: Icon(
-                                  Icons.school_rounded,
+                          const SizedBox(height: 16),
+                          Text(
+                            course.title,
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineMedium!
+                                .copyWith(
+                                  fontWeight: FontWeight.bold,
                                   color: Colors.white,
-                                  size: 32,
+                                  fontSize: 24,
+                                  height: 1.2,
                                 ),
+                          ),
+                          const SizedBox(height: 8),
+                          Text(
+                            course.description.isNotEmpty 
+                                ? course.description 
+                                : AppString.noDescription.tr,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(
+                                  color: Colors.white.withOpacity(0.9),
+                                  fontSize: 14,
+                                  height: 1.5,
+                                ),
+                          ),
+                          const SizedBox(height: 20),
+                          // شارات المعلومات
+                          Wrap(
+                            spacing: 10,
+                            runSpacing: 8,
+                            children: [
+                              _buildInfoBadge(
+                                icon: Icons.timer_outlined,
+                                label:
+                                    '${course.duration} ${course.duration == 1 ? AppString.day.tr : AppString.days.tr}',
                               ),
-                              const SizedBox(height: 16),
-                              Text(
-                                course.title,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headlineMedium!
-                                    .copyWith(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
-                                      fontSize: 24,
-                                      height: 1.2,
-                                    ),
+                              _buildInfoBadge(
+                                icon: Icons.groups_outlined,
+                                label: course.courseTarget.isNotEmpty 
+                                    ? course.courseTarget 
+                                    : AppString.students.tr,
                               ),
-                              const SizedBox(height: 8),
-                              Text(
-                                course.description,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .copyWith(
-                                      color: Colors.white.withOpacity(0.9),
-                                      fontSize: 14,
-                                      height: 1.5,
-                                    ),
+                              _buildInfoBadge(
+                                icon: Icons.insert_drive_file_outlined,
+                                label: '${course.contents.length} ${AppString.files.tr}',
                               ),
-                              const SizedBox(height: 20),
-                              // شارات المعلومات - استخدام Wrap
-                              Wrap(
-                                spacing: 10,
-                                runSpacing: 8,
-                                children: [
-                                  _buildInfoBadge(
-                                    icon: Icons.timer_outlined,
-                                    label:
-                                        '${course.duration} ${course.duration == 1 ? AppString.day.tr : AppString.days.tr}',
-                                  ),
-                                  _buildInfoBadge(
-                                    icon: Icons.groups_outlined,
-                                    label: course.courseTarget,
-                                  ),
-                                  _buildInfoBadge(
-                                    icon: Icons.insert_drive_file_outlined,
-                                    label: '${course.contents.length} ملفات',
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 24),
                             ],
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  // زر الرجوع
-                  Positioned(
-                    top: 16,
-                    left: 16,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.black.withOpacity(0.3),
-                        shape: BoxShape.circle,
-                      ),
-                      child: IconButton(
-                        onPressed: () => Get.back(),
-                        icon: const Icon(
-                          Icons.arrow_back_rounded,
-                          color: Colors.white,
-                        ),
+                          const SizedBox(height: 24),
+                        ],
                       ),
                     ),
+                  ],
+                ),
+              ),
+              // زر الرجوع
+              Positioned(
+                top: 16,
+                left: 16,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.black.withOpacity(0.3),
+                    shape: BoxShape.circle,
                   ),
-                ],
+                  child: IconButton(
+                    onPressed: () => Get.back(),
+                    icon: const Icon(
+                      Icons.arrow_back_rounded,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
               ),
 
               // ===== قسم المحتوى =====
@@ -236,18 +227,13 @@ class CourseDetailScreen extends StatelessWidget {
                           width: 5,
                           height: 28,
                           decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [
-                                AppColor.primaryColor,
-                                Colors.purple.shade700,
-                              ],
-                            ),
+                            color: AppColor.primaryColor,
                             borderRadius: BorderRadius.circular(4),
                           ),
                         ),
                         const SizedBox(width: 14),
                         Text(
-                          'محتويات الدورة',
+                          AppString.courseContents.tr,
                           style: Theme.of(context)
                               .textTheme
                               .titleLarge!
@@ -264,16 +250,11 @@ class CourseDetailScreen extends StatelessWidget {
                             vertical: 6,
                           ),
                           decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [
-                                AppColor.primaryColor,
-                                Colors.purple.shade700,
-                              ],
-                            ),
+                            color: AppColor.primaryColor,
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: Text(
-                            '${course.contents.length} ملف',
+                            '${course.contents.length} ${AppString.file.tr}',
                             style: const TextStyle(
                               color: Colors.white,
                               fontSize: 12,
@@ -291,7 +272,7 @@ class CourseDetailScreen extends StatelessWidget {
                         margin: const EdgeInsets.only(bottom: 14),
                         padding: const EdgeInsets.all(16),
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: AppColor.white,
                           borderRadius: BorderRadius.circular(20),
                           boxShadow: [
                             BoxShadow(
@@ -302,7 +283,7 @@ class CourseDetailScreen extends StatelessWidget {
                             ),
                           ],
                           border: Border.all(
-                            color: Colors.grey[100]!,
+                            color: AppColor.grey,
                             width: 1,
                           ),
                         ),
@@ -312,12 +293,7 @@ class CourseDetailScreen extends StatelessWidget {
                             Container(
                               padding: const EdgeInsets.all(12),
                               decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  colors: [
-                                    AppColor.primaryColor.withOpacity(0.15),
-                                    Colors.purple.shade700.withOpacity(0.15),
-                                  ],
-                                ),
+                                color: AppColor.primaryColor.withOpacity(0.1),
                                 borderRadius: BorderRadius.circular(16),
                               ),
                               child: Icon(
@@ -327,7 +303,7 @@ class CourseDetailScreen extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(width: 14),
-                            // معلومات الملف - Expanded
+                            // معلومات الملف
                             Expanded(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -343,7 +319,7 @@ class CourseDetailScreen extends StatelessWidget {
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                   const SizedBox(height: 6),
-                                  // معلومات الملف - استخدام Wrap بدلاً من Row
+                                  // معلومات الملف
                                   Wrap(
                                     spacing: 12,
                                     runSpacing: 4,
@@ -356,7 +332,7 @@ class CourseDetailScreen extends StatelessWidget {
                                           Icon(
                                             Icons.storage_outlined,
                                             size: 14,
-                                            color: Colors.grey[400],
+                                            color: AppColor.darkGrey,
                                           ),
                                           const SizedBox(width: 4),
                                           Text(
@@ -365,7 +341,7 @@ class CourseDetailScreen extends StatelessWidget {
                                                 .textTheme
                                                 .labelSmall
                                                 ?.copyWith(
-                                                  color: Colors.grey[500],
+                                                  color: AppColor.darkGrey,
                                                   fontSize: 12,
                                                 ),
                                           ),
@@ -375,8 +351,8 @@ class CourseDetailScreen extends StatelessWidget {
                                       Container(
                                         width: 4,
                                         height: 4,
-                                        decoration: const BoxDecoration(
-                                          color: Colors.grey,
+                                        decoration: BoxDecoration(
+                                          color: AppColor.darkGrey,
                                           shape: BoxShape.circle,
                                         ),
                                       ),
@@ -387,13 +363,13 @@ class CourseDetailScreen extends StatelessWidget {
                                           Icon(
                                             Icons.visibility_outlined,
                                             size: 14,
-                                            color: Colors.grey[400],
+                                            color: AppColor.darkGrey,
                                           ),
                                           const SizedBox(width: 4),
                                           Text(
-                                            'مشاهدة',
+                                            AppString.watch.tr,
                                             style: TextStyle(
-                                              color: Colors.grey[500],
+                                              color: AppColor.darkGrey,
                                               fontSize: 12,
                                             ),
                                           ),
@@ -408,12 +384,7 @@ class CourseDetailScreen extends StatelessWidget {
                             // زر التحميل
                             Container(
                               decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  colors: [
-                                    AppColor.primaryColor,
-                                    Colors.purple.shade700,
-                                  ],
-                                ),
+                                color: AppColor.secondryColor,
                                 borderRadius: BorderRadius.circular(14),
                               ),
                               child: Material(
@@ -443,9 +414,9 @@ class CourseDetailScreen extends StatelessWidget {
                                           size: 18,
                                         ),
                                         const SizedBox(width: 4),
-                                        const Text(
-                                          'تحميل',
-                                          style: TextStyle(
+                                        Text(
+                                          AppString.download.tr,
+                                          style: const TextStyle(
                                             color: Colors.white,
                                             fontSize: 12,
                                             fontWeight: FontWeight.w700,
@@ -468,12 +439,7 @@ class CourseDetailScreen extends StatelessWidget {
                       width: double.infinity,
                       height: 56,
                       decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            AppColor.primaryColor,
-                            Colors.purple.shade700,
-                          ],
-                        ),
+                        color: AppColor.primaryColor,
                         borderRadius: BorderRadius.circular(20),
                         boxShadow: [
                           BoxShadow(
@@ -490,18 +456,18 @@ class CourseDetailScreen extends StatelessWidget {
                             // إضافة وظيفة بدء الدورة
                           },
                           borderRadius: BorderRadius.circular(20),
-                          child: const Row(
+                          child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Icon(
                                 Icons.play_circle_filled_rounded,
-                                color: Colors.white,
+                                color: AppColor.secondryColor,
                                 size: 28,
                               ),
-                              SizedBox(width: 12),
+                              const SizedBox(width: 12),
                               Text(
-                                'بدء الدورة الآن',
-                                style: TextStyle(
+                                AppString.startCourse.tr,
+                                style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 18,
                                   fontWeight: FontWeight.w700,

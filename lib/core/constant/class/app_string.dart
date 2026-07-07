@@ -1,9 +1,10 @@
 class AppString {
+  
   static const String notification = "notification";
   static const String careerNow = "careerNow";
   static const String leaveRequest = "leaveRequest";
   static const String getStarted = "getStarted";
-  static const String findYourDreamJob = "findYourDreamJob";
+ 
   static const String loginHere = "loginHere";
   static const String loginNow = "loginNow";
   static const String login = "login";
@@ -132,15 +133,15 @@ class AppString {
   static const String title14 = "title14";
   static const String title24 = "title24";
 
-  static const String yourBalance = "yourBalance";
+  static const String yourbalance = "yourbalance";
 
   static const String subtitle1 = "subtitle1";
   static const String subtitle2 = "subtitle2";
   static const String subtitle3 = "subtitle3";
   static const String subtitle4 = "subtitle4";
 
-  static const String yourSale = "yourSale";
-  static const String yourPoint = "yourPoint";
+  static const String yoursale = "yoursale";
+  static const String yourpoint = "yourpoint";
   static const String numberOfDay = "numberOfDay";
   static const String reason = "reason";
   static const String more = "more";
@@ -162,6 +163,13 @@ class AppString {
   static const String assignedBy = "assignedBy";
   static const String startDate = "startDate";
   static const String endDate = "endDate";
+  static const String day = "day";
+  static const String days = "days";
+  static const String noCoursesAvailable= "noCoursesAvailable";
+  static const String unableToDisplayCourse = "unableToDisplayCourse";
+  static const String courseDetails = "courseDetails";
+  static const String oneplatformforallyourneeds = "oneplatformforallyourneeds";
+
 
   // Help Center FAQs
   static const String faqQuestion1 = "faqQuestion1";
@@ -186,4 +194,28 @@ class AppString {
   static const String darkMode = "darkMode";
   static const String lightMode = "lightMode";
   static const String appearance = "appearance";
+
+  //الهوم 
+  static const String vacations = "vacations";
+  static const String tasks = "tasks";
+  static const String attendanceSchedule = "attendanceSchedule";
+  static const String complaints = "complaints";
+  static const String savings = "savings";
+  static const String viewDetails = "viewDetails";
+
+  //الدورات 
+static const String courseContents = "courseContents";
+static const String filesCount = "filesCount";
+static const String startCourse = "startCourse";
+static const String view = "view";
+static const String noDescription = "noDescription";
+static const String featured = "featured";
+static const String students = "students";
+static const String watch = "watch";
+static const String download = "download";
+static const String fileSize = "fileSize";
+static const String courseTarget = "courseTarget";
+static const String file = "file";
+static const String files = "files";
+
 }

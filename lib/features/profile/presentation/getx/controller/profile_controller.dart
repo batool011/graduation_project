@@ -20,21 +20,21 @@ class ProfileController extends GetxController {
     try {
       final prefs = await SharedPreferences.getInstance();
       
-      // جلب جميع البيانات المحفوظة
-      userData['id'] = prefs.getString('user_id') ?? '';
-      userData['name'] = prefs.getString('user_name') ?? '';
-      userData['username'] = prefs.getString('user_username') ?? '';
-      userData['email'] = prefs.getString('user_email') ?? '';
-      userData['phone'] = prefs.getString('user_phone') ?? '';
-      userData['address'] = prefs.getString('user_address') ?? '';
-      userData['gender'] = prefs.getString('user_gender') ?? '';
-      userData['maritalStatus'] = prefs.getString('user_marital_status') ?? '';
-      userData['dateOfBirth'] = prefs.getString('user_date_of_birth') ?? '';
-      userData['salary'] = prefs.getString('user_salary') ?? '';
-      userData['company'] = prefs.getString('user_company') ?? '';
-      userData['department'] = prefs.getString('user_department') ?? '';
-      userData['role'] = prefs.getString('user_role') ?? 'employee';
-      userData['status'] = prefs.getString('user_status') ?? 'pending';
+      // // جلب جميع البيانات المحفوظة
+      // userData['id'] = prefs.getString('user_id') ?? '';
+      // userData['name'] = prefs.getString('user_name') ?? '';
+      // userData['username'] = prefs.getString('user_username') ?? '';
+      // userData['email'] = prefs.getString('user_email') ?? '';
+      // userData['phone'] = prefs.getString('user_phone') ?? '';
+      // userData['address'] = prefs.getString('user_address') ?? '';
+      // userData['gender'] = prefs.getString('user_gender') ?? '';
+      // userData['maritalStatus'] = prefs.getString('user_marital_status') ?? '';
+      // userData['dateOfBirth'] = prefs.getString('user_date_of_birth') ?? '';
+      // userData['salary'] = prefs.getString('user_salary') ?? '';
+      // userData['company'] = prefs.getString('user_company') ?? '';
+      // userData['department'] = prefs.getString('user_department') ?? '';
+      // userData['role'] = prefs.getString('user_role') ?? 'employee';
+      // userData['status'] = prefs.getString('user_status') ?? 'pending';
       
       loading.value = false;
     } catch (e) {
@@ -77,7 +77,7 @@ class ProfileController extends GetxController {
     }
   }
 
-  // تسجيل الخروج - حذف التوكن فقط
+ 
   Future<void> logout() async {
     try {
       final prefs = await SharedPreferences.getInstance();
