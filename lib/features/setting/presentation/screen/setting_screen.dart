@@ -49,7 +49,39 @@ class SettingScreen extends GetView<SettingController> {
                   CustomListTile(
                     leading: AppAsset.languageSetting,
                     title: AppString.language.tr,
-                    onTap: () {},
+                onTap: () {
+  Get.defaultDialog(
+    title: AppString.language.tr,
+    content: Column(
+      children: [
+        ListTile(
+          title: const Text('العربية'),
+          onTap: () async {
+            await TokenStorage.saveLanguage('ar');
+
+            Get.updateLocale(
+              const Locale('ar', 'AR'),
+            );
+
+            Get.back();
+          },
+        ),
+        ListTile(
+          title: const Text('English'),
+          onTap: () async {
+            await TokenStorage.saveLanguage('en');
+
+            Get.updateLocale(
+              const Locale('en', 'US'),
+            );
+
+            Get.back();
+          },
+        ),
+      ],
+    ),
+  );
+},
                   ),
                   const SettingSectionDivider(),
                   CustomListTile(

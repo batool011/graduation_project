@@ -35,4 +35,28 @@ class ApiEndPoints {
   static String getAllCompanies({int page = 1, int perPage = 15}) =>
       "$baseUrl/api/v1/companies?page=$page&per_page=$perPage";
   static String getPropertyDetail(int id) => "$baseUrl/api/properties/$id";
+
+    // ===== دوال الدورات =====
+  
+  static String getCourses({
+    String? title,
+    String? duration,
+    String? courseTarget,
+    int page = 1,
+    int perPage = 15,
+  }) {
+    String url = "$baseUrl/api/v1/courses?page=$page&per_page=$perPage";
+    if (title != null && title.isNotEmpty) {
+      url += "&title=$title";
+    }
+    if (duration != null && duration.isNotEmpty) {
+      url += "&duration=$duration";
+    }
+    if (courseTarget != null && courseTarget.isNotEmpty) {
+      url += "&course_target=$courseTarget";
+    }
+    return url;
+  }
+
+  static String getCourseDetail(int id) => "$baseUrl/api/v1/courses/$id";
 }

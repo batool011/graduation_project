@@ -1,5 +1,6 @@
 import 'package:career/core/constant/class/app_string.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:lottie/lottie.dart';
 import '../../../../core/constant/class/app_asset.dart';
 import '../../../../core/constant/class/app_color.dart';
@@ -33,7 +34,7 @@ class YourBalance extends StatelessWidget {
         children: [
 
           Text(
-            AppString.yourBalance,
+            AppString.yourbalance.tr,
             style: Theme.of(context).textTheme.bodyLarge!.copyWith(
               color: AppColor.primaryColor.withAlpha(120),
               fontWeight: FontWeight.w800,
