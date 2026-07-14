@@ -1,5 +1,6 @@
 import 'package:career/core/constant/class/app_string.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../../../core/constant/class/app_asset.dart';
 import '../../../../core/constant/class/app_color.dart';
 import '../../../../core/constant/class/app_size.dart';
@@ -30,7 +31,7 @@ class Statics extends StatelessWidget {
             children: [
               Image.asset(AppAsset.star,height: 20,),
               Text(
-                AppString.yourPoint,
+                AppString.yourpoint.tr,
                 style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                     color: AppColor.white,
                     fontWeight: FontWeight.w800,
@@ -63,7 +64,7 @@ class Statics extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Text(
-                AppString.yourSale,
+                AppString.yoursale.tr,
                 style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                     color: AppColor.white,
                     fontWeight: FontWeight.w800,

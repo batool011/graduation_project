@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import '../../../../core/constant/class/app_string.dart';
+import '../../../../core/network/token_storage.dart';
 import '../../../../core/widget/custom_app_bar.dart';
 import '../getx/controller/setting_controller.dart';
 import '../widget/custom_list_tile.dart';
@@ -49,7 +50,39 @@ class SettingScreen extends GetView<SettingController> {
                   CustomListTile(
                     leading: AppAsset.languageSetting,
                     title: AppString.language.tr,
-                    onTap: () {},
+                onTap: () {
+  Get.defaultDialog(
+    title: AppString.language.tr,
+    content: Column(
+      children: [
+        ListTile(
+          title: const Text('العربية'),
+          onTap: () async {
+            await TokenStorage.saveLanguage('ar');
+
+            Get.updateLocale(
+              const Locale('ar', 'AR'),
+            );
+
+            Get.back();
+          },
+        ),
+        ListTile(
+          title: const Text('English'),
+          onTap: () async {
+            await TokenStorage.saveLanguage('en');
+
+            Get.updateLocale(
+              const Locale('en', 'US'),
+            );
+
+            Get.back();
+          },
+        ),
+      ],
+    ),
+  );
+},
                   ),
                   const SettingSectionDivider(),
                   CustomListTile(

@@ -58,11 +58,11 @@ class VacationScreen extends GetView<VacationController> {
             }),
           ],
         ),
-        10.verticalSpace(),
-        CustomTextFieldVacation(
-          hintText: AppString.reason.tr,
-          controller: controller.reasonController,
-        ),
+        //10.verticalSpace(),
+        // CustomTextFieldVacation(
+        //   hintText: AppString.reason.tr,
+        //   controller: controller.reasonController,
+        // ),
         10.verticalSpace(),
         CustomTextFieldVacation(
           hintText: AppString.numberOfDay.tr,

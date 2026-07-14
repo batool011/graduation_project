@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:qr_code_scanner_plus/qr_code_scanner_plus.dart';
 import '../../../../../core/network/token_storage.dart';
@@ -22,7 +23,31 @@ class HomeController extends GetxController {
       userDisplayName.value = savedName.trim();
     }
   }
+  Future<Position> getCurrentLocation() async {
+    bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
 
+    if (!serviceEnabled) {
+      throw Exception("Location services are disabled.");
+    }
+
+    LocationPermission permission = await Geolocator.checkPermission();
+
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+    }
+
+    if (permission == LocationPermission.denied) {
+      throw Exception("Location permission denied.");
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      throw Exception("Location permission permanently denied.");
+    }
+
+    return await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.high,
+    );
+  }
   void changeIndex(int index) {
     currentIndex.value = index;
   }
@@ -78,31 +103,62 @@ class HomeController extends GetxController {
   }
 
   Future<void> handleCheckIn(String qrCode) async {
-    await _submitAttendance(qrCode: qrCode, fallbackAction: 'check_in');
+    try {
+      Position position = await getCurrentLocation();
+
+      await _submitAttendance(
+        qrCode: qrCode,
+        fallbackAction: 'check_in',
+        latitude: position.latitude,
+        longitude: position.longitude,
+      );
+    } catch (e) {
+      SnackbarService.error(e.toString());
+    }
   }
 
   Future<void> handleCheckOut(String qrCode) async {
-    await _submitAttendance(qrCode: qrCode, fallbackAction: 'check_out');
+    try {
+      Position position = await getCurrentLocation();
+
+      await _submitAttendance(
+        qrCode: qrCode,
+        fallbackAction: 'check_out',
+        latitude: position.latitude,
+        longitude: position.longitude,
+      );
+    } catch (e) {
+      SnackbarService.error(e.toString());
+    }
   }
 
   Future<void> _submitAttendance({
     required String qrCode,
     required String fallbackAction,
+    required double latitude,
+    required double longitude,
   }) async {
-    final result = await _attendanceRepository.submitAttendance(token: qrCode);
+    final result = await _attendanceRepository.submitAttendance(
+      token: qrCode,
+      latitude: latitude,
+      longitude: longitude,
+    );
 
     result.fold(
-      (failure) {
+          (failure) {
         SnackbarService.error(failure.message);
       },
-      (response) {
+          (response) {
         final body = response.data;
+
         final message = body is Map<String, dynamic>
             ? (body['message']?.toString().trim() ?? '')
             : '';
+
         final action = body is Map<String, dynamic>
             ? (body['action']?.toString().trim() ?? fallbackAction)
             : fallbackAction;
+
         final isSuccess = body is Map<String, dynamic>
             ? body['status'] == true
             : true;
@@ -115,9 +171,14 @@ class HomeController extends GetxController {
         }
 
         SnackbarService.success(
-          message.isNotEmpty ? message : 'Attendance recorded successfully.',
+          message.isNotEmpty
+              ? message
+              : 'Attendance recorded successfully.',
         );
+
         print('Attendance action: $action');
+        print('Latitude: $latitude');
+        print('Longitude: $longitude');
       },
     );
   }

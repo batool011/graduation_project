@@ -81,7 +81,7 @@ class VacationController extends GetxController {
     final duration = durationController.text.trim();
     final reason = reasonController.text.trim();
 
-    if (from.isEmpty || duration.isEmpty || reason.isEmpty) {
+    if (from.isEmpty || duration.isEmpty ) {
       SnackbarService.error('يرجى ملء جميع الحقول');
       return;
     }
@@ -98,7 +98,7 @@ class VacationController extends GetxController {
       final result = await repo.createVacationRequest(
         fromDate: from,
         duration: durationInt,
-        reason: reason,
+        reason: selectedVacation.toString(),
       );
 
       result.fold(
