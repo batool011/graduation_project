@@ -188,9 +188,14 @@ class HomeController extends GetxController {
   }
 
   @override
-  void onInit() {
+  void onInit()async {
     super.onInit();
     loadUserName();
+    Position position = await getCurrentLocation();
+    print("======================position.longitude");
+
+    print(position.longitude);
+    print(position.latitude);
   }
 
   @override
