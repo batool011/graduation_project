@@ -30,7 +30,7 @@ class CoursesSection extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Text(
-              AppString.coursesTitle.tr,
+              'AppString.coursesTitle.tr',
               style: Theme.of(context).textTheme.titleMedium!.copyWith(
                     fontWeight: FontWeight.bold,
                     color: AppColor.primaryColor,

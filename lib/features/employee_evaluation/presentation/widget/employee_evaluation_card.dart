@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class EmployeeEvaluationCard extends StatelessWidget {
-  final EmployeeEvaluationModel evaluation;
+  final EmployeeEvaluationDetail evaluation;
 
   const EmployeeEvaluationCard({super.key, required this.evaluation});
 
@@ -33,17 +33,17 @@ class EmployeeEvaluationCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                width: 56,
-                height: 56,
+                width: 60,
+                height: 60,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(18),
                   gradient: LinearGradient(
-                    colors: [AppColor.primaryColor, AppColor.primaryColor.withValues(alpha: 0.8)],
+                    colors: [AppColor.primaryColor, AppColor.primaryColor.withValues(alpha: 0.78)],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),
                 ),
-                child: const Icon(Icons.person_outline, color: Colors.white, size: 30),
+                child: const Icon(Icons.tune_rounded, color: Colors.white, size: 30),
               ),
               14.horizontalSpace(),
               Expanded(
@@ -51,14 +51,14 @@ class EmployeeEvaluationCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      evaluation.employeeName,
+                      evaluation.title,
                       style: Theme.of(context).textTheme.titleLarge?.copyWith(
                             fontWeight: FontWeight.w700,
                           ),
                     ),
                     4.verticalSpace(),
                     Text(
-                      '${evaluation.jobTitle} • ${evaluation.department}',
+                      evaluation.subtitle,
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             color: AppColor.darkGrey,
                           ),
@@ -73,7 +73,7 @@ class EmployeeEvaluationCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(999),
                 ),
                 child: Text(
-                  evaluation.date,
+                  evaluation.weightLabel,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         fontWeight: FontWeight.w600,
                         color: AppColor.primaryColor,
@@ -86,7 +86,7 @@ class EmployeeEvaluationCard extends StatelessWidget {
           Row(
             children: [
               Text(
-                evaluation.rating.toStringAsFixed(1),
+                evaluation.scoreLabel,
                 style: Theme.of(context).textTheme.displaySmall?.copyWith(
                       fontWeight: FontWeight.w800,
                     ),
@@ -96,82 +96,76 @@ class EmployeeEvaluationCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'التقييم العام',
+                    AppString.overallRating.tr,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color: AppColor.darkGrey,
                         ),
                   ),
                   4.verticalSpace(),
                   Row(
-                    children: List.generate(5, (index) {
-                      final isFilled = index < evaluation.rating.floor();
-                      return Padding(
-                        padding: const EdgeInsets.only(right: 2),
-                        child: Icon(
-                          isFilled ? Icons.star_rounded : Icons.star_outline_rounded,
-                          size: 18,
-                          color: const Color(0xFFF4B400),
-                        ),
-                      );
-                    }),
+                    children: [
+                      Icon(Icons.circle_rounded, size: 10, color: AppColor.secondryColor),
+                      6.horizontalSpace(),
+                      Text(
+                        evaluation.weightLabel,
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                              color: AppColor.darkGrey,
+                              fontWeight: FontWeight.w600,
+                            ),
+                      ),
+                    ],
                   ),
                 ],
               ),
             ],
           ),
           18.verticalSpace(),
-          Text(
-            evaluation.feedback,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  height: 1.5,
-                  color: AppColor.black,
-                ),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(999),
+            child: LinearProgressIndicator(
+              value: _progressValue,
+              minHeight: 10,
+              backgroundColor: AppColor.primaryColor.withValues(alpha: 0.12),
+              valueColor: AlwaysStoppedAnimation<Color>(AppColor.primaryColor),
+            ),
           ),
-          18.verticalSpace(),
-          Text(
-            AppString.strengths.tr,
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.w700,
-                ),
+          14.verticalSpace(),
+          Row(
+            children: [
+              EvaluationTag(text: '${AppString.percentageAboveFourStars.tr}: ${evaluation.scoreLabel}'),
+              8.horizontalSpace(),
+              EvaluationTag(text: '${AppString.numberOfEvaluations.tr}: ${evaluation.weightLabel}'),
+            ],
           ),
-          10.verticalSpace(),
-          Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            children: evaluation.strengths
-                .map((item) => EvaluationTag(text: item.tr))
-                .toList(),
-          ),
-          18.verticalSpace(),
-          Text(
-            AppString.focusAreas.tr,
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.w700,
-                ),
-          ),
-          10.verticalSpace(),
-          Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            children: evaluation.focusAreas
-                .map((item) => Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 9),
-                      decoration: BoxDecoration(
-                        color: AppColor.secondryColor.withValues(alpha: 0.1),
-                        borderRadius: BorderRadius.circular(999),
-                      ),
-                      child: Text(
-                        item.tr,
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              fontWeight: FontWeight.w600,
-                              color: AppColor.secondryColor,
-                            ),
-                      ),
-                    ))
-                .toList(),
+          14.verticalSpace(),
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(14),
+            decoration: BoxDecoration(
+              color: AppColor.secondryColor.withValues(alpha: 0.06),
+              borderRadius: BorderRadius.circular(18),
+            ),
+            child: Text(
+              evaluation.raw ?? 'لا توجد ملاحظات إضافية لهذه القيمة.',
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    height: 1.5,
+                    color: AppColor.black,
+                  ),
+            ),
           ),
         ],
       ),
     );
+  }
+
+  double get _progressValue {
+    final score = evaluation.scoreValue;
+    if (score <= 0) {
+      return 0;
+    }
+    if (score <= 5) {
+      return (score / 5).clamp(0, 1);
+    }
+    return (score / 100).clamp(0, 1);
   }
 }

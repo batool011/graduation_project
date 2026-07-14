@@ -8,6 +8,7 @@ import 'package:career/features/home/presentation/widget/statics.dart';
 import 'package:career/features/home/presentation/widget/your_balance.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../courses/presentation/widget/courses_section.dart';
 import '../getx/controller/home_controller.dart';
 import '../widget/custom_home_app_bar.dart';
 import '../widget/custom_slider.dart';

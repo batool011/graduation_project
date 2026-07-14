@@ -25,7 +25,7 @@ class CourseDetailScreen extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: const Size(double.infinity, 70),
         child: CustomAppBar(
-          text: AppString.courseDetails.tr,
+          text: 'AppString.courseDetails.tr',
         ),
       ),
       body: Obx(() {
@@ -45,7 +45,7 @@ class CourseDetailScreen extends StatelessWidget {
                 Icon(Icons.error_outline, size: 60, color: Colors.grey[400]),
                 const SizedBox(height: 16),
                 Text(
-                  AppString.unableToDisplayCourse.tr,
+                 ' AppString.unableToDisplayCourse.tr',
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                         color: Colors.grey[600],
                       ),
@@ -180,7 +180,7 @@ class CourseDetailScreen extends StatelessWidget {
                                   _buildInfoBadge(
                                     icon: Icons.timer_outlined,
                                     label:
-                                        '${course.duration} ${course.duration == 1 ? AppString.day.tr : AppString.days.tr}',
+                                        '${course.duration} ${course.duration == 1 ? 'AppString.day.tr' : 'AppString.days.tr'}',
                                   ),
                                   _buildInfoBadge(
                                     icon: Icons.groups_outlined,
