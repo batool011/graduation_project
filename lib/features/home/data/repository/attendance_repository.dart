@@ -8,11 +8,17 @@ import 'package:dio/dio.dart';
 class HomeRepository {
   Future<Either<AppException, Response>> submitAttendance({
     required String token,
+    required double latitude,
+    required double longitude,
   }) async {
     return ApiHandler.request(
-      () => DioHelper.postData(
+          () => DioHelper.postData(
         url: ApiEndPoints.attendance,
-        data: {'token': token},
+        data: {
+          'token': token,
+          'latitude': latitude,
+          'longitude': longitude,
+        },
         requiresToken: true,
       ),
     );

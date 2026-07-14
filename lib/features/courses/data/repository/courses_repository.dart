@@ -15,13 +15,14 @@ class CoursesRepository {
   }) async {
     final result = await ApiHandler.request(
       () => DioHelper.getData(
-        url: ApiEndPoints.getCourses(
-          title: title,
-          duration: duration,
-          courseTarget: courseTarget,
-          page: page,
-          perPage: perPage,
-        ),
+        url:'fd',
+        //  ApiEndPoints.getCourses(
+        //   title: title,
+        //   duration: duration,
+        //   courseTarget: courseTarget,
+        //   page: page,
+        //   perPage: perPage,
+        // ),
         requiresToken: true,
       ),
     );
@@ -46,7 +47,7 @@ class CoursesRepository {
   Future<Either<AppException, CourseModel>> getCourseDetail(int id) async {
     final result = await ApiHandler.request(
       () => DioHelper.getData(
-        url: ApiEndPoints.getCourseDetail(id),
+        url:' ApiEndPoints.getCourseDetail(id)',
         requiresToken: true,
       ),
     );

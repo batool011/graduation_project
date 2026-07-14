@@ -66,7 +66,7 @@ class CourseCard extends StatelessWidget {
                 const Icon(Icons.timer_outlined, size: 14, color: Colors.white),
                 const SizedBox(width: 4),
                 Text(
-                  '${course.duration} ${course.duration == 1 ? AppString.day.tr : AppString.days.tr}',
+                  '${course.duration} ${course.duration == 1 ? 'AppString.day.tr' : 'AppString.days.tr'}',
                   style: const TextStyle(color: Colors.white, fontSize: 11),
                 ),
               ],

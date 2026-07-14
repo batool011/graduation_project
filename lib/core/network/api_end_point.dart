@@ -31,6 +31,10 @@ class ApiEndPoints {
   // Tasks
   static const String tasks = "$baseUrl/api/v1/tasks";
 
+    // Employee Evaluation
+    static const String employeeEvaluation =
+      "$baseUrl/api/v1/evaluations/get-employee-evaluation";
+
   // Properties
   static String getAllCompanies({int page = 1, int perPage = 15}) =>
       "$baseUrl/api/v1/companies?page=$page&per_page=$perPage";
