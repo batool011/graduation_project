@@ -42,7 +42,7 @@ class VacationRequestsSection extends StatelessWidget {
                             color: AppColor.black,
                           ),
                     ),
-                    const SizedBox(height: 4),
+                   4.verticalSpace(),
                     Text(
                       '$totalCount ${AppString.request.tr}',
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
@@ -62,7 +62,7 @@ class VacationRequestsSection extends StatelessWidget {
                 _CountPill(count: totalCount),
             ],
           ),
-          const SizedBox(height: 16),
+         16.verticalSpace(),
           if (controller.isVacationListLoading.value)
             const Padding(
               padding: EdgeInsets.symmetric(vertical: 28),
@@ -160,7 +160,7 @@ class VacationRequestCard extends StatelessWidget {
                   _StatusBadge(label: item.statusLabel, color: statusColor),
                 ],
               ),
-              const SizedBox(height: 14),
+              14.verticalSpace(),
               Text(
                 item.reason,
                 maxLines: 2,
@@ -170,7 +170,7 @@ class VacationRequestCard extends StatelessWidget {
                       height: 1.4,
                     ),
               ),
-              const SizedBox(height: 14),
+              14.verticalSpace(),
               Row(
                 children: [
                   Expanded(
@@ -260,7 +260,7 @@ class _MetaTile extends StatelessWidget {
                         color: AppColor.blackLight,
                       ),
                 ),
-                const SizedBox(height: 4),
+              4.verticalSpace(),
                 Text(
                   value,
                   maxLines: 1,

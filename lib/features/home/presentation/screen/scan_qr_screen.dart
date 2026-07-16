@@ -66,6 +66,7 @@ class _ScanQrScreenState extends State<ScanQrScreen> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: AppColor.primaryColor,
         onPressed: controller.toggleFlash,
         child: const Icon(Icons.flash_on),
       ),
