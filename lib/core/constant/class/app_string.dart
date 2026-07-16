@@ -160,7 +160,7 @@ class AppString {
   static const String yoursale = "yoursale";
   static const String yourpoint = "yourpoint";
   static const String numberOfDay = "numberOfDay";
-  static const String reason = "reason";
+  // static const String reason = "reason";
   static const String more = "more";
   static const String uploadAttachment = "UploadAttachment";
   static const String filesSelected = "filesSelected";
@@ -181,7 +181,7 @@ class AppString {
   static const String startDate = "startDate";
   static const String endDate = "endDate";
   static const String day = "day";
-  static const String days = "days";
+  // static const String days = "days";
   static const String noCoursesAvailable= "noCoursesAvailable";
   static const String unableToDisplayCourse = "unableToDisplayCourse";
   static const String courseDetails = "courseDetails";
@@ -234,5 +234,45 @@ static const String fileSize = "fileSize";
 static const String courseTarget = "courseTarget";
 static const String file = "file";
 static const String files = "files";
+//الاجازات 
+static const String vacationDetails = "vacationDetails";
+static const String requestNumber = "requestNumber";
+static const String reason = "reason";
+static const String attachments = "attachments";
+static const String duration = "duration";
+static const String days = "days";
+static const String status = "status";
+static const String attachment = "attachment";
+static const String noAttachments = "noAttachments";
+static const String failedToLoadDetails = "failedToLoadDetails";
+static const String retry = "retry";
+static const String invalidAttachmentLink = "invalidAttachmentLink";
+static const String failedToOpenAttachment = "failedToOpenAttachment";
+static const String error = "error";
+static const String vacationRequests = "vacationRequests";
+static const String attendanceHistory = "attendanceHistory";
+
+static const String late = "late";
+static const String overtime = "overtime";
+
+static const String workingHours = "workingHours";
+static const String minutes = "minutes";
+static const String noAttendanceRecords = "noAttendanceRecords";
+static const String pullToRefresh = "pullToRefresh";
+static const String selectMonthAndYear = "selectMonthAndYear";
+static const String month = "month";
+static const String year = "year";
+static const String changePeriod = "changePeriod";
+static const String refresh = "refresh";
+static const String record = "record";
+
+static const String request = "request";
+static const String noVacationRequests = "noVacationRequests";
+static const String updateDataOrSendNew = "updateDataOrSendNew";
+static const String durationDays = "durationDays";
+
+
+// إذا كانت هذه الكلمات موجودة مسبقاً، تجاهلها
+
 
 }

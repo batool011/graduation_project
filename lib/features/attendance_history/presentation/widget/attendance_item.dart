@@ -1,6 +1,8 @@
 import 'package:career/core/constant/class/app_color.dart';
 import 'package:career/core/constant/class/app_size.dart';
+import 'package:career/core/constant/class/app_string.dart';
 import 'package:flutter/material.dart';
+import 'package:get/utils.dart';
 import '../../data/models/attendance_history_model.dart';
 
 class AttendanceItem extends StatelessWidget {
@@ -63,7 +65,7 @@ class AttendanceItem extends StatelessWidget {
             children: [
               Expanded(
                 child: _InfoTile(
-                  label: 'Check in',
+                  label: AppString.checkIn.tr,
                   value: item.checkInTime ?? '-',
                   icon: Icons.login_rounded,
                   iconColor: AppColor.primaryColor,
@@ -72,7 +74,7 @@ class AttendanceItem extends StatelessWidget {
               const SizedBox(width: 12),
               Expanded(
                 child: _InfoTile(
-                  label: 'Check out',
+                  label: AppString.checkOut.tr,
                   value: item.checkOutTime ?? '-',
                   icon: Icons.logout_rounded,
                   iconColor: AppColor.secondryColor,
@@ -85,7 +87,7 @@ class AttendanceItem extends StatelessWidget {
             children: [
               Expanded(
                 child: _InfoTile(
-                  label: 'Working hours',
+                  label: AppString.workingHours.tr,
                   value: item.totalWorkingHours ?? '00:00:00',
                   icon: Icons.schedule_rounded,
                   iconColor: statusColor,
@@ -94,7 +96,7 @@ class AttendanceItem extends StatelessWidget {
               12.verticalSpace(),
               Expanded(
                 child: _InfoTile(
-                  label: 'Minutes',
+                  label: AppString.minutes.tr,
                   value: item.workingMinutes.toString(),
                   icon: Icons.timelapse_rounded,
                   iconColor: AppColor.blackLight,

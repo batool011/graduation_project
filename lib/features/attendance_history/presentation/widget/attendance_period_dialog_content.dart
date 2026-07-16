@@ -1,4 +1,6 @@
+import 'package:career/core/constant/class/app_string.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../getx/controller/attendance_history_controller.dart';
 
@@ -33,7 +35,7 @@ class _AttendancePeriodDialogContentState
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('اختيار الشهر والسنة'),
+      title: Text(AppString.selectMonthAndYear.tr),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [

@@ -10,7 +10,7 @@ import '../getx/controller/courses_controller.dart';
 class CourseDetailScreen extends StatelessWidget {
   final int courseId;
   const CourseDetailScreen({super.key, required this.courseId});
-
+/////////////////////jtlll
   @override
   Widget build(BuildContext context) {
     final controller = Get.isRegistered<CoursesController>()
@@ -58,7 +58,6 @@ class CourseDetailScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // ===== هيدر =====
               Container(
                 width: double.infinity,
                 height: MediaQuery.of(context).size.height * 0.35,
@@ -71,7 +70,6 @@ class CourseDetailScreen extends StatelessWidget {
                 ),
                 child: Stack(
                   children: [
-                    // خلفية مزخرفة
                     Positioned(
                       right: -50,
                       top: -50,
@@ -118,7 +116,6 @@ class CourseDetailScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const Spacer(),
-                          // أيقونة كبيرة
                           Container(
                             padding: const EdgeInsets.all(16),
                             decoration: BoxDecoration(
@@ -163,7 +160,6 @@ class CourseDetailScreen extends StatelessWidget {
                                 ),
                           ),
                           const SizedBox(height: 20),
-                          // شارات المعلومات
                           Wrap(
                             spacing: 10,
                             runSpacing: 8,
@@ -220,7 +216,6 @@ class CourseDetailScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // عنوان الملفات
                     Row(
                       children: [
                         Container(
@@ -266,7 +261,6 @@ class CourseDetailScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 16),
 
-                    // ===== بطاقات الملفات =====
                     ...course.contents.map((content) {
                       return Container(
                         margin: const EdgeInsets.only(bottom: 14),
@@ -289,7 +283,6 @@ class CourseDetailScreen extends StatelessWidget {
                         ),
                         child: Row(
                           children: [
-                            // أيقونة الملف
                             Container(
                               padding: const EdgeInsets.all(12),
                               decoration: BoxDecoration(
@@ -303,7 +296,6 @@ class CourseDetailScreen extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(width: 14),
-                            // معلومات الملف
                             Expanded(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -319,13 +311,11 @@ class CourseDetailScreen extends StatelessWidget {
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                   const SizedBox(height: 6),
-                                  // معلومات الملف
                                   Wrap(
                                     spacing: 12,
                                     runSpacing: 4,
                                     crossAxisAlignment: WrapCrossAlignment.center,
                                     children: [
-                                      // حجم الملف
                                       Row(
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
@@ -347,7 +337,7 @@ class CourseDetailScreen extends StatelessWidget {
                                           ),
                                         ],
                                       ),
-                                      // نقطة فاصلة
+                                
                                       Container(
                                         width: 4,
                                         height: 4,
@@ -356,7 +346,6 @@ class CourseDetailScreen extends StatelessWidget {
                                           shape: BoxShape.circle,
                                         ),
                                       ),
-                                      // مشاهدة
                                       Row(
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
@@ -381,7 +370,6 @@ class CourseDetailScreen extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(width: 10),
-                            // زر التحميل
                             Container(
                               decoration: BoxDecoration(
                                 color: AppColor.secondryColor,
@@ -434,7 +422,6 @@ class CourseDetailScreen extends StatelessWidget {
                     }),
                     const SizedBox(height: 24),
 
-                    // ===== زر بدء الدورة =====
                     Container(
                       width: double.infinity,
                       height: 56,
@@ -453,7 +440,6 @@ class CourseDetailScreen extends StatelessWidget {
                         color: Colors.transparent,
                         child: InkWell(
                           onTap: () {
-                            // إضافة وظيفة بدء الدورة
                           },
                           borderRadius: BorderRadius.circular(20),
                           child: Row(
@@ -489,7 +475,6 @@ class CourseDetailScreen extends StatelessWidget {
     );
   }
 
-  // دالة مساعدة لبناء شارة معلومات
   Widget _buildInfoBadge({
     required IconData icon,
     required String label,
@@ -522,7 +507,6 @@ class CourseDetailScreen extends StatelessWidget {
     );
   }
 
-  // دالة لتحديد أيقونة الملف حسب النوع
   IconData _getFileIcon(String url) {
     if (url.contains('.pdf')) return Icons.picture_as_pdf_rounded;
     if (url.contains('.doc') || url.contains('.docx')) {

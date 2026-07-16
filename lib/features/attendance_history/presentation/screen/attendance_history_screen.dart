@@ -1,5 +1,6 @@
 import 'package:career/core/constant/class/app_color.dart';
 import 'package:career/core/constant/class/app_size.dart';
+import 'package:career/core/constant/class/app_string.dart';
 import 'package:career/core/widget/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,9 +15,9 @@ class AttendanceHistoryScreen extends GetView<AttendanceHistoryController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.scaffoldColor,
-      appBar: const PreferredSize(
+      appBar:  PreferredSize(
         preferredSize: Size(double.infinity, 70),
-        child: CustomAppBar(text: 'سجل الحضور'),
+        child: CustomAppBar(text: AppString.attendanceHistory.tr),
       ),
       body: SafeArea(
         child: Padding(

@@ -87,7 +87,6 @@ class CustomSlider extends GetView<HomeController> {
                     ),
                     child: Stack(
                       children: [
-                        // خلفية مزخرفة
                         Positioned(
                           right: -30,
                           top: -30,
@@ -112,7 +111,6 @@ class CustomSlider extends GetView<HomeController> {
                             ),
                           ),
                         ),
-                        // المحتوى الرئيسي
                         Padding(
                           padding: EdgeInsets.symmetric(
                             horizontal: 0.05.w(context),
@@ -122,10 +120,8 @@ class CustomSlider extends GetView<HomeController> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              // الصف العلوي
                               Row(
                                 children: [
-                                  // أيقونة الدورة
                                   Container(
                                     padding: const EdgeInsets.all(10),
                                     decoration: BoxDecoration(
@@ -143,7 +139,6 @@ class CustomSlider extends GetView<HomeController> {
                                     ),
                                   ),
                                   const SizedBox(width: 12),
-                                  // عنوان الدورة
                                   Expanded(
                                     child: Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -160,7 +155,6 @@ class CustomSlider extends GetView<HomeController> {
                                           ),
                                         ),
                                         const SizedBox(height: 4),
-                                        // شارة المدة
                                         Container(
                                           padding: const EdgeInsets.symmetric(
                                             horizontal: 10,
@@ -193,7 +187,6 @@ class CustomSlider extends GetView<HomeController> {
                                       ],
                                     ),
                                   ),
-                                  // زر العرض
                                   Container(
                                     padding: const EdgeInsets.symmetric(
                                       horizontal: 14,
@@ -213,7 +206,7 @@ class CustomSlider extends GetView<HomeController> {
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
                                         Text(
-                                          'عرض',
+                                          AppString.view.tr,
                                           style: TextStyle(
                                             color: AppColor.primaryColor,
                                             fontSize: 13,
@@ -232,7 +225,6 @@ class CustomSlider extends GetView<HomeController> {
                                 ],
                               ),
                               const SizedBox(height: 12),
-                              // وصف الدورة
                               Container(
                                 padding: const EdgeInsets.symmetric(
                                   horizontal: 12,
@@ -245,7 +237,7 @@ class CustomSlider extends GetView<HomeController> {
                                 child: Text(
                                   course.description.isNotEmpty 
                                       ? course.description 
-                                      : 'لا يوجد وصف للدورة',
+                                      : AppString.noDescription.tr,
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
@@ -256,10 +248,8 @@ class CustomSlider extends GetView<HomeController> {
                                 ),
                               ),
                               const SizedBox(height: 10),
-                              // التاغات السفلية
                               Row(
                                 children: [
-                                  // تاغ الفئة
                                   Container(
                                     padding: const EdgeInsets.symmetric(
                                       horizontal: 8,
@@ -282,7 +272,7 @@ class CustomSlider extends GetView<HomeController> {
                                           child: Text(
                                             course.courseTarget.isNotEmpty 
                                                 ? course.courseTarget 
-                                                : 'طلاب',
+                                                : AppString.students.tr,
                                             style: const TextStyle(
                                               color: Colors.white,
                                               fontSize: 10,
@@ -296,7 +286,6 @@ class CustomSlider extends GetView<HomeController> {
                                     ),
                                   ),
                                   const SizedBox(width: 8),
-                                  // تاغ الملفات
                                   Container(
                                     padding: const EdgeInsets.symmetric(
                                       horizontal: 8,
@@ -316,7 +305,7 @@ class CustomSlider extends GetView<HomeController> {
                                         ),
                                         const SizedBox(width: 4),
                                         Text(
-                                          '${course.contents.length} ملفات',
+                                          '${course.contents.length} ${AppString.files.tr}',
                                           style: const TextStyle(
                                             color: Colors.white,
                                             fontSize: 10,
@@ -327,7 +316,6 @@ class CustomSlider extends GetView<HomeController> {
                                     ),
                                   ),
                                   const Spacer(),
-                                  // شارة جديدة
                                   Container(
                                     padding: const EdgeInsets.symmetric(
                                       horizontal: 8,
@@ -351,9 +339,9 @@ class CustomSlider extends GetView<HomeController> {
                                           color: Colors.white,
                                         ),
                                         const SizedBox(width: 4),
-                                        const Text(
-                                          'مميزة',
-                                          style: TextStyle(
+                                        Text(
+                                          AppString.featured.tr,
+                                          style: const TextStyle(
                                             color: Colors.white,
                                             fontSize: 10,
                                             fontWeight: FontWeight.w700,
@@ -387,7 +375,6 @@ class CustomSlider extends GetView<HomeController> {
             ),
           ),
           const SizedBox(height: 14),
-          // مؤشرات التنقل المحسنة
           Obx(() {
             return Row(
               mainAxisAlignment: MainAxisAlignment.center,

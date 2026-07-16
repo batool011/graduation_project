@@ -1,5 +1,6 @@
 import 'package:career/core/constant/class/app_color.dart';
 import 'package:career/core/constant/class/app_size.dart';
+import 'package:career/core/constant/class/app_string.dart';
 import 'package:career/core/widget/custom_app_bar.dart';
 import 'package:career/features/vacation/data/models/vacation_request_model.dart';
 import 'package:career/features/vacation/presentation/getx/controller/vacation_controller.dart';
@@ -18,27 +19,36 @@ class VacationRequestDetailScreen extends GetView<VacationController> {
     });
 
     Future<void> openAttachment(String url) async {
-    final uri = Uri.tryParse(url);
-    if (uri == null) {
-      Get.snackbar('خطأ', 'رابط المرفق غير صالح');
-      return;
-    }
+      final uri = Uri.tryParse(url);
+      if (uri == null) {
+        Get.snackbar(
+          AppString.error.tr,
+          AppString.invalidAttachmentLink.tr,
+        );
+        return;
+      }
 
-    final launched = await launchUrl(uri, mode: LaunchMode.externalApplication);
-    if (!launched) {
-      Get.snackbar('خطأ', 'تعذر فتح المرفق');
+      final launched = await launchUrl(uri, mode: LaunchMode.externalApplication);
+      if (!launched) {
+        Get.snackbar(
+          AppString.error.tr,
+          AppString.failedToOpenAttachment.tr,
+        );
+      }
     }
-  }
 
     return Scaffold(
       backgroundColor: AppColor.scaffoldColor,
-      appBar: const PreferredSize(
-        preferredSize: Size(double.infinity, 70),
-        child: CustomAppBar(text: 'تفاصيل الإجازة'),
+      appBar: PreferredSize(
+        preferredSize: const Size(double.infinity, 70),
+        child: CustomAppBar(text: AppString.vacationDetails.tr),
       ),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 0.04.w(context), vertical: 0.02.h(context)),
+          padding: EdgeInsets.symmetric(
+            horizontal: 0.04.w(context),
+            vertical: 0.02.h(context),
+          ),
           child: Obx(() {
             final request = controller.vacationDetail.value;
 
@@ -47,7 +57,9 @@ class VacationRequestDetailScreen extends GetView<VacationController> {
             }
 
             if (request == null) {
-              return _LoadingErrorState(onRetry: () => controller.loadVacationRequestDetail(requestId));
+              return _LoadingErrorState(
+                onRetry: () => controller.loadVacationRequestDetail(requestId),
+              );
             }
 
             final statusColor = Color(request.statusColorValue);
@@ -67,7 +79,9 @@ class VacationRequestDetailScreen extends GetView<VacationController> {
                       end: Alignment.bottomRight,
                     ),
                     borderRadius: BorderRadius.circular(26),
-                    border: Border.all(color: AppColor.primaryColor.withOpacity(0.12)),
+                    border: Border.all(
+                      color: AppColor.primaryColor.withOpacity(0.12),
+                    ),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black.withOpacity(0.05),
@@ -87,7 +101,11 @@ class VacationRequestDetailScreen extends GetView<VacationController> {
                               color: statusColor.withOpacity(0.14),
                               borderRadius: BorderRadius.circular(18),
                             ),
-                            child: Icon(Icons.beach_access_rounded, color: statusColor, size: 28),
+                            child: Icon(
+                              Icons.beach_access_rounded,
+                              color: statusColor,
+                              size: 28,
+                            ),
                           ),
                           const SizedBox(width: 14),
                           Expanded(
@@ -96,29 +114,38 @@ class VacationRequestDetailScreen extends GetView<VacationController> {
                               children: [
                                 Text(
                                   request.formattedFromDate,
-                                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleLarge
+                                      ?.copyWith(
                                         fontWeight: FontWeight.w800,
                                         color: AppColor.black,
                                       ),
                                 ),
                                 const SizedBox(height: 4),
                                 Text(
-                                  'طلب رقم #${request.id}',
-                                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                  '${AppString.requestNumber.tr}${request.id}',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodySmall
+                                      ?.copyWith(
                                         color: AppColor.blackLight,
                                       ),
                                 ),
                               ],
                             ),
                           ),
-                          _StatusBadge(label: request.statusLabel, color: statusColor),
+                          _StatusBadge(
+                            label: request.statusLabel,
+                            color: statusColor,
+                          ),
                         ],
                       ),
                       const SizedBox(height: 18),
                       _InfoGrid(request: request),
                       const SizedBox(height: 18),
                       Text(
-                        'السبب',
+                        AppString.reason.tr,
                         style: Theme.of(context).textTheme.titleSmall?.copyWith(
                               fontWeight: FontWeight.w800,
                               color: AppColor.black,
@@ -145,7 +172,7 @@ class VacationRequestDetailScreen extends GetView<VacationController> {
                 ),
                 const SizedBox(height: 18),
                 Text(
-                  'المرفقات',
+                  AppString.attachments.tr,
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.w800,
                         color: AppColor.black,
@@ -184,8 +211,8 @@ class _InfoGrid extends StatelessWidget {
       children: [
         Expanded(
           child: _DetailTile(
-            label: 'المدة',
-            value: '${request.duration} أيام',
+            label: AppString.duration.tr,
+            value: '${request.duration} ${AppString.days.tr}',
             icon: Icons.timelapse_rounded,
             color: AppColor.primaryColor,
           ),
@@ -193,7 +220,7 @@ class _InfoGrid extends StatelessWidget {
         const SizedBox(width: 12),
         Expanded(
           child: _DetailTile(
-            label: 'الحالة',
+            label: AppString.status.tr,
             value: request.statusLabel,
             icon: Icons.verified_outlined,
             color: Color(request.statusColorValue),
@@ -287,7 +314,10 @@ class _AttachmentCard extends StatelessWidget {
                   color: AppColor.primaryColor.withOpacity(0.12),
                   borderRadius: BorderRadius.circular(14),
                 ),
-                child: const Icon(Icons.description_outlined, color: AppColor.primaryColor),
+                child: const Icon(
+                  Icons.description_outlined,
+                  color: AppColor.primaryColor,
+                ),
               ),
               const SizedBox(width: 12),
               Expanded(
@@ -295,7 +325,9 @@ class _AttachmentCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      attachment.documentProvider.isEmpty ? 'مرفق' : attachment.documentProvider,
+                      attachment.documentProvider.isEmpty
+                          ? AppString.attachment.tr
+                          : attachment.documentProvider,
                       style: Theme.of(context).textTheme.titleSmall?.copyWith(
                             fontWeight: FontWeight.w800,
                             color: AppColor.black,
@@ -363,7 +395,7 @@ class _EmptyAttachmentsState extends StatelessWidget {
           const Icon(Icons.attach_file_rounded, color: AppColor.primaryColor, size: 34),
           const SizedBox(height: 10),
           Text(
-            'لا توجد مرفقات لهذا الطلب',
+            AppString.noAttachments.tr,
             style: Theme.of(context).textTheme.titleSmall?.copyWith(
                   fontWeight: FontWeight.w700,
                 ),
@@ -388,7 +420,7 @@ class _LoadingErrorState extends StatelessWidget {
           const Icon(Icons.error_outline, size: 42, color: AppColor.errorColor),
           const SizedBox(height: 10),
           Text(
-            'تعذر تحميل التفاصيل',
+            AppString.failedToLoadDetails.tr,
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.w700,
                 ),
@@ -396,7 +428,7 @@ class _LoadingErrorState extends StatelessWidget {
           const SizedBox(height: 12),
           ElevatedButton(
             onPressed: onRetry,
-            child: const Text('إعادة المحاولة'),
+            child: Text(AppString.retry.tr),
           ),
         ],
       ),

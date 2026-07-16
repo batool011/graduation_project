@@ -1,6 +1,8 @@
 import 'package:career/core/constant/class/app_color.dart';
 import 'package:career/core/constant/class/app_size.dart';
+import 'package:career/core/constant/class/app_string.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../data/models/attendance_history_model.dart';
 import 'attendance_item.dart';
@@ -35,7 +37,7 @@ class AttendanceList extends StatelessWidget {
                   ),
                   const SizedBox(height: 12),
                   Text(
-                    'لا توجد سجلات حضور لهذا الشهر',
+                    AppString.noAttendanceRecords.tr,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.w600,
                       color: AppColor.black,
@@ -43,7 +45,7 @@ class AttendanceList extends StatelessWidget {
                   ),
                   const SizedBox(height: 6),
                   Text(
-                    'اسحب للأسفل للتحديث أو جرّب شهرًا آخر.',
+                    AppString.pullToRefresh.tr,
                     style: Theme.of(
                       context,
                     ).textTheme.bodySmall?.copyWith(color: AppColor.blackLight),

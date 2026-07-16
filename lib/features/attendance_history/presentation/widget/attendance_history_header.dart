@@ -1,5 +1,6 @@
 import 'package:career/core/constant/class/app_color.dart';
 import 'package:career/core/constant/class/app_size.dart';
+import 'package:career/core/constant/class/app_string.dart';
 import 'package:career/features/attendance_history/presentation/widget/quick_action_chip.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -84,7 +85,7 @@ class AttendanceHistoryHeader extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'سجل الحضور',
+                        AppString.attendanceHistory.tr,
                         style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.w800,
                           color: AppColor.black,
@@ -104,7 +105,7 @@ class AttendanceHistoryHeader extends StatelessWidget {
                     ],
                   ),
                 ),
-                CountPill(count: totalCount, label: 'سجل'),
+                CountPill(count: totalCount, label: AppString.record.tr),
               ],
             ),
             18.verticalSpace(),
@@ -114,12 +115,12 @@ class AttendanceHistoryHeader extends StatelessWidget {
               children: [
                 QuickActionChip(
                   icon: Icons.date_range_rounded,
-                  label: 'تغيير الفترة',
+                  label: AppString.changePeriod.tr,
                   onTap: () => AttendancePeriodDialog.show(context, controller),
                 ),
                 QuickActionChip(
                   icon: Icons.refresh_rounded,
-                  label: 'تحديث',
+                  label: AppString.refresh.tr,
                   onTap: controller.refreshHistory,
                 ),
               ],
@@ -132,5 +133,3 @@ class AttendanceHistoryHeader extends StatelessWidget {
     );
   }
 }
-
-

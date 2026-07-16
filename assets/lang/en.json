@@ -144,7 +144,7 @@
   "title23": "Track your daily tasks and complete them professionally",
   "title14": "Everything in One Place",
   "title24": "Salary, evaluations, and courses — all in one app",
-  "yourBalance": "Your Balance",
+  "yourbalance": "Your Balance",
   "subtitle1": "Take control of your time and attendance effortlessly",
   "subtitle2": "Leave requests have never been faster or simpler",
   "subtitle3": "Stay informed about your tasks and priorities",
@@ -152,7 +152,7 @@
   "yoursale": "Your Sale",
   "yourpoint": "Your Points",
   "numberOfDay": "Number of Days",
-  "reason": "Reason",
+
   "more": "More",
   "UploadAttachment": "Upload Attachment",
   "filesSelected": "Files Selected",
@@ -172,7 +172,7 @@
   "startDate": "Start Date",
   "endDate": "End Date",
   "day": "day",
-  "days": "days",
+
   "noCoursesAvailable": "No courses available",
   "unableToDisplayCourse": "Unable to display course",
   "courseDetails": "Course Details",
@@ -215,6 +215,46 @@
 "fileSize": "File Size",
 "courseTarget": "Target Audience",
 "file":"file",
-"files":"files"
+"files":"files",
+
+"vacationDetails": "Vacation Details",
+"requestNumber": "Request #",
+"reason": "Reason",
+"attachments": "Attachments",
+"duration": "Duration",
+"days": "Days",
+"status": "Status",
+"attachment": "Attachment",
+"noAttachments": "No attachments for this request",
+"failedToLoadDetails": "Failed to load details",
+"retry": "Retry",
+"invalidAttachmentLink": "Invalid attachment link",
+"failedToOpenAttachment": "Failed to open attachment",
+"error":"error",
+"vacationRequests": "Vacation Requests",
+"attendanceHistory": "Attendance History",
+
+"late": "Late",
+"overtime": "Overtime",
+
+"workingHours": "Working Hours",
+"minutes": "Minutes",
+"noAttendanceRecords": "No attendance records for this month",
+"pullToRefresh": "Pull down to refresh or try another month",
+"selectMonthAndYear": "Select Month and Year",
+"month": "Month",
+"year": "Year",
+
+"changePeriod": "Change Period",
+"refresh": "Refresh",
+"record": "Record",
+
+"request": "Request",
+"noVacationRequests": "No vacation requests currently",
+"updateDataOrSendNew": "You can update data or send a new request from the form above",
+"durationDays": "Duration"
+
+
+
 
 }

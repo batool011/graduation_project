@@ -1,5 +1,6 @@
 import 'package:career/core/constant/class/app_color.dart';
 import 'package:career/core/constant/class/app_size.dart';
+import 'package:career/core/constant/class/app_string.dart';
 import 'package:career/core/widget/custom_app_bar.dart';
 import 'package:career/features/vacation/presentation/getx/controller/vacation_controller.dart';
 import 'package:career/features/vacation/presentation/widget/vacation_requests_section.dart';
@@ -28,9 +29,9 @@ class _VacationRequestsScreenState extends State<VacationRequestsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.scaffoldColor,
-      appBar: const PreferredSize(
+      appBar:  PreferredSize(
         preferredSize: Size(double.infinity, 70),
-        child: CustomAppBar(text: 'طلبات الإجازة'),
+        child: CustomAppBar(text: AppString.vacationRequests.tr,),
       ),
       body: SafeArea(
         child: Padding(

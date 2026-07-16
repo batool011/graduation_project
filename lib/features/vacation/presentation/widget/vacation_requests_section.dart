@@ -1,5 +1,6 @@
 import 'package:career/core/constant/class/app_color.dart';
 import 'package:career/core/constant/class/app_size.dart';
+import 'package:career/core/constant/class/app_string.dart';
 import 'package:career/core/router/routes_name.dart';
 import 'package:career/features/vacation/data/models/vacation_request_model.dart';
 import 'package:career/features/vacation/presentation/getx/controller/vacation_controller.dart';
@@ -35,7 +36,7 @@ class VacationRequestsSection extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'طلبات الإجازة',
+                      AppString.vacationRequests.tr,
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                             fontWeight: FontWeight.w800,
                             color: AppColor.black,
@@ -43,7 +44,7 @@ class VacationRequestsSection extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      '$totalCount طلب',
+                      '$totalCount ${AppString.request.tr}',
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                             color: AppColor.blackLight,
                           ),
@@ -148,7 +149,7 @@ class VacationRequestCard extends StatelessWidget {
                         ),
                         const SizedBox(height: 4),
                         Text(
-                          'رقم الطلب #${item.id}',
+                          '${AppString.requestNumber.tr}${item.id}',
                           style: Theme.of(context).textTheme.bodySmall?.copyWith(
                                 color: AppColor.blackLight,
                               ),
@@ -174,8 +175,8 @@ class VacationRequestCard extends StatelessWidget {
                 children: [
                   Expanded(
                     child: _MetaTile(
-                      label: 'المدة',
-                      value: '${item.duration} يوم',
+                      label: AppString.duration.tr,
+                      value: '${item.duration} ${item.duration == 1 ? AppString.day.tr : AppString.days.tr}',
                       icon: Icons.timer_outlined,
                       color: AppColor.primaryColor,
                     ),
@@ -183,7 +184,7 @@ class VacationRequestCard extends StatelessWidget {
                   const SizedBox(width: 12),
                   Expanded(
                     child: _MetaTile(
-                      label: 'الحالة',
+                      label: AppString.status.tr,
                       value: item.statusLabel,
                       icon: Icons.verified_outlined,
                       color: statusColor,
@@ -321,14 +322,14 @@ class _EmptyVacationsState extends StatelessWidget {
           const Icon(Icons.beach_access_outlined, size: 40, color: AppColor.primaryColor),
           const SizedBox(height: 12),
           Text(
-            'لا توجد طلبات إجازة حالياً',
+            AppString.noVacationRequests.tr,
             style: Theme.of(context).textTheme.titleSmall?.copyWith(
                   fontWeight: FontWeight.w700,
                 ),
           ),
           const SizedBox(height: 6),
           Text(
-            'يمكنك تحديث البيانات أو إرسال طلب جديد من النموذج بالأعلى.',
+            AppString.updateDataOrSendNew.tr,
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: AppColor.blackLight,
@@ -338,7 +339,7 @@ class _EmptyVacationsState extends StatelessWidget {
           TextButton.icon(
             onPressed: onRefresh,
             icon: const Icon(Icons.refresh_rounded),
-            label: const Text('تحديث'),
+            label: Text(AppString.refresh.tr),
           ),
         ],
       ),

@@ -150,7 +150,6 @@
   "yoursale": "مبيعاتك",
   "yourpoint": "نقاطك",
   "numberOfDay": "عدد الأيام",
-  "reason": "السبب",
   "more": "المزيد",
   "UploadAttachment": "رفع مرفق",
   "filesSelected": "الملفات المختارة",
@@ -170,7 +169,6 @@
   "startDate": "تاريخ البداية",
   "endDate": "تاريخ النهاية",
   "day": "يوم",
-  "days": "أيام",
   "noCoursesAvailable": "لا توجد دورات حالياً",
   "unableToDisplayCourse": "تعذر عرض الدورة",
   "courseDetails": "تفاصيل الدورة",
@@ -214,6 +212,43 @@
 "fileSize": "حجم الملف",
 "courseTarget": "الفئة المستهدفة",
 "file":"ملف",
-"files":"ملفات"
+"files":"ملفات",
+
+"vacationDetails": "تفاصيل الإجازة",
+"requestNumber": "طلب رقم",
+"reason": "السبب",
+"attachments": "المرفقات",
+"duration": "المدة",
+"days": "أيام",
+"status": "الحالة",
+"attachment": "مرفق",
+"noAttachments": "لا توجد مرفقات لهذا الطلب",
+"failedToLoadDetails": "تعذر تحميل التفاصيل",
+"retry": "إعادة المحاولة",
+"invalidAttachmentLink": "رابط المرفق غير صالح",
+"failedToOpenAttachment": "تعذر فتح المرفق",
+"error":"خطأ",
+"vacationRequests": "طلبات الإجازة",
+
+"late": "التأخير",
+
+"workingHours": "ساعات العمل",
+"minutes": "دقائق",
+"noAttendanceRecords": "لا توجد سجلات حضور لهذا الشهر",
+"pullToRefresh": "اسحب للأسفل للتحديث أو جرّب شهرًا آخر",
+"selectMonthAndYear": "اختيار الشهر والسنة",
+"month": "الشهر",
+"year": "السنة",
+"attendanceHistory": "سجل الحضور",
+"changePeriod": "تغيير الفترة",
+"refresh": "تحديث",
+"record": "سجل",
+
+"request": "طلب",
+"noVacationRequests": "لا توجد طلبات إجازة حالياً",
+"updateDataOrSendNew": "يمكنك تحديث البيانات أو إرسال طلب جديد من النموذج بالأعلى"
+
+
+
 
 }

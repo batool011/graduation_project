@@ -1,5 +1,6 @@
 import 'package:career/core/constant/class/app_color.dart';
 import 'package:career/core/constant/class/app_size.dart';
+import 'package:career/core/constant/class/app_string.dart';
 import 'package:career/features/attendance_history/presentation/widget/summary_state_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,28 +18,28 @@ class AttendanceHistorySummaryStats extends StatelessWidget {
         children: [
           Expanded(
             child: SummaryStatCard(
-              title: 'الإجازات',
+              title: AppString.vacations.tr,
               value: controller.vacationDaysCount,
               icon: Icons.beach_access_rounded,
-              tint: AppColor.blue ,
+              tint: AppColor.blue,
             ),
           ),
           10.horizontalSpace(),
           Expanded(
             child: SummaryStatCard(
-              title: 'التأخير',
+              title: AppString.late.tr,
               value: controller.lateDaysCount,
               icon: Icons.schedule_rounded,
-              tint: AppColor.orange ,
+              tint: AppColor.orange,
             ),
           ),
           10.horizontalSpace(),
           Expanded(
             child: SummaryStatCard(
-              title: 'العمل الإضافي',
+              title: AppString.overtime.tr,
               value: controller.overtimeDaysCount,
               icon: Icons.trending_up_rounded,
-              tint:  AppColor.green,
+              tint: AppColor.green,
             ),
           ),
         ],
@@ -46,4 +47,3 @@ class AttendanceHistorySummaryStats extends StatelessWidget {
     });
   }
 }
-
