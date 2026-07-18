@@ -13,6 +13,7 @@ import '../../../../../core/widget/custom_date_picker_field.dart';
 import '../../../data/model/company_model.dart';
 import '../../../data/model/country_model.dart';
 import '../../../data/repository/auth_repository.dart';
+import '../../../../../core/notification/push_notification_services.dart';
 
 class RegisterController extends GetxController {
   var isLoading = false.obs;
@@ -65,6 +66,7 @@ class RegisterController extends GetxController {
     final dateOfBirth = dateOfBirthController.text.trim();
     final address = addressController.text.trim();
     final contactNumber = numberController.text.trim();
+    final fcmToken = await FirebaseMessagingService().getToken();
 
     if (password != confirmPassword) {
       SnackbarService.error('كلمتا المرور غير متطابقتين');
@@ -90,6 +92,7 @@ class RegisterController extends GetxController {
         'date': dateOfBirth,
         'address': address,
         'contact_number': contactNumber,
+        'device_token': fcmToken,
         if (imageFile != null)
           'image': await dio.MultipartFile.fromFile(
             imageFile!.path,
