@@ -53,15 +53,15 @@ class EmployeeEvaluationCard extends StatelessWidget {
                     Text(
                       evaluation.title,
                       style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            fontWeight: FontWeight.w700,
-                          ),
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                     4.verticalSpace(),
                     Text(
                       evaluation.subtitle,
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: AppColor.darkGrey,
-                          ),
+                        color: AppColor.darkGrey,
+                      ),
                     ),
                   ],
                 ),
@@ -75,9 +75,9 @@ class EmployeeEvaluationCard extends StatelessWidget {
                 child: Text(
                   evaluation.weightLabel,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        fontWeight: FontWeight.w600,
-                        color: AppColor.primaryColor,
-                      ),
+                    fontWeight: FontWeight.w600,
+                    color: AppColor.primaryColor,
+                  ),
                 ),
               ),
             ],
@@ -88,8 +88,8 @@ class EmployeeEvaluationCard extends StatelessWidget {
               Text(
                 evaluation.scoreLabel,
                 style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                      fontWeight: FontWeight.w800,
-                    ),
+                  fontWeight: FontWeight.w800,
+                ),
               ),
               10.horizontalSpace(),
               Column(
@@ -98,8 +98,8 @@ class EmployeeEvaluationCard extends StatelessWidget {
                   Text(
                     AppString.overallRating.tr,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: AppColor.darkGrey,
-                        ),
+                      color: AppColor.darkGrey,
+                    ),
                   ),
                   4.verticalSpace(),
                   Row(
@@ -109,9 +109,9 @@ class EmployeeEvaluationCard extends StatelessWidget {
                       Text(
                         evaluation.weightLabel,
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              color: AppColor.darkGrey,
-                              fontWeight: FontWeight.w600,
-                            ),
+                          color: AppColor.darkGrey,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ],
                   ),
@@ -132,9 +132,17 @@ class EmployeeEvaluationCard extends StatelessWidget {
           14.verticalSpace(),
           Row(
             children: [
-              EvaluationTag(text: '${AppString.percentageAboveFourStars.tr}: ${evaluation.scoreLabel}'),
+              Expanded(
+                child: EvaluationTag(
+                  text: '${AppString.percentageAboveFourStars.tr}: ${evaluation.scoreLabel}',
+                ),
+              ),
               8.horizontalSpace(),
-              EvaluationTag(text: '${AppString.numberOfEvaluations.tr}: ${evaluation.weightLabel}'),
+              Expanded(
+                child: EvaluationTag(
+                  text: '${AppString.numberOfEvaluations.tr}: ${evaluation.weightLabel}',
+                ),
+              ),
             ],
           ),
           14.verticalSpace(),
@@ -148,9 +156,9 @@ class EmployeeEvaluationCard extends StatelessWidget {
             child: Text(
               evaluation.raw ?? 'لا توجد ملاحظات إضافية لهذه القيمة.',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    height: 1.5,
-                    color: AppColor.black,
-                  ),
+                height: 1.5,
+                color: AppColor.black,
+              ),
             ),
           ),
         ],
@@ -158,14 +166,12 @@ class EmployeeEvaluationCard extends StatelessWidget {
     );
   }
 
+  /// KPI scores come back on a 0-10 scale (confirmed against
+  /// total_score = sum(score * weight/100) in the real API response),
+  /// so the progress bar is simply score / 10.
   double get _progressValue {
     final score = evaluation.scoreValue;
-    if (score <= 0) {
-      return 0;
-    }
-    if (score <= 5) {
-      return (score / 5).clamp(0, 1);
-    }
-    return (score / 100).clamp(0, 1);
+    if (score <= 0) return 0;
+    return (score / 10).clamp(0, 1);
   }
 }

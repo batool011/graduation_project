@@ -15,6 +15,24 @@ class TasksRepository {
     return result.fold(Left.new, (response) => Right(_parseTasks(response)));
   }
 
+  Future<Either<AppException, void>> updateTaskStatus({
+    required int taskId,
+    required String status,
+  }) async {
+    final result = await ApiHandler.request(
+      () => DioHelper.patchData(
+        url: '${ApiEndPoints.tasks}/$taskId/status',
+        data: {'status': status},
+        requiresToken: true,
+      ),
+    );
+
+    return result.fold(
+      Left.new,
+      (_) => const Right(null),
+    );
+  }
+
   List<TaskModel> _parseTasks(Response response) {
     final body = response.data;
 
@@ -42,6 +60,7 @@ class TasksRepository {
     return source
         .whereType<Map<String, dynamic>>()
         .map(TaskModel.fromJson)
-        .toList();
+        .toList()
+      ..sort((left, right) => right.sortDate.compareTo(left.sortDate));
   }
 }

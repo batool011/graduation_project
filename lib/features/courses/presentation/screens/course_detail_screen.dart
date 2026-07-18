@@ -53,17 +53,6 @@ class CourseDetailScreen extends StatelessWidget {
             ),
           );
         }
-<<<<<<< HEAD
-        return SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // ===== الهيدر مع الـ Stack =====
-              Stack(
-                children: [
-                  // خلفية الهيدر
-=======
 
         // هذا هو الـ Stack الرئيسي الذي يحتوي على كل شيء
         return Stack(
@@ -73,7 +62,6 @@ class CourseDetailScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
->>>>>>> batool
                   Container(
                     width: double.infinity,
                     height: MediaQuery.of(context).size.height * 0.35,
@@ -86,10 +74,6 @@ class CourseDetailScreen extends StatelessWidget {
                     ),
                     child: Stack(
                       children: [
-<<<<<<< HEAD
-                        // خلفية مزخرفة
-=======
->>>>>>> batool
                         Positioned(
                           right: -50,
                           top: -50,
@@ -126,10 +110,6 @@ class CourseDetailScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-<<<<<<< HEAD
-                        // المحتوى
-=======
->>>>>>> batool
                         Padding(
                           padding: EdgeInsets.symmetric(
                             horizontal: MediaQuery.of(context).size.width * 0.06,
@@ -149,140 +129,6 @@ class CourseDetailScreen extends StatelessWidget {
                                     width: 2,
                                   ),
                                 ),
-<<<<<<< HEAD
-                                child: Icon(
-                                  Icons.school_rounded,
-                                  color: AppColor.secondryColor,
-                                  size: 32,
-                                ),
-                              ),
-                              const SizedBox(height: 16),
-                              Text(
-                                course.title,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headlineMedium!
-                                    .copyWith(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
-                                      fontSize: 24,
-                                      height: 1.2,
-                                    ),
-                              ),
-                              const SizedBox(height: 8),
-                              Text(
-                                course.description.isNotEmpty 
-                                    ? course.description 
-                                    : AppString.noDescription.tr,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .copyWith(
-                                      color: Colors.white.withOpacity(0.9),
-                                      fontSize: 14,
-                                      height: 1.5,
-                                    ),
-                              ),
-                              const SizedBox(height: 20),
-                              Wrap(
-                                spacing: 10,
-                                runSpacing: 8,
-                                children: [
-                                  _buildInfoBadge(
-                                    icon: Icons.timer_outlined,
-                                    label:
-                                        '${course.duration} ${course.duration == 1 ? AppString.day.tr : AppString.days.tr}',
-                                  ),
-                                  _buildInfoBadge(
-                                    icon: Icons.groups_outlined,
-                                    label: course.courseTarget.isNotEmpty 
-                                        ? course.courseTarget 
-                                        : AppString.students.tr,
-                                  ),
-                                  _buildInfoBadge(
-                                    icon: Icons.insert_drive_file_outlined,
-                                    label: '${course.contents.length} ${AppString.files.tr}',
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 24),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  // ✅ زر الرجوع داخل الـ Stack
-                  Positioned(
-                    top: 16,
-                    left: 16,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.black.withOpacity(0.3),
-                        shape: BoxShape.circle,
-                      ),
-                      child: IconButton(
-                        onPressed: () => Get.back(),
-                        icon: const Icon(
-                          Icons.arrow_back_rounded,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-              // ===== باقي المحتوى =====
-              Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: MediaQuery.of(context).size.width * 0.06,
-                  vertical: MediaQuery.of(context).size.height * 0.03,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Container(
-                          width: 5,
-                          height: 28,
-                          decoration: BoxDecoration(
-                            color: AppColor.primaryColor,
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                        ),
-                        const SizedBox(width: 14),
-                        Text(
-                          AppString.courseContents.tr,
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleLarge!
-                              .copyWith(
-                                fontWeight: FontWeight.bold,
-                                color: AppColor.primaryColor,
-                                fontSize: 20,
-                              ),
-                        ),
-                        const Spacer(),
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 12,
-                            vertical: 6,
-                          ),
-                          decoration: BoxDecoration(
-                            color: AppColor.primaryColor,
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Text(
-                            '${course.contents.length} ${AppString.file.tr}',
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-=======
                                 child: Icon(Icons.school_rounded, color: AppColor.secondryColor, size: 32),
                               ),
                               const SizedBox(height: 16),
@@ -317,7 +163,6 @@ class CourseDetailScreen extends StatelessWidget {
                               const SizedBox(height: 24),
                             ],
                           ),
->>>>>>> batool
                         ),
                       ],
                     ),
@@ -393,44 +238,6 @@ class CourseDetailScreen extends StatelessWidget {
                                               Text(content.readableSize, style: Theme.of(context).textTheme.labelSmall?.copyWith(color: AppColor.darkGrey, fontSize: 12)),
                                             ],
                                           ),
-<<<<<<< HEAD
-                                          const SizedBox(width: 4),
-                                          Text(
-                                            content.readableSize,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .labelSmall
-                                                ?.copyWith(
-                                                  color: AppColor.darkGrey,
-                                                  fontSize: 12,
-                                                ),
-                                          ),
-                                        ],
-                                      ),
-                                      Container(
-                                        width: 4,
-                                        height: 4,
-                                        decoration: BoxDecoration(
-                                          color: AppColor.darkGrey,
-                                          shape: BoxShape.circle,
-                                        ),
-                                      ),
-                                      Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Icon(
-                                            Icons.visibility_outlined,
-                                            size: 14,
-                                            color: AppColor.darkGrey,
-                                          ),
-                                          const SizedBox(width: 4),
-                                          Text(
-                                            AppString.watch.tr,
-                                            style: TextStyle(
-                                              color: AppColor.darkGrey,
-                                              fontSize: 12,
-                                            ),
-=======
                                           Container(width: 4, height: 4, decoration: BoxDecoration(color: AppColor.darkGrey, shape: BoxShape.circle)),
                                           Row(
                                             mainAxisSize: MainAxisSize.min,
@@ -439,7 +246,6 @@ class CourseDetailScreen extends StatelessWidget {
                                               const SizedBox(width: 4),
                                               Text(AppString.watch.tr, style: TextStyle(color: AppColor.darkGrey, fontSize: 12)),
                                             ],
->>>>>>> batool
                                           ),
                                         ],
                                       ),

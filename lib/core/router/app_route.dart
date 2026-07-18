@@ -79,11 +79,11 @@ class AppRoute {
       page: () => const NotificationScreen(),
       binding: NotificationBinding(),
     ),
-    // GetPage(
-    //   name: RoutesName.employeeEvaluation,
-    //   page: () => const EmployeeEvaluationScreen(),
-    //   binding: EmployeeEvaluationBinding(),
-    // ),
+    GetPage(
+      name: RoutesName.employeeEvaluation,
+      page: () => const EmployeeEvaluationScreen(),
+      binding: EmployeeEvaluationBinding(),
+    ),
     GetPage(
       name: RoutesName.vacation,
       page: () => const VacationScreen(),
