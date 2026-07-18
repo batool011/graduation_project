@@ -4,6 +4,7 @@ import 'package:career/core/constant/class/app_string.dart';
 import 'package:career/core/widget/snak_bar_service.dart';
 import 'package:file_picker/file_picker.dart';
 import '../../../../../core/widget/custom_date_picker_field.dart';
+import '../../../data/models/leave_type_model.dart';
 import '../../../data/models/vacation_request_model.dart';
 import '../../../data/repository/vacation_repository.dart';
 
@@ -11,11 +12,13 @@ class VacationController extends GetxController {
   final VacationRepository repo = VacationRepository();
 
   TextEditingController fileController = TextEditingController();
-  late final RxList<String> vacationType;
+  final RxList<LeaveType> vacationTypes = <LeaveType>[].obs;
   final selectedVacation = RxnString();
+  final selectedVacationLabel = RxnString();
   final isLoading = false.obs;
   final isVacationListLoading = false.obs;
   final isVacationDetailLoading = false.obs;
+  final isVacationTypesLoading = false.obs;
   final vacationRequests = <VacationRequest>[].obs;
   final vacationMeta = Rxn<VacationPaginationMeta>();
   final vacationDetail = Rxn<VacationRequest>();
@@ -23,6 +26,10 @@ class VacationController extends GetxController {
 
   void setSelectedVacationType(String? value) {
     selectedVacation.value = value;
+    final selectedType = vacationTypes.firstWhereOrNull(
+      (type) => type.dropdownValue == value,
+    );
+    selectedVacationLabel.value = selectedType?.displayText;
   }
 
 
@@ -79,16 +86,27 @@ class VacationController extends GetxController {
   Future<void> submitVacationRequest() async {
     final from = dateFrom.value.trim();
     final duration = durationController.text.trim();
-    final reason = reasonController.text.trim();
+    final selectedType = selectedVacation.value;
 
-    if (from.isEmpty || duration.isEmpty ) {
-      SnackbarService.error('يرجى ملء جميع الحقول');
+    if (from.isEmpty || duration.isEmpty) {
+      SnackbarService.error(AppString.fillAllFields.tr);
+      return;
+    }
+
+    if (selectedType == null) {
+      SnackbarService.error(AppString.selectVacationTypeRequired.tr);
+      return;
+    }
+
+    final typeId = int.tryParse(selectedType);
+    if (typeId == null) {
+      SnackbarService.error(AppString.invalidVacationType.tr);
       return;
     }
 
     final durationInt = int.tryParse(duration);
     if (durationInt == null || durationInt <= 0) {
-      SnackbarService.error('يرجى إدخال عدد أيام صحيح');
+      SnackbarService.error(AppString.invalidNumberOfDays.tr);
       return;
     }
 
@@ -98,12 +116,13 @@ class VacationController extends GetxController {
       final result = await repo.createVacationRequest(
         fromDate: from,
         duration: durationInt,
-        reason: selectedVacation.toString(),
+        typeId: typeId,
+        reason: selectedVacationLabel.value ?? '',
       );
 
       result.fold(
         (failure) {
-          SnackbarService.error(failure.message);
+          SnackbarService.error(failure.message.tr);
         },
         (vacationRequest) {
           dateFrom.value = '';
@@ -112,11 +131,31 @@ class VacationController extends GetxController {
           reasonController.clear();
           selectedFiles.clear();
           selectedVacation.value = null;
-          SnackbarService.success('تم إرسال طلب الإجازة بنجاح');
+          selectedVacationLabel.value = null;
+          SnackbarService.success(AppString.vacationRequestSubmitted.tr);
         },
       );
     } finally {
       isLoading.value = false;
+    }
+  }
+
+  Future<void> fetchLeaveTypes() async {
+    isVacationTypesLoading.value = true;
+
+    try {
+      final result = await repo.getLeaveTypes();
+
+      result.fold(
+        (failure) {
+          SnackbarService.error(failure.message.tr);
+        },
+        (leaveTypes) {
+          vacationTypes.assignAll(leaveTypes);
+        },
+      );
+    } finally {
+      isVacationTypesLoading.value = false;
     }
   }
 
@@ -134,7 +173,7 @@ class VacationController extends GetxController {
           vacationRequests.assignAll(page.items);
           vacationMeta.value = page.meta;
           if (page.items.isEmpty) {
-            SnackbarService.error('لا توجد طلبات إجازة');
+            SnackbarService.error(AppString.noVacationRequests.tr);
           }
         },
       );
@@ -157,7 +196,7 @@ class VacationController extends GetxController {
 
       result.fold(
         (failure) {
-          SnackbarService.error(failure.message);
+          SnackbarService.error(failure.message.tr);
         },
         (request) {
           vacationDetail.value = request;
@@ -170,12 +209,8 @@ class VacationController extends GetxController {
 
   @override
   void onInit() {
-    vacationType = <String>[
-      AppString.annualLeave.tr,
-      AppString.sickLeave.tr,
-      AppString.emergencyLeave.tr,
-    ].obs;
     super.onInit();
+    fetchLeaveTypes();
   }
 
   @override

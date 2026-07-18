@@ -17,10 +17,12 @@ class EvaluationTag extends StatelessWidget {
       ),
       child: Text(
         text,
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              fontWeight: FontWeight.w600,
-              color: AppColor.primaryColor,
-            ),
+          fontWeight: FontWeight.w600,
+          color: AppColor.primaryColor,
+        ),
       ),
     );
   }

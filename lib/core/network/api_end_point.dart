@@ -21,6 +21,7 @@ class ApiEndPoints {
   // Vacation
   static const String vacations = "$baseUrl/api/v1/vacations";
   static const String createVacation = "$baseUrl/api/v1/vacations";
+  static const String leaveTypes = "$baseUrl/api/v1/leave_types";
   static String getVacationDetail(int id) => "$baseUrl/api/v1/vacations/$id";
 
   // Complaints
