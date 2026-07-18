@@ -1,91 +1,72 @@
-// profile_controller.dart
-import 'package:flutter/material.dart';
+
+import 'package:career/features/profile/data/model/profile_model.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:career/core/widget/snak_bar_service.dart';
+import '../../../data/repository/profile_repository.dart';
 
 class ProfileController extends GetxController {
-  RxMap<String, String> userData = <String, String>{}.obs;
-  RxBool loading = true.obs;
+  final ProfileRepository _repository = ProfileRepository();
+
+  final Rx<ProfileModel?> profile = Rx<ProfileModel?>(null);
+  final RxBool isLoading = false.obs;
+  final RxBool isRefreshing = false.obs;
 
   @override
   void onInit() {
     super.onInit();
-    loadProfileFromLocal();
+    fetchProfile();
   }
 
-  // تحميل البيانات من التخزين المحلي
-  Future<void> loadProfileFromLocal() async {
-    loading.value = true;
-    
-    try {
-      final prefs = await SharedPreferences.getInstance();
-      
-      // // جلب جميع البيانات المحفوظة
-      // userData['id'] = prefs.getString('user_id') ?? '';
-      // userData['name'] = prefs.getString('user_name') ?? '';
-      // userData['username'] = prefs.getString('user_username') ?? '';
-      // userData['email'] = prefs.getString('user_email') ?? '';
-      // userData['phone'] = prefs.getString('user_phone') ?? '';
-      // userData['address'] = prefs.getString('user_address') ?? '';
-      // userData['gender'] = prefs.getString('user_gender') ?? '';
-      // userData['maritalStatus'] = prefs.getString('user_marital_status') ?? '';
-      // userData['dateOfBirth'] = prefs.getString('user_date_of_birth') ?? '';
-      // userData['salary'] = prefs.getString('user_salary') ?? '';
-      // userData['company'] = prefs.getString('user_company') ?? '';
-      // userData['department'] = prefs.getString('user_department') ?? '';
-      // userData['role'] = prefs.getString('user_role') ?? 'employee';
-      // userData['status'] = prefs.getString('user_status') ?? 'pending';
-      
-      loading.value = false;
-    } catch (e) {
-      loading.value = false;
-      Get.snackbar(
-        "خطأ",
-        "حدث خطأ في تحميل البيانات",
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.red.withOpacity(0.8),
-        colorText: Colors.white,
-      );
-    }
+  Future<void> fetchProfile() async {
+    isLoading.value = true;
+    final result = await _repository.getProfile();
+
+    result.fold(
+      (failure) {
+        isLoading.value = false;
+        SnackbarService.error(failure.message);
+      },
+      (data) {
+        profile.value = data;
+        isLoading.value = false;
+      },
+    );
   }
 
-  // تحديث البيانات محلياً (بعد التعديل)
-  Future<void> updateProfile(Map<String, String> newData) async {
-    try {
-      final prefs = await SharedPreferences.getInstance();
-      
-      newData.forEach((key, value) {
-        prefs.setString('user_$key', value);
-        userData[key] = value;
-      });
-      
-      Get.snackbar(
-        "نجاح",
-        "تم تحديث الملف الشخصي بنجاح",
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.green.withOpacity(0.8),
-        colorText: Colors.white,
-      );
-    } catch (e) {
-      Get.snackbar(
-        "خطأ",
-        "حدث خطأ في تحديث البيانات",
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.red.withOpacity(0.8),
-        colorText: Colors.white,
-      );
-    }
+  Future<void> refreshProfile() async {
+    isRefreshing.value = true;
+    final result = await _repository.getProfile();
+
+    result.fold(
+      (failure) {
+        isRefreshing.value = false;
+        SnackbarService.error(failure.message);
+      },
+      (data) {
+        profile.value = data;
+        isRefreshing.value = false;
+        SnackbarService.success('تم تحديث الملف الشخصي');
+      },
+    );
   }
 
- 
-  Future<void> logout() async {
-    try {
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.remove('auth_token');
-      // لا نحذف بيانات المستخدم عشان تبقى محفوظة
-      Get.offAllNamed('/login');
-    } catch (e) {
-      print('Error logging out: $e');
-    }
+  String get userName => profile.value?.name ?? '';
+  String get userEmail => profile.value?.email ?? '';
+  String get userStatus => profile.value?.statusLabel ?? '';
+  bool get isApproved => profile.value?.isApproved ?? false;
+  bool get isPending => profile.value?.isPending ?? false;
+
+  String get shiftTime {
+    final shift = profile.value?.shift;
+    if (shift == null) return 'غير محدد';
+    return shift.formattedTime;
+  }
+
+  String get shiftName {
+    return profile.value?.shift?.name ?? 'غير محدد';
+  }
+
+  int get documentsCount {
+    return profile.value?.documents.totalDocuments ?? 0;
   }
 }

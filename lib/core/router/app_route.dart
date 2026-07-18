@@ -12,6 +12,8 @@ import 'package:career/features/employee_evaluation/presentation/getx/binding/em
 import 'package:career/features/employee_evaluation/presentation/screen/employee_evaluation_screen.dart';
 import 'package:career/features/on%20boarding/presentation/getx/binding/onboarding_binding.dart';
 import 'package:career/features/on%20boarding/presentation/screen/on_boarding_screen.dart';
+import 'package:career/features/profile/presentation/getx/binding/profile_binding.dart';
+import 'package:career/features/profile/presentation/screens/profile_screen.dart';
 import 'package:career/features/saving_money/presentation/binding/savings_binding.dart';
 import 'package:career/features/saving_money/presentation/screens/saving_card_details_screen.dart';
 import 'package:career/features/saving_money/presentation/screens/saving_money_cards_screen.dart';
@@ -66,17 +68,22 @@ class AppRoute {
       page: () => SettingScreen(),
       binding: SettingBinding(),
     ),
+ GetPage(
+      name: RoutesName.profile,
+      page: () => ProfileScreen(),
+      binding: ProfileBinding(),
+    ),
 
     GetPage(
       name: RoutesName.notification,
       page: () => const NotificationScreen(),
       binding: NotificationBinding(),
     ),
-    GetPage(
-      name: RoutesName.employeeEvaluation,
-      page: () => const EmployeeEvaluationScreen(),
-      binding: EmployeeEvaluationBinding(),
-    ),
+    // GetPage(
+    //   name: RoutesName.employeeEvaluation,
+    //   page: () => const EmployeeEvaluationScreen(),
+    //   binding: EmployeeEvaluationBinding(),
+    // ),
     GetPage(
       name: RoutesName.vacation,
       page: () => const VacationScreen(),

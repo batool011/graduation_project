@@ -1,6 +1,8 @@
 import 'package:career/core/constant/class/app_color.dart';
+import 'package:career/core/constant/class/app_string.dart';
 import 'package:career/features/complaints/data/model/complaint_model.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ComplaintCard extends StatelessWidget {
   final ComplaintModel complaint;
@@ -49,7 +51,7 @@ class ComplaintCard extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           Text(
-            'رقم الشكوى: #${complaint.id}',
+            '${AppString.complaintNumber.tr}: #${complaint.id}',
             style: Theme.of(context).textTheme.bodySmall!.copyWith(
                   color: Colors.grey[700],
                 ),
@@ -89,7 +91,9 @@ class _StatusBadge extends StatelessWidget {
     final bg = isResolved ? const Color(0xFFE8F8EF) : const Color(0xFFFFF5E9);
     final textColor = isResolved ? const Color(0xFF149954) : const Color(0xFFD8872F);
 
-    final localizedStatus = isResolved ? 'تم الحل' : (status == 'pending' ? 'قيد المراجعة' : status);
+    final localizedStatus = isResolved 
+        ? AppString.resolved.tr 
+        : (status == 'pending' ? AppString.underReview.tr : status);
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),

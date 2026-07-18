@@ -98,14 +98,14 @@ class HomeScreen extends GetView<HomeController> {
                       title: AppString.complaints.tr,
                       subtitle: AppString.viewDetails.tr,
                     ),
-                    CustomCardHome(
-                      onTap: () {
-                        Get.toNamed(RoutesName.employeeEvaluation);
-                      },
-                      icon: Icons.badge_outlined,
-                      title: AppString.employeeEvaluation.tr,
-                      subtitle: AppString.viewDetails.tr,
-                    ),
+                    // CustomCardHome(
+                    //   onTap: () {
+                    //     Get.toNamed(RoutesName.employeeEvaluation);
+                    //   },
+                    //   icon: Icons.badge_outlined,
+                    //   title: AppString.employeeEvaluation.tr,
+                    //   subtitle: AppString.viewDetails.tr,
+                    // ),
                     CustomCardHome(
                       onTap: () {
                         Get.toNamed(RoutesName.savingCards);

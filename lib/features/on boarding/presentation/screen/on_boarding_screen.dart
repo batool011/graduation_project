@@ -35,7 +35,7 @@ class OnBoardingScreen extends GetView<OnBoardingController> {
                           height: 1.1,
                         ),
                       ),
-                      Text(
+Text(
                         page["title2"]!,
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.headlineLarge!.copyWith(

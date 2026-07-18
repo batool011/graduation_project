@@ -1,4 +1,5 @@
 import 'package:career/core/constant/class/app_color.dart';
+import 'package:career/core/constant/class/app_string.dart';
 import 'package:career/features/complaints/presentation/getx/controller/complaints_controller.dart';
 import 'package:career/features/complaints/presentation/widget/add_complaint_dialog.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,7 @@ class ComplaintsFab extends GetView<ComplaintsController> {
       },
       backgroundColor: AppColor.primaryColor,
       icon: const Icon(Icons.add_comment_outlined),
-      label: const Text('شكوى جديدة'),
+      label: Text(AppString.newComplaint.tr),
     );
   }
 }

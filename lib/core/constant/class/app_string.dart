@@ -270,9 +270,45 @@ static const String request = "request";
 static const String noVacationRequests = "noVacationRequests";
 static const String updateDataOrSendNew = "updateDataOrSendNew";
 static const String durationDays = "durationDays";
+//البروفايل
+static const String profile = "profile";
+static const String personalInformation = "personalInformation";
+static const String username = "username";
+static const String email = "email";
+static const String joinDate = "joinDate";
+static const String accountStatus = "accountStatus";
+static const String approved = "approved";
+static const String pending = "pending";
+static const String rejected = "rejected";
+static const String currentShift = "currentShift";
+static const String shiftTime = "shiftTime";
+static const String documents = "documents";
+static const String noDocuments = "noDocuments";
+static const String personalIdPhoto = "personalIdPhoto";
+static const String employmentContract = "employmentContract";
+static const String documentsCount = "documentsCount";
+static const String noData = "noData";
+static const String failedToLoadProfile = "failedToLoadProfile";
+static const String profileUpdated = "profileUpdated";
+static const String refreshProfile = "refreshProfile";
+static const String editProfile = "editProfile";
+//الشكاااوي 
 
-
-// إذا كانت هذه الكلمات موجودة مسبقاً، تجاهلها
+static const String addNewComplaint = "addNewComplaint";
+static const String writeClearTitle = "writeClearTitle";
+static const String complaintTitle = "complaintTitle";
+static const String complaintTitleHint = "complaintTitleHint";
+static const String complaintDetails = "complaintDetails";
+static const String complaintDetailsHint = "complaintDetailsHint";
+static const String submit = "submit";
+static const String complaintNumber = "complaintNumber";
+static const String resolved = "resolved";
+static const String underReview = "underReview";
+static const String newComplaint = "newComplaint";
+static const String complaintsTracking = "complaintsTracking";
+static const String total = "total";
+static const String noComplaints = "noComplaints";
+static const String startNewComplaint = "startNewComplaint";
 
 
 }

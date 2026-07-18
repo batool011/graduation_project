@@ -8,6 +8,8 @@ class ApiEndPoints {
   static const String register = "$baseUrl/api/v1/employees/register";
   static const String logout = "$baseUrl/api/v1/auth/logout";
   static const String currentUser = "$baseUrl/api/user";
+  //البروفايل
+  static const String profile = "$baseUrl/api/v1/employees/profile";
 
   // Work Schedule
   static const String workSchedule = "$baseUrl/api/work-schedule";
@@ -30,8 +32,7 @@ class ApiEndPoints {
 
   // Tasks
   static const String tasks = "$baseUrl/api/v1/tasks";
-
-    // Employee Evaluation
+// Employee Evaluation
     static const String employeeEvaluation =
       "$baseUrl/api/v1/evaluations/get-employee-evaluation";
 
@@ -40,8 +41,7 @@ class ApiEndPoints {
       "$baseUrl/api/v1/companies?page=$page&per_page=$perPage";
   static String getPropertyDetail(int id) => "$baseUrl/api/properties/$id";
 
-    // ===== دوال الدورات =====
-  
+//courses  
   static String getCourses({
     String? title,
     String? duration,

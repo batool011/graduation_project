@@ -1,165 +1,236 @@
+// lib/features/profile/presentation/screens/profile_screen.dart
 
 import 'package:career/core/constant/class/app_color.dart';
-import 'package:career/features/profile/presentation/widget/profile_stat_card.dart';
+import 'package:career/core/constant/class/app_string.dart';
+import 'package:career/core/widget/custom_app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../getx/controller/profile_controller.dart';
+import '../widget/profile_document_card.dart';
+import '../widget/profile_header.dart';
+import '../widget/profile_info_card.dart';
+import '../widget/profile_shift_card.dart';
+import '../widget/profile_stat_card.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final ProfileController controller;
+    if (Get.isRegistered<ProfileController>()) {
+      controller = Get.find<ProfileController>();
+    } else {
+      controller = Get.put(ProfileController());
+    }
+
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
+
     return Scaffold(
-      backgroundColor: Colors.grey[100],
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const SizedBox(height: 40),
-
-            // صورة البروفايل (تأخذ كامل السيركل)
-        Container(
-  width: 120,
-  height: 120,
-  decoration: BoxDecoration(
-    shape: BoxShape.circle,
-    boxShadow: [
-      BoxShadow(
-        color: Colors.black12,
-        blurRadius: 8,
-        offset: Offset(0, 4),
+      backgroundColor: AppColor.scaffoldColor,
+      appBar: PreferredSize(
+        preferredSize: const Size(double.infinity, 70),
+        child: CustomAppBar(text: AppString.myProfile.tr),
       ),
-    ],
-  ),
-  child: ClipOval(
-    child: Transform.scale(
-      scale: 1.5, // 🔥 كبر الصورة (غير الرقم حسب الحاجة)
-      child: Image.asset(
-        "assets/images/profile.png",
-        fit: BoxFit.cover,
-      ),
-    ),
-  ),
-),
-
-            const SizedBox(height: 12),
-
-            // الاسم
-            Text(
-              "Safa Harkel",
-              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+      body: Obx(() {
+        if (controller.isLoading.value && controller.profile.value == null) {
+          return const Center(
+            child: CircularProgressIndicator(
+              color: AppColor.primaryColor,
             ),
+          );
+        }
 
-            const SizedBox(height: 4),
+        final profile = controller.profile.value;
 
-            // الإيميل
-            Text(
-              "safa@example.com",
-              style: TextStyle(fontSize: 15, color: Colors.grey[600]),
-            ),
-
-            const SizedBox(height: 25),
-
-            // البطاقات (تقييمي + مدة العضوية)
-            Row(
+        if (profile == null) {
+          return Center(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ProfileStatCard(
-                  title: "تقييمي",
-                  value: "4.8 / 5",
-                  color: Colors.amber,
-                  icon: Icons.star,
+                Icon(
+                  Icons.person_off_outlined,
+                  size: 60,
+                  color: AppColor.darkGrey,
                 ),
-                const SizedBox(width: 12),
-                ProfileStatCard(
-                  title: "مدة العضوية",
-                  value: "سنة و 3 أشهر",
-                  color: AppColor.primaryColor,
-                  icon: Icons.calendar_month,
+                const SizedBox(height: 16),
+                Text(
+                  AppString.noData.tr,
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                        color: AppColor.darkGrey,
+                      ),
+                ),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: controller.fetchProfile,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColor.primaryColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  child: Text(
+                    AppString.retry.tr,
+                    style: const TextStyle(color: Colors.white),
+                  ),
                 ),
               ],
             ),
+          );
+        }
 
-            const SizedBox(height: 30),
+        return RefreshIndicator(
+          onRefresh: controller.refreshProfile,
+          child: SingleChildScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            padding: EdgeInsets.only(bottom: height * 0.03),
+            child: Column(
+              children: [
+                ProfileHeader(profile: profile),
 
-            // القائمة بنفس شكل الصورة
-            _menuItem(Icons.person, "Username", "تغيير اسم المستخدم"),
-            _menuItem(Icons.settings, "الإعدادات", "التحكم بالخصوصية"),
-            _menuItem(Icons.notifications, "الإشعارات", "حول تنبيهاتك"),
-
-            const SizedBox(height: 20),
-
-            // زر تسجيل الخروج
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.red,
-                  padding: const EdgeInsets.symmetric(vertical: 14),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: width * 0.05),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: ProfileStatCard(
+                          title: AppString.status.tr,
+                          value: profile.statusLabel,
+                          icon: Icons.verified_user_rounded,
+                          color: profile.isApproved
+                              ? AppColor.green
+                              : AppColor.orange,
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: ProfileStatCard(
+                          title: AppString.documents.tr,
+                          value: '${controller.documentsCount}',
+                          icon: Icons.folder_rounded,
+                          color: AppColor.primaryColor,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                const SizedBox(height: 16),
+
+                ProfileInfoCard(
+                  title: AppString.personalInformation.tr,
+                  icon: Icons.person_outline_rounded,
                   children: [
-                    Icon(Icons.logout, color: Colors.white),
-                    SizedBox(width: 8),
-                    Text(
-                      "تسجيل الخروج",
-                      style: TextStyle(color: Colors.white, fontSize: 18),
+                    _InfoRow(
+                      label: AppString.fullName.tr,
+                      value: profile.name,
+                      icon: Icons.person_outline_rounded,
+                    ),
+                    _InfoRow(
+                      label: AppString.username.tr,
+                      value: profile.username,
+                      icon: Icons.alternate_email_rounded,
+                    ),
+                    _InfoRow(
+                      label: AppString.email.tr,
+                      value: profile.email,
+                      icon: Icons.email_outlined,
+                    ),
+                    _InfoRow(
+                      label: AppString.joinDate.tr,
+                      value: _formatDate(profile.createdAt),
+                      icon: Icons.calendar_today_outlined,
                     ),
                   ],
                 ),
-              ),
-            ),
+                const SizedBox(height: 12),
 
-            const SizedBox(height: 40),
-          ],
-        ),
-      ),
+                ProfileShiftCard(
+                  shiftName: controller.shiftName,
+                  shiftTime: controller.shiftTime,
+                ),
+                const SizedBox(height: 12),
+
+                ProfileDocumentCard(
+                  personalIdPhotos: profile.documents.personalIdPhoto,
+                  employmentContracts: profile.documents.employmentContract,
+                ),
+                const SizedBox(height: 20),
+              ],
+            ),
+          ),
+        );
+      }),
     );
   }
 
-  Widget _menuItem(IconData icon, String title, String subtitle) {
+  String _formatDate(String date) {
+    try {
+      final parsed = DateTime.parse(date);
+      return '${parsed.day}/${parsed.month}/${parsed.year}';
+    } catch (e) {
+      return date;
+    }
+  }
+}
+
+class _InfoRow extends StatelessWidget {
+  final String label;
+  final String value;
+  final IconData icon;
+
+  const _InfoRow({
+    required this.label,
+    required this.value,
+    required this.icon,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 6),
-      padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 12),
+      padding: const EdgeInsets.symmetric(vertical: 8),
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(14),
-        boxShadow: [
-          BoxShadow(color: Colors.black12, blurRadius: 4, offset: Offset(0, 2)),
-        ],
+        border: Border(
+          bottom: BorderSide(
+            color: AppColor.grey.withOpacity(0.3),
+            width: 0.5,
+          ),
+        ),
       ),
       child: Row(
         children: [
           Container(
-            height: 40,
-            width: 40,
+            padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              color: AppColor.primaryColor.withOpacity(0.15),
-              borderRadius: BorderRadius.circular(12),
+              color: AppColor.primaryColor.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(8),
             ),
-            child: Icon(icon, color: AppColor.primaryColor, size: 22),
+            child: Icon(icon, size: 18, color: AppColor.primaryColor),
           ),
           const SizedBox(width: 12),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(title,
-                  style: const TextStyle(
-                      fontSize: 17, fontWeight: FontWeight.bold)),
-              const SizedBox(height: 4),
-              Text(subtitle,
-                  style: const TextStyle(fontSize: 14, color: Colors.grey)),
-            ],
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  label,
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: AppColor.darkGrey,
+                        fontSize: 11,
+                      ),
+                ),
+                Text(
+                  value,
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        fontWeight: FontWeight.w600,
+                        color: AppColor.black,
+                      ),
+                ),
+              ],
+            ),
           ),
-          const Spacer(),
-          const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
         ],
       ),
     );
   }
 }
-
-     

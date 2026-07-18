@@ -21,6 +21,7 @@ class RoutesName {
   static const helpCenter = '/helpCenter';
   static const task = '/task';
   static const complaints = '/complaints';
+    static const profile = '/profile';
 
   //saving
   static const savingCards = '/savingCards';

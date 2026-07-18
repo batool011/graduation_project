@@ -1,5 +1,9 @@
 import 'package:career/core/constant/class/app_color.dart';
 import 'package:flutter/material.dart';
+import 'package:career/core/constant/class/app_color.dart';
+import 'package:career/core/constant/class/app_string.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ComplaintsSummary extends StatelessWidget {
   final int total;
@@ -29,7 +33,7 @@ class ComplaintsSummary extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'متابعة الشكاوي',
+            AppString.complaintsTracking.tr,
             style: Theme.of(context).textTheme.titleMedium!.copyWith(
                   color: AppColor.white,
                   fontWeight: FontWeight.bold,
@@ -38,11 +42,11 @@ class ComplaintsSummary extends StatelessWidget {
           const SizedBox(height: 12),
           Row(
             children: [
-              Expanded(child: _MiniInfoCard(label: 'الإجمالي', value: total.toString())),
+              Expanded(child: _MiniInfoCard(label: AppString.total.tr, value: total.toString())),
               const SizedBox(width: 8),
-              Expanded(child: _MiniInfoCard(label: 'قيد المراجعة', value: pending.toString())),
+              Expanded(child: _MiniInfoCard(label: AppString.underReview.tr, value: pending.toString())),
               const SizedBox(width: 8),
-              Expanded(child: _MiniInfoCard(label: 'تم الحل', value: resolved.toString())),
+              Expanded(child: _MiniInfoCard(label: AppString.resolved.tr, value: resolved.toString())),
             ],
           ),
         ],
@@ -91,6 +95,7 @@ class _MiniInfoCard extends StatelessWidget {
   }
 }
 
+
 class ComplaintsEmptyState extends StatelessWidget {
   const ComplaintsEmptyState({super.key});
 
@@ -109,12 +114,12 @@ class ComplaintsEmptyState extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             Text(
-              'لا توجد شكاوي حاليا',
+              AppString.noComplaints.tr,
               style: Theme.of(context).textTheme.titleMedium,
             ),
             const SizedBox(height: 6),
             Text(
-              'ابدئي بإرسال شكوى جديدة وسيتم متابعتها من الإدارة.',
+              AppString.startNewComplaint.tr,
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                     color: Colors.grey[600],

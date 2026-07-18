@@ -231,7 +231,7 @@
 "vacationRequests": "طلبات الإجازة",
 
 "late": "التأخير",
-
+ "overtime":"وقت اضافي",
 "workingHours": "ساعات العمل",
 "minutes": "دقائق",
 "noAttendanceRecords": "لا توجد سجلات حضور لهذا الشهر",
@@ -246,9 +246,45 @@
 
 "request": "طلب",
 "noVacationRequests": "لا توجد طلبات إجازة حالياً",
-"updateDataOrSendNew": "يمكنك تحديث البيانات أو إرسال طلب جديد من النموذج بالأعلى"
+"updateDataOrSendNew": "يمكنك تحديث البيانات أو إرسال طلب جديد من النموذج بالأعلى",
+
+"profile": "الملف الشخصي",
+"personalInformation": "المعلومات الشخصية",
+"username": "اسم المستخدم",
+"email": "البريد الإلكتروني",
+"joinDate": "تاريخ الانضمام",
+"accountStatus": "حالة الحساب",
+"approved": "مفعل",
+"pending": "قيد الانتظار",
+"rejected": "مرفوض",
+"currentShift": "الوردية الحالية",
+"shiftTime": "وقت الوردية",
+"documents": "المستندات",
+"noDocuments": "لا توجد مستندات مرفقة",
+"personalIdPhoto": "بطاقة شخصية",
+"employmentContract": "عقد عمل",
+"documentsCount": "المستندات",
+"noData": "لا توجد بيانات",
+"failedToLoadProfile": "تعذر تحميل الملف الشخصي",
+"profileUpdated": "تم تحديث الملف الشخصي",
+"refreshProfile": "تحديث الملف الشخصي",
+"editProfile": "تعديل الملف الشخصي",
 
 
 
-
+"addNewComplaint": "إضافة شكوى جديدة",
+"writeClearTitle": "اكتبي عنوان واضح وتفاصيل دقيقة عشان يتم التعامل مع الشكوى بسرعة",
+"complaintTitle": "عنوان الشكوى",
+"complaintTitleHint": "مثال: مشكلة في جهاز البصمة",
+"complaintDetails": "تفاصيل الشكوى",
+"complaintDetailsHint": "اشرحي المشكلة ومتى ظهرت وأي تفاصيل تساعد في الحل",
+"submit": "إرسال",
+"complaintNumber": "رقم الشكوى",
+"resolved": "تم الحل",
+"underReview": "قيد المراجعة",
+"newComplaint": "شكوى جديدة",
+"complaintsTracking": "متابعة الشكاوي",
+"total": "الإجمالي",
+"noComplaints": "لا توجد شكاوي حاليا",
+"startNewComplaint": "ابدئي بإرسال شكوى جديدة وسيتم متابعتها من الإدارة"
 }

@@ -252,9 +252,47 @@
 "request": "Request",
 "noVacationRequests": "No vacation requests currently",
 "updateDataOrSendNew": "You can update data or send a new request from the form above",
-"durationDays": "Duration"
+"durationDays": "Duration",
+
+"profile": "Profile",
+"personalInformation": "Personal Information",
+"username": "Username",
+"email": "Email",
+"joinDate": "Join Date",
+"accountStatus": "Account Status",
+"approved": "Approved",
+"pending": "Pending",
+"rejected": "Rejected",
+"currentShift": "Current Shift",
+"shiftTime": "Shift Time",
+"documents": "Documents",
+"noDocuments": "No documents attached",
+"personalIdPhoto": "Personal ID Photo",
+"employmentContract": "Employment Contract",
+"documentsCount": "Documents",
+"noData": "No data",
+"failedToLoadProfile": "Failed to load profile",
+"profileUpdated": "Profile updated",
+"refreshProfile": "Refresh Profile",
+"editProfile": "Edit Profile",
 
 
+
+"addNewComplaint": "Add New Complaint",
+"writeClearTitle": "Write a clear title and detailed description so the complaint can be handled quickly",
+"complaintTitle": "Complaint Title",
+"complaintTitleHint": "Example: Problem with fingerprint device",
+"complaintDetails": "Complaint Details",
+"complaintDetailsHint": "Explain the problem and when it appeared and any details that help in solving",
+"submit": "Submit",
+"complaintNumber": "Complaint #",
+"resolved": "Resolved",
+"underReview": "Under Review",
+"newComplaint": "New Complaint",
+"complaintsTracking": "Complaints Tracking",
+"total": "Total",
+"noComplaints": "No complaints currently",
+"startNewComplaint": "Start sending a new complaint and it will be followed up by management"
 
 
 }
