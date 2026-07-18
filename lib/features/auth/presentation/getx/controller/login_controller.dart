@@ -1,4 +1,5 @@
 import 'package:career/core/router/routes_name.dart';
+import 'package:career/core/notification/push_notification_services.dart';
 import 'package:career/core/widget/snak_bar_service.dart';
 import 'package:career/core/network/token_storage.dart';
 import 'package:career/features/auth/data/repository/auth_repository.dart';
@@ -20,6 +21,7 @@ class LoginController extends GetxController {
   Future<void> login() async {
     final userNameValue = userName.text.trim();
     final passwordValue = password.text;
+    final fcmToken = await FirebaseMessagingService().getToken();
 
     if (userNameValue.isEmpty || passwordValue.isEmpty) {
       SnackbarService.error('يرجى إدخال البريد الإلكتروني وكلمة المرور');
@@ -30,7 +32,11 @@ class LoginController extends GetxController {
 
     try {
       final result = await repo.login(
-        data: {'username': userNameValue, 'password': passwordValue},
+        data: {
+          'username': userNameValue,
+          'password': passwordValue,
+          'device_token': fcmToken,
+        },
       );
 
       result.fold(

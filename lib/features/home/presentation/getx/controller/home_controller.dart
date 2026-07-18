@@ -191,6 +191,7 @@ class HomeController extends GetxController {
   void onInit()async {
     super.onInit();
     loadUserName();
+    getCurrentLocation();
     Position position = await getCurrentLocation();
     print("======================position.longitude");
 
