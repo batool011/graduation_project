@@ -286,5 +286,24 @@
 "complaintsTracking": "متابعة الشكاوي",
 "total": "الإجمالي",
 "noComplaints": "لا توجد شكاوي حاليا",
-"startNewComplaint": "ابدئي بإرسال شكوى جديدة وسيتم متابعتها من الإدارة"
+
+"employeeId": "رقم الموظف",
+
+"failedToLoadEvaluation": "تعذر تحميل التقييم",
+"noEvaluationData": "لا توجد بيانات تقييم",
+"evaluationNotFetched": "لم يتم جلب بيانات التقييم بعد",
+"evaluationId": "رقم التقييم",
+"employeeIdLabel": "الموظف",
+"weight": "الوزن",
+"score": "الدرجة",
+"noAdditionalNotes": "لا توجد ملاحظات إضافية لهذه القيمة",
+"durationDays": "عدد الأيام",
+"totalScore": "إجمالي الدرجة",
+
+"uploadPersonalIdPhoto": "رفع صورة الهوية الشخصية",
+"uploadEmploymentContract": "رفع ملف عقد العمل (PDF)",
+"personalIdPhotoHint": "اضغط لاختيار صورة الهوية الشخصية",
+"employmentContractHint": "اضغط لاختيار ملف عقد العمل",
+"fileSelected": "تم اختيار الملف",
+"removeFile": "حذف الملف"
 }

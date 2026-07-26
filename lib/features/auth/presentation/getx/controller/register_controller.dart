@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:dio/dio.dart' as dio;
+import 'package:file_picker/file_picker.dart';
 import '../../../../../core/network/token_storage.dart';
 import '../../../../../core/widget/snak_bar_service.dart';
 import '../../../../../core/widget/custom_date_picker_field.dart';
@@ -22,9 +23,14 @@ class RegisterController extends GetxController {
   final selectedGender = RxnString();
   final selectedMaritalStatus = RxnString();
   final selectedCompanyId = RxnInt();
+  
   File? imageFile;
+  
+  final Rx<File?> employmentContractFile = Rx<File?>(null);
+  
   final ImagePicker _picker = ImagePicker();
   final AuthRepository repo = AuthRepository();
+  
   late TextEditingController numberController;
   late TextEditingController addressController;
   late TextEditingController emailController;
@@ -34,16 +40,16 @@ class RegisterController extends GetxController {
   late TextEditingController dateOfBirthController;
   late TextEditingController passwordController;
   late TextEditingController confirmPasswordController;
+  
   final genderItems = <String>[AppString.female.tr, AppString.male.tr].obs;
-  final maritalStatusItems =
-      <String>[
-        AppString.single.tr,
-        AppString.married.tr,
-        AppString.divorced.tr,
-        AppString.widowed.tr,
-      ].obs;
+  final maritalStatusItems = <String>[
+    AppString.single.tr,
+    AppString.married.tr,
+    AppString.divorced.tr,
+    AppString.widowed.tr,
+  ].obs;
   final selectedCompanyName = ''.obs;
-   RxList<CountryModel> countries = <CountryModel>[].obs;
+  RxList<CountryModel> countries = <CountryModel>[].obs;
   var allCountries = <CountryModel>[].obs;
   var filteredCountries = <CountryModel>[].obs;
   RxString selectedCountryName = ''.obs;
@@ -95,6 +101,11 @@ class RegisterController extends GetxController {
             imageFile!.path,
             filename: imageFile!.path.split(Platform.pathSeparator).last,
           ),
+        if (employmentContractFile.value != null)
+          'employment_contract': await dio.MultipartFile.fromFile(
+            employmentContractFile.value!.path,
+            filename: employmentContractFile.value!.path.split(Platform.pathSeparator).last,
+          ),
       });
 
       final result = await repo.register(data: data);
@@ -104,24 +115,45 @@ class RegisterController extends GetxController {
           errorMessage.value = failure.message;
           Get.log("Error: ${failure.statusCode} ${failure.message}");
           SnackbarService.error(failure.message);
+          isLoading.value = false;
           return;
         },
         (response) async {
-          final token = response.data['data']['access_token']?.toString();
-          if (token == null || token.isEmpty) {
-            SnackbarService.error('لم يتم استلام التوكن من السيرفر');
-            return;
+          try {
+            final body = response.data;
+            final isSuccess = body['status'] == true;
+            
+            if (!isSuccess) {
+              final msg = body['message']?.toString() ?? 'فشل التسجيل';
+              SnackbarService.error(msg);
+              isLoading.value = false;
+              return;
+            }
+
+            final userData = body['data'];
+            if (userData != null) {
+              final name = userData['name']?.toString() ?? '';
+              if (name.isNotEmpty) {
+                await TokenStorage.saveUserName(name);
+              }
+            }
+
+            final message = body['message']?.toString() ?? 'تم التسجيل بنجاح';
+            SnackbarService.success(message);
+
+            isLoading.value = false;
+            Get.offAllNamed(RoutesName.login);
+            
+          } catch (e) {
+            Get.log("Error processing response: $e");
+            SnackbarService.error('حدث خطأ أثناء معالجة البيانات');
+            isLoading.value = false;
           }
-          await TokenStorage.saveToken(token);
-          await TokenStorage.saveUserName(fullName.isNotEmpty ? fullName : userName);
-
-          SnackbarService.success("تم تسجيل الدخول بنجاح");
-
-          Get.log("Success: $response");
-          Get.offAllNamed(RoutesName.home);
         },
       );
-    } finally {
+    } catch (e) {
+      Get.log("Register error: $e");
+      SnackbarService.error('حدث خطأ أثناء التسجيل');
       isLoading.value = false;
     }
   }
@@ -134,10 +166,33 @@ class RegisterController extends GetxController {
     if (picked != null) {
       imageFile = File(picked.path);
       update();
+      SnackbarService.success('تم اختيار الصورة الشخصية');
     }
   }
 
- 
+  void removeImage() {
+    imageFile = null;
+    update();
+  }
+
+  Future<void> pickEmploymentContract() async {
+    try {
+      final result = await FilePicker.platform.pickFiles(
+        type: FileType.custom,
+        allowedExtensions: ['pdf'],
+      );
+      if (result != null && result.files.isNotEmpty) {
+        employmentContractFile.value = File(result.files.first.path!);
+        SnackbarService.success('تم اختيار ملف عقد العمل');
+      }
+    } catch (e) {
+      SnackbarService.error('حدث خطأ أثناء اختيار الملف');
+    }
+  }
+
+  void removeEmploymentContract() {
+    employmentContractFile.value = null;
+  }
 
   void selectCountry(CountryModel country) {
     selectedCountryName.value = country.en;

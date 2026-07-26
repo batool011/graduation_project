@@ -2,7 +2,6 @@ import 'package:career/features/courses/presentation/screens/course_detail_scree
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../core/constant/class/app_color.dart';
-import '../../../../core/constant/class/app_string.dart';
 import '../../data/model/course_model.dart';
 
 

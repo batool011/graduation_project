@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:url_launcher/url_launcher.dart';
 import '../../../../core/constant/class/app_color.dart';
 import '../../../../core/constant/class/app_string.dart';
 import '../../../../core/widget/custom_app_bar.dart';
 import '../../data/model/course_model.dart';
 import '../getx/controller/courses_controller.dart';
+import '../widget/course_detail_header.dart';
+import '../widget/course_file_tile.dart';
+import '../widget/course_start_button.dart';
 
 class CourseDetailScreen extends StatelessWidget {
   final int courseId;
@@ -58,6 +60,7 @@ class CourseDetailScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+<<<<<<< Updated upstream
               // ===== الهيدر مع الـ Stack =====
               Stack(
                 children: [
@@ -213,8 +216,10 @@ class CourseDetailScreen extends StatelessWidget {
                   ),
                 ],
               ),
+=======
+              CourseDetailHeader(course: course),
+>>>>>>> Stashed changes
 
-              // ===== باقي المحتوى =====
               Padding(
                 padding: EdgeInsets.symmetric(
                   horizontal: MediaQuery.of(context).size.width * 0.06,
@@ -269,6 +274,7 @@ class CourseDetailScreen extends StatelessWidget {
                     const SizedBox(height: 16),
 
                     ...course.contents.map((content) {
+<<<<<<< Updated upstream
                       return Container(
                         margin: const EdgeInsets.only(bottom: 14),
                         padding: const EdgeInsets.all(16),
@@ -424,52 +430,15 @@ class CourseDetailScreen extends StatelessWidget {
                             ),
                           ],
                         ),
+=======
+                      return CourseFileTile(
+                        content: content,
+>>>>>>> Stashed changes
                       );
                     }),
                     const SizedBox(height: 24),
 
-                    Container(
-                      width: double.infinity,
-                      height: 56,
-                      decoration: BoxDecoration(
-                        color: AppColor.primaryColor,
-                        borderRadius: BorderRadius.circular(20),
-                        boxShadow: [
-                          BoxShadow(
-                            color: AppColor.primaryColor.withOpacity(0.4),
-                            blurRadius: 20,
-                            offset: const Offset(0, 8),
-                          ),
-                        ],
-                      ),
-                      child: Material(
-                        color: Colors.transparent,
-                        child: InkWell(
-                          onTap: () {
-                          },
-                          borderRadius: BorderRadius.circular(20),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.play_circle_filled_rounded,
-                                color: AppColor.secondryColor,
-                                size: 28,
-                              ),
-                              const SizedBox(width: 12),
-                              Text(
-                                AppString.startCourse.tr,
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
+                    const CourseStartButton(),
                     const SizedBox(height: 32),
                   ],
                 ),
@@ -479,60 +448,5 @@ class CourseDetailScreen extends StatelessWidget {
         );
       }),
     );
-  }
-
-  Widget _buildInfoBadge({
-    required IconData icon,
-    required String label,
-  }) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-      decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.2),
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: Colors.white.withOpacity(0.1),
-          width: 1,
-        ),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(icon, size: 14, color: Colors.white),
-          const SizedBox(width: 6),
-          Text(
-            label,
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 12,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  IconData _getFileIcon(String url) {
-    if (url.contains('.pdf')) return Icons.picture_as_pdf_rounded;
-    if (url.contains('.doc') || url.contains('.docx')) {
-      return Icons.description_rounded;
-    }
-    if (url.contains('.xls') || url.contains('.xlsx')) {
-      return Icons.table_chart_rounded;
-    }
-    if (url.contains('.ppt') || url.contains('.pptx')) {
-      return Icons.slideshow_rounded;
-    }
-    if (url.contains('.jpg') || url.contains('.png') || url.contains('.jpeg')) {
-      return Icons.image_rounded;
-    }
-    if (url.contains('.mp4') || url.contains('.mov') || url.contains('.avi')) {
-      return Icons.video_file_rounded;
-    }
-    if (url.contains('.zip') || url.contains('.rar')) {
-      return Icons.folder_zip_rounded;
-    }
-    return Icons.insert_drive_file_rounded;
   }
 }
