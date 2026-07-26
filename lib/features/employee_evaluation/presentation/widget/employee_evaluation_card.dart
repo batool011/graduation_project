@@ -154,7 +154,7 @@ class EmployeeEvaluationCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(18),
             ),
             child: Text(
-              evaluation.raw ?? 'لا توجد ملاحظات إضافية لهذه القيمة.',
+              evaluation.raw ?? AppString.noAdditionalNotes.tr,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 height: 1.5,
                 color: AppColor.black,
