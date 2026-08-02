@@ -88,7 +88,7 @@ class ProfileScreen extends StatelessWidget {
             child: Column(
               children: [
                 ProfileHeader(profile: profile),
-
+SizedBox(height: 10,),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: width * 0.05),
                   child: Row(

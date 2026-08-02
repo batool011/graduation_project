@@ -333,5 +333,20 @@ static const String total = "total";
 static const String noComplaints = "noComplaints";
 static const String startNewComplaint = "startNewComplaint";
 
+static const String totalScore = "totalScore";
+static const String failedToLoadEvaluation = "failedToLoadEvaluation";
+static const String noEvaluationData = "noEvaluationData";
+static const String evaluationNotFetched = "evaluationNotFetched";
+static const String evaluationId = "evaluationId";
+static const String employeeIdLabel = "employeeIdLabel";
+static const String weight = "weight";
+static const String score = "score";
+static const String noAdditionalNotes = "noAdditionalNotes";
 
+static const String uploadPersonalIdPhoto = "uploadPersonalIdPhoto";
+static const String uploadEmploymentContract = "uploadEmploymentContract";
+static const String personalIdPhotoHint = "personalIdPhotoHint";
+static const String employmentContractHint = "employmentContractHint";
+static const String fileSelected = "fileSelected";
+static const String removeFile = "removeFile";
 }

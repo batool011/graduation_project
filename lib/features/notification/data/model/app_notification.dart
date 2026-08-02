@@ -7,6 +7,7 @@ class AppNotification {
   final String body;
   final Map<String, dynamic> data;
   final DateTime createdAt;
+   final bool isRead;
 
   const AppNotification({
     required this.id,
@@ -15,6 +16,7 @@ class AppNotification {
     required this.body,
     required this.data,
     required this.createdAt,
+        this.isRead = false,
   });
 
   Map<String, dynamic> toJson() {
@@ -34,6 +36,7 @@ class AppNotification {
       notificationId: json['notificationId'] as int? ?? 0,
       title: json['title'] as String? ?? '',
       body: json['body'] as String? ?? '',
+      isRead: json['is_read'] ?? false,
       data: Map<String, dynamic>.from(json['data'] as Map? ?? const {}),
       createdAt: DateTime.tryParse(json['createdAt'] as String? ?? '') ??
           DateTime.fromMillisecondsSinceEpoch(0),

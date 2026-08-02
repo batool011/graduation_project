@@ -315,7 +315,24 @@
 "complaintsTracking": "Complaints Tracking",
 "total": "Total",
 "noComplaints": "No complaints currently",
-"startNewComplaint": "Start sending a new complaint and it will be followed up by management"
+"startNewComplaint": "Start sending a new complaint and it will be followed up by management",
+
+"totalScore": "Total Score",
+"failedToLoadEvaluation": "Failed to load evaluation",
+"noEvaluationData": "No evaluation data",
+"evaluationNotFetched": "Evaluation data not fetched yet",
+"evaluationId": "Evaluation ID",
+"employeeIdLabel": "Employee",
+"weight": "Weight",
+"score": "Score",
+"noAdditionalNotes": "No additional notes for this value",
+
+"uploadPersonalIdPhoto": "Upload Personal ID Photo",
+"uploadEmploymentContract": "Upload Employment Contract (PDF)",
+"personalIdPhotoHint": "Tap to select personal ID photo",
+"employmentContractHint": "Tap to select employment contract file",
+"fileSelected": "File selected",
+"removeFile": "Remove file"
 
 
 }

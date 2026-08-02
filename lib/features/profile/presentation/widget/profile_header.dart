@@ -1,13 +1,151 @@
 // lib/features/profile/presentation/widget/profile_header.dart
 
+import 'dart:io';
 import 'package:career/core/constant/class/app_color.dart';
 import 'package:career/features/profile/data/model/profile_model.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
-class ProfileHeader extends StatelessWidget {
+class ProfileHeader extends StatefulWidget {
   final ProfileModel profile;
 
   const ProfileHeader({super.key, required this.profile});
+
+  @override
+  State<ProfileHeader> createState() => _ProfileHeaderState();
+}
+
+class _ProfileHeaderState extends State<ProfileHeader> {
+  File? _profileImage;
+
+  Future<void> _pickImage() async {
+    showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (context) => SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                width: 40,
+                height: 4,
+                decoration: BoxDecoration(
+                  color: Colors.grey[300],
+                  borderRadius: BorderRadius.circular(2),
+                ),
+              ),
+              const SizedBox(height: 16),
+              const Text(
+                'اختيار صورة الملف الشخصي',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 20),
+              Row(
+                children: [
+                  Expanded(
+                    child: _buildOptionButton(
+                      icon: Icons.camera_alt_rounded,
+                      label: 'الكاميرا',
+                      onTap: () => _getImage(ImageSource.camera),
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: _buildOptionButton(
+                      icon: Icons.photo_library_rounded,
+                      label: 'المعرض',
+                      onTap: () => _getImage(ImageSource.gallery),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 16),
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('إلغاء'),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildOptionButton({
+    required IconData icon,
+    required String label,
+    required VoidCallback onTap,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 16),
+        decoration: BoxDecoration(
+          color: AppColor.primaryColor.withOpacity(0.08),
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(
+            color: AppColor.primaryColor.withOpacity(0.15),
+          ),
+        ),
+        child: Column(
+          children: [
+            Icon(icon, size: 32, color: AppColor.primaryColor),
+            const SizedBox(height: 8),
+            Text(
+              label,
+              style: TextStyle(
+                color: AppColor.primaryColor,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Future<void> _getImage(ImageSource source) async {
+    try {
+      final picker = ImagePicker();
+      final pickedFile = await picker.pickImage(
+        source: source,
+        maxWidth: 500,
+        maxHeight: 500,
+        imageQuality: 80,
+      );
+
+      if (pickedFile != null) {
+        setState(() {
+          _profileImage = File(pickedFile.path);
+        });
+        
+        
+        Navigator.pop(context);
+        
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('تم تحديث الصورة بنجاح'),
+            backgroundColor: Colors.green,
+          ),
+        );
+      }
+    } catch (e) {
+      Navigator.pop(context);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('حدث خطأ: $e'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,31 +172,46 @@ class ProfileHeader extends StatelessWidget {
           Stack(
             children: [
               Container(
+                width: 100,
+                height: 100,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
+                  color: Colors.white.withOpacity(0.15),
                   border: Border.all(
                     color: Colors.white.withOpacity(0.3),
                     width: 3,
                   ),
+                  image: _profileImage != null
+                      ? DecorationImage(
+                          image: FileImage(_profileImage!),
+                          fit: BoxFit.cover,
+                        )
+                      : null,
                 ),
-                child: const CircleAvatar(
-                  radius: 50,
-                  backgroundImage: AssetImage('assets/images/profile.png'),
-                ),
+                child: _profileImage == null
+                    ? const Icon(
+                        Icons.person_rounded,
+                        color: Colors.white,
+                        size: 55,
+                      )
+                    : null,
               ),
               Positioned(
                 bottom: 0,
                 right: 0,
-                child: Container(
-                  padding: const EdgeInsets.all(6),
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
-                    shape: BoxShape.circle,
-                  ),
-                  child: Icon(
-                    Icons.edit,
-                    color: AppColor.primaryColor,
-                    size: 16,
+                child: GestureDetector(
+                  onTap: _pickImage,
+                  child: Container(
+                    padding: const EdgeInsets.all(6),
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                    ),
+                    child: Icon(
+                      Icons.edit,
+                      color: AppColor.primaryColor,
+                      size: 16,
+                    ),
                   ),
                 ),
               ),
@@ -66,7 +219,7 @@ class ProfileHeader extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           Text(
-            profile.name,
+            widget.profile.name,
             style: const TextStyle(
               color: Colors.white,
               fontSize: 22,
@@ -75,7 +228,7 @@ class ProfileHeader extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           Text(
-            '@${profile.username}',
+            '@${widget.profile.username}',
             style: TextStyle(
               color: Colors.white.withOpacity(0.8),
               fontSize: 14,
@@ -83,7 +236,7 @@ class ProfileHeader extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           Text(
-            profile.email,
+            widget.profile.email,
             style: TextStyle(
               color: Colors.white.withOpacity(0.7),
               fontSize: 13,
@@ -93,13 +246,13 @@ class ProfileHeader extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
             decoration: BoxDecoration(
-              color: profile.isApproved
-                  ? Colors.green.withOpacity(0.2)
+              color: widget.profile.isApproved
+                  ? AppColor.secondryColor.withOpacity(0.2)
                   : Colors.orange.withOpacity(0.2),
               borderRadius: BorderRadius.circular(20),
               border: Border.all(
-                color: profile.isApproved
-                    ? Colors.green.withOpacity(0.3)
+                color: widget.profile.isApproved
+                    ? AppColor.secondryColor.withOpacity(0.3)
                     : Colors.orange.withOpacity(0.3),
                 width: 1,
               ),
@@ -108,17 +261,21 @@ class ProfileHeader extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Icon(
-                  profile.isApproved
+                  widget.profile.isApproved
                       ? Icons.check_circle_rounded
                       : Icons.hourglass_empty_rounded,
-                  color: profile.isApproved ? Colors.green : Colors.orange,
+                  color: widget.profile.isApproved
+                      ? AppColor.secondryColor
+                      : Colors.orange,
                   size: 16,
                 ),
                 const SizedBox(width: 6),
                 Text(
-                  profile.statusLabel,
+                  widget.profile.statusLabel,
                   style: TextStyle(
-                    color: profile.isApproved ? Colors.green : Colors.orange,
+                    color: widget.profile.isApproved
+                        ? AppColor.secondryColor
+                        : Colors.orange,
                     fontSize: 13,
                     fontWeight: FontWeight.w600,
                   ),

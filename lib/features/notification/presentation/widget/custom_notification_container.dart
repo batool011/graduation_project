@@ -25,77 +25,123 @@ class CustomNotificationContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 0.06.w(context)),
-      padding: EdgeInsets.symmetric(
-        vertical: 0.02.h(context),
-      ),
+      margin: EdgeInsets.symmetric(horizontal: 0.06.w(context), vertical: 0.01.h(context)),
+      padding: EdgeInsets.all(0.025.w(context)),
       decoration: BoxDecoration(
         color: AppColor.white,
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.1),
-            blurRadius: 2,
-            spreadRadius: 1,
-            offset: Offset(0, 2),
+            color: Colors.black.withValues(alpha: 0.06),
+            blurRadius: 12,
+            spreadRadius: 2,
+            offset: const Offset(0, 4),
           ),
         ],
+        border: Border.all(
+          color: AppColor.grey.withValues(alpha: 0.3),
+          width: 0.5,
+        ),
       ),
-      child: Padding(
-        padding:  EdgeInsets.symmetric(horizontal: 0.03.w(context)),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ImageWidget(width: 80,height: 80,imageUrl: AppAsset.splash,borderRadius: BorderRadius.circular(20),),
-            13.horizontalSpace(),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    notification.title,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 17,
-                    ),
-                  ),
-                  8.verticalSpace(),
-                  Text(
-                    notification.body.isEmpty ? 'لا يوجد محتوى إضافي' : notification.body,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  ),
-                ],
-              ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // ✅ صورة الإشعار
+          ClipRRect(
+            borderRadius: BorderRadius.circular(16),
+            child: ImageWidget(
+              width: 70,
+              height: 70,
+              imageUrl: AppAsset.splash,
+              fit: BoxFit.cover,
             ),
-            10.horizontalSpace(),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
+          ),
+          14.horizontalSpace(),
+          // ✅ محتوى الإشعار
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                InkWell(
-                  onTap: onDelete,
-                  borderRadius: BorderRadius.circular(20),
-                  child: const Padding(
-                    padding: EdgeInsets.all(4),
-                    child: Icon(Icons.delete_outline, color: AppColor.errorColor, size: 22),
-                  ),
-                ),
-                34.verticalSpace(),
                 Text(
-                  _formatDate(notification.createdAt),
+                  notification.title,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w300,
-                    color: AppColor.darkGrey,
-                  ),
+                        fontWeight: FontWeight.w700,
+                        fontSize: 16,
+                        color: AppColor.black,
+                        height: 1.2,
+                      ),
+                ),
+                6.verticalSpace(),
+                Text(
+                  notification.body.isEmpty ? 'لا يوجد محتوى إضافي' : notification.body,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                        fontSize: 13,
+                        color: AppColor.darkGrey,
+                        height: 1.4,
+                      ),
+                ),
+                10.verticalSpace(),
+                // ✅ التاريخ
+                Row(
+                  children: [
+                    Icon(
+                      Icons.calendar_today_outlined,
+                      size: 12,
+                      color: AppColor.darkGrey.withValues(alpha: 0.6),
+                    ),
+                    6.horizontalSpace(),
+                    Text(
+                      _formatDate(notification.createdAt),
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            fontSize: 11,
+                            fontWeight: FontWeight.w400,
+                            color: AppColor.darkGrey.withValues(alpha: 0.7),
+                          ),
+                    ),
+                  ],
                 ),
               ],
             ),
-          ],
-        ),
+          ),
+          // ✅ زر الحذف
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              InkWell(
+                onTap: onDelete,
+                borderRadius: BorderRadius.circular(30),
+                child: Container(
+                  padding: const EdgeInsets.all(6),
+                  decoration: BoxDecoration(
+                    color: AppColor.errorColor.withValues(alpha: 0.08),
+                    shape: BoxShape.circle,
+                  ),
+                  child: Icon(
+                    Icons.close_rounded,
+                    color: AppColor.errorColor,
+                    size: 18,
+                  ),
+                ),
+              ),
+              8.verticalSpace(),
+              // ✅ حالة الإشعار (مقروء/غير مقروء)
+              Container(
+                width: 8,
+                height: 8,
+                decoration: BoxDecoration(
+                  color: notification.isRead == true
+                      ? AppColor.grey.withValues(alpha: 0.3)
+                      : AppColor.primaryColor,
+                  shape: BoxShape.circle,
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
