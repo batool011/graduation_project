@@ -1,3 +1,8 @@
+<<<<<<< Updated upstream
+=======
+import 'package:career/core/constant/class/app_string.dart';
+
+>>>>>>> Stashed changes
 class TaskModel {
   final int id;
   final String title;
