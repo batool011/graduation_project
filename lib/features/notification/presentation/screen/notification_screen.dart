@@ -13,6 +13,37 @@ import '../../../../../../core/widget/under_line_text.dart';
 class NotificationScreen extends GetView<NotificationController> {
   const NotificationScreen({super.key});
 
+  void _showDeleteConfirmation({
+    required BuildContext context,
+    required String title,
+    required String message,
+    required VoidCallback onConfirm,
+  }) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(title),
+        content: Text(message),
+        actions: [
+          TextButton(
+            onPressed: () => Get.back(),
+            child: Text(AppString.cancel.tr),
+          ),
+          TextButton(
+            onPressed: () {
+              Get.back();
+              onConfirm();
+            },
+            child: Text(
+              AppString.delete.tr,
+              style: const TextStyle(color: AppColor.errorColor),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +66,12 @@ class NotificationScreen extends GetView<NotificationController> {
                   const Spacer(),
                   if (controller.notifications.isNotEmpty)
                     GestureDetector(
-                      onTap: controller.deleteAllNotifications,
+                      onTap: () => _showDeleteConfirmation(
+                        context: context,
+                        title: AppString.deleteAllNotificationsTitle.tr,
+                        message: AppString.deleteAllNotificationsMessage.tr,
+                        onConfirm: controller.deleteAllNotifications,
+                      ),
                       child: Row(
                         children: [
                           const Icon(Icons.delete_outline,color: AppColor.errorColor,size: 20,),
@@ -51,22 +87,27 @@ class NotificationScreen extends GetView<NotificationController> {
             Expanded(
               child: controller.notifications.isEmpty
                   ? ListView(
-                      children: [
-                        Lottie.asset(AppAsset.bell,height: 200),
-                      ],
-                    )
+                children: [
+                  Lottie.asset(AppAsset.bell,height: 200),
+                ],
+              )
                   : ListView.separated(
-                      padding: EdgeInsets.only(bottom: 24.h(context)),
-                      itemCount: controller.notifications.length,
-                      separatorBuilder: (_, __) => 10.verticalSpace(),
-                      itemBuilder: (context, index) {
-                        final notification = controller.notifications[index];
-                        return CustomNotificationContainer(
-                          notification: notification,
-                          onDelete: () => controller.deleteNotification(notification.id),
-                        );
-                      },
+                padding: EdgeInsets.only(bottom: 24.h(context)),
+                itemCount: controller.notifications.length,
+                separatorBuilder: (_, __) => 10.verticalSpace(),
+                itemBuilder: (context, index) {
+                  final notification = controller.notifications[index];
+                  return CustomNotificationContainer(
+                    notification: notification,
+                    onDelete: () => _showDeleteConfirmation(
+                      context: context,
+                      title: AppString.deleteNotificationTitle.tr,
+                      message: AppString.deleteNotificationMessage.tr,
+                      onConfirm: () => controller.deleteNotification(notification.id),
                     ),
+                  );
+                },
+              ),
             ),
           ],
         );

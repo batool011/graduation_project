@@ -44,8 +44,8 @@ class ProfileModel {
           ? Department.fromJson(json['department'])
           : null,
       documents: Documents.fromJson(json['documents'] ?? {}),
-      shift: json['shifts'] != null
-          ? Shift.fromJson(json['shifts'])
+        shift: (json['shift'] ?? json['shifts']) != null
+          ? Shift.fromJson((json['shift'] ?? json['shifts']) as Map<String, dynamic>)
           : null,
       createdAt: json['created_at'] ?? '',
       updatedAt: json['updated_at'] ?? '',
@@ -133,4 +133,13 @@ class Shift {
   }
 
   String get formattedTime => '$startTime - $endTime';
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'start_time': startTime,
+      'end_time': endTime,
+    };
+  }
 }

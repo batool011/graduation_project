@@ -7,10 +7,14 @@ import '../../data/model/course_model.dart';
 
 class CourseFileTile extends StatelessWidget {
   final CourseContentModel content;
+  final VoidCallback? onOpened;
+  final bool isMarking;
 
   const CourseFileTile({
     super.key,
     required this.content,
+    this.onOpened,
+    this.isMarking = false,
   });
 
   @override
@@ -130,15 +134,22 @@ class CourseFileTile extends StatelessWidget {
             child: Material(
               color: Colors.transparent,
               child: InkWell(
-                onTap: () async {
-                  final uri = Uri.parse(content.fileUrl);
-                  if (await canLaunchUrl(uri)) {
-                    await launchUrl(
-                      uri,
-                      mode: LaunchMode.externalApplication,
-                    );
-                  }
-                },
+                onTap: isMarking
+                    ? null
+                    : () async {
+                        // Fire the "mark as viewed" progress update first so
+                        // the employee's progress bar always reflects that
+                        // they opened the file, then hand off to the OS to
+                        // actually open it.
+                        onOpened?.call();
+                        final uri = Uri.parse(content.fileUrl);
+                        if (await canLaunchUrl(uri)) {
+                          await launchUrl(
+                            uri,
+                            mode: LaunchMode.externalApplication,
+                          );
+                        }
+                      },
                 borderRadius: BorderRadius.circular(14),
                 child: Container(
                   padding: const EdgeInsets.symmetric(
@@ -148,11 +159,20 @@ class CourseFileTile extends StatelessWidget {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Icon(
-                        Icons.download_rounded,
-                        color: Colors.white,
-                        size: 18,
-                      ),
+                      isMarking
+                          ? const SizedBox(
+                              width: 18,
+                              height: 18,
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2,
+                                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                              ),
+                            )
+                          : const Icon(
+                              Icons.download_rounded,
+                              color: Colors.white,
+                              size: 18,
+                            ),
                       const SizedBox(width: 4),
                       Text(
                         AppString.download.tr,

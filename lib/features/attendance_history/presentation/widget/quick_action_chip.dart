@@ -1,8 +1,9 @@
+import 'package:career/core/constant/class/app_size.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/constant/class/app_color.dart';
 
 class QuickActionChip extends StatelessWidget {
-  const QuickActionChip({
+  const QuickActionChip({super.key,
     required this.icon,
     required this.label,
     required this.onTap,
@@ -30,7 +31,7 @@ class QuickActionChip extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Icon(icon, size: 18, color: AppColor.primaryColor),
-              const SizedBox(width: 8),
+             8.verticalSpace(),
               Text(
                 label,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(

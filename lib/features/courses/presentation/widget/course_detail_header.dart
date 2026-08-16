@@ -3,12 +3,16 @@ import 'package:get/get.dart';
 import '../../../../core/constant/class/app_color.dart';
 import '../../../../core/constant/class/app_string.dart';
 import '../../data/model/course_model.dart';
+import '../../data/model/course_enrollment_model.dart';
 import 'course_info_badge.dart';
+import 'course_progress_bar.dart';
+import 'course_status_badge.dart';
 
 class CourseDetailHeader extends StatelessWidget {
   final CourseModel course;
+  final CourseEnrollmentModel? enrollment;
 
-  const CourseDetailHeader({super.key, required this.course});
+  const CourseDetailHeader({super.key, required this.course, this.enrollment});
 
   @override
   Widget build(BuildContext context) {
@@ -65,14 +69,14 @@ class CourseDetailHeader extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.symmetric(
                   horizontal: MediaQuery.of(context).size.width * 0.06,
-                  vertical: MediaQuery.of(context).size.height * 0.03,
+                  vertical: MediaQuery.of(context).size.height * 0.000002,
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                child: ListView(
+                  //crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Spacer(),
                     Container(
-                      padding: const EdgeInsets.all(16),
+                      padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
                         color: AppColor.secondryColor.withOpacity(0.2),
                         shape: BoxShape.circle,
@@ -134,8 +138,31 @@ class CourseDetailHeader extends StatelessWidget {
                           icon: Icons.insert_drive_file_outlined,
                           label: '${course.contents.length} ${AppString.files.tr}',
                         ),
+                        if (course.isMandatory)
+                          CourseInfoBadge(
+                            icon: Icons.priority_high_rounded,
+                            label: AppString.courseMandatory.tr,
+                          ),
                       ],
                     ),
+                    if (enrollment != null) ...[
+                      const SizedBox(height: 16),
+                      Row(
+                        children: [
+                          CourseStatusBadge(status: enrollment!.status),
+                          if (enrollment!.isOverdue && !enrollment!.isCompleted) ...[
+                            const SizedBox(width: 8),
+                            const CourseOverdueBadge(),
+                          ],
+                        ],
+                      ),
+                      const SizedBox(height: 14),
+                      CourseProgressBar(
+                        percentage: enrollment!.progressPercentage,
+                        color: Colors.white,
+                        labelColor: Colors.white,
+                      ),
+                    ],
                     const SizedBox(height: 24),
                   ],
                 ),

@@ -1,13 +1,19 @@
 import 'package:career/core/constant/class/app_size.dart';
 import 'package:career/core/constant/class/app_string.dart';
+import 'package:career/features/courses/data/model/course_enrollment_model.dart';
 import 'package:career/features/courses/presentation/getx/controller/courses_controller.dart';
 import 'package:career/features/courses/presentation/screens/course_detail_screen.dart';
+import 'package:career/features/courses/presentation/widget/course_status_badge.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../core/constant/class/app_color.dart';
 import '../getx/controller/home_controller.dart';
 
+/// Home banner carousel - shows the employee's OWN assigned courses (My
+/// Courses), not the whole company catalog, so this is personally
+/// relevant ("here's what you still need to complete") rather than a
+/// generic browse-everything list.
 class CustomSlider extends GetView<HomeController> {
   const CustomSlider({super.key});
 
@@ -29,7 +35,7 @@ class CustomSlider extends GetView<HomeController> {
         );
       }
 
-      if (coursesController.courses.isEmpty) {
+      if (coursesController.myCourses.isEmpty) {
         return SizedBox(
           height: 0.25.h(context),
           child: Center(
@@ -50,15 +56,18 @@ class CustomSlider extends GetView<HomeController> {
         );
       }
 
-      final courses = coursesController.courses;
+      final enrollments = coursesController.myCourses;
 
       return Column(
         children: [
           CarouselSlider(
-            items: courses.map((course) {
+            items: enrollments.map((enrollment) {
+              final style = CourseStatusStyle.forStatus(enrollment.status);
+              final showOverdue = enrollment.isOverdue && !enrollment.isCompleted;
+
               return GestureDetector(
                 onTap: () {
-                  Get.to(() => CourseDetailScreen(courseId: course.id));
+                  Get.to(() => CourseDetailScreen(courseId: enrollment.courseId));
                 },
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 0.02.w(context)),
@@ -132,7 +141,7 @@ class CustomSlider extends GetView<HomeController> {
                                         width: 1.5,
                                       ),
                                     ),
-                                    child: Icon(
+                                    child: const Icon(
                                       Icons.school_rounded,
                                       color: Colors.white,
                                       size: 22,
@@ -144,7 +153,7 @@ class CustomSlider extends GetView<HomeController> {
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          course.title,
+                                          enrollment.title,
                                           maxLines: 1,
                                           overflow: TextOverflow.ellipsis,
                                           style: const TextStyle(
@@ -174,7 +183,7 @@ class CustomSlider extends GetView<HomeController> {
                                               ),
                                               const SizedBox(width: 4),
                                               Text(
-                                                '${course.duration} ${course.duration == 1 ? AppString.day.tr : AppString.days.tr}',
+                                                '${enrollment.course?.duration ?? 0} ${(enrollment.course?.duration ?? 0) == 1 ? AppString.day.tr : AppString.days.tr}',
                                                 style: const TextStyle(
                                                   color: Colors.white,
                                                   fontSize: 10,
@@ -225,6 +234,9 @@ class CustomSlider extends GetView<HomeController> {
                                 ],
                               ),
                               const SizedBox(height: 12),
+                              // Progress strip - more useful here than a
+                              // static description, since this banner is
+                              // about *your* status on the course.
                               Container(
                                 padding: const EdgeInsets.symmetric(
                                   horizontal: 12,
@@ -234,17 +246,29 @@ class CustomSlider extends GetView<HomeController> {
                                   color: Colors.white.withOpacity(0.1),
                                   borderRadius: BorderRadius.circular(12),
                                 ),
-                                child: Text(
-                                  course.description.isNotEmpty 
-                                      ? course.description 
-                                      : AppString.noDescription.tr,
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
-                                    color: Colors.white.withOpacity(0.9),
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w500,
-                                  ),
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(999),
+                                        child: LinearProgressIndicator(
+                                          value: enrollment.progressPercentage.clamp(0, 100) / 100,
+                                          minHeight: 6,
+                                          backgroundColor: Colors.white.withOpacity(0.25),
+                                          valueColor: const AlwaysStoppedAnimation<Color>(Colors.white),
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(width: 8),
+                                    Text(
+                                      '${enrollment.progressPercentage}%',
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 11,
+                                        fontWeight: FontWeight.w800,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                               const SizedBox(height: 10),
@@ -262,17 +286,11 @@ class CustomSlider extends GetView<HomeController> {
                                     child: Row(
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
-                                        const Icon(
-                                          Icons.people_outlined,
-                                          size: 12,
-                                          color: Colors.white,
-                                        ),
+                                        Icon(style.icon, size: 12, color: Colors.white),
                                         const SizedBox(width: 4),
                                         Flexible(
                                           child: Text(
-                                            course.courseTarget.isNotEmpty 
-                                                ? course.courseTarget 
-                                                : AppString.students.tr,
+                                            style.label,
                                             style: const TextStyle(
                                               color: Colors.white,
                                               fontSize: 10,
@@ -285,71 +303,71 @@ class CustomSlider extends GetView<HomeController> {
                                       ],
                                     ),
                                   ),
-                                  const SizedBox(width: 8),
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 8,
-                                      vertical: 4,
-                                    ),
-                                    decoration: BoxDecoration(
-                                      color: Colors.white.withOpacity(0.12),
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        const Icon(
-                                          Icons.insert_drive_file_outlined,
-                                          size: 12,
-                                          color: Colors.white,
-                                        ),
-                                        const SizedBox(width: 4),
-                                        Text(
-                                          '${course.contents.length} ${AppString.files.tr}',
-                                          style: const TextStyle(
+                                  if (enrollment.course?.isMandatory == true) ...[
+                                    const SizedBox(width: 8),
+                                    Container(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 8,
+                                        vertical: 4,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: Colors.white.withOpacity(0.12),
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          const Icon(
+                                            Icons.priority_high_rounded,
+                                            size: 12,
                                             color: Colors.white,
-                                            fontSize: 10,
-                                            fontWeight: FontWeight.w500,
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  const Spacer(),
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 8,
-                                      vertical: 4,
-                                    ),
-                                    decoration: BoxDecoration(
-                                      gradient: LinearGradient(
-                                        colors: [
-                                          Colors.amber.shade400,
-                                          Colors.orange.shade600,
+                                          const SizedBox(width: 4),
+                                          Text(
+                                            AppString.courseMandatory.tr,
+                                            style: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 10,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
                                         ],
                                       ),
-                                      borderRadius: BorderRadius.circular(10),
                                     ),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        const Icon(
-                                          Icons.star_rounded,
-                                          size: 12,
-                                          color: Colors.white,
+                                  ],
+                                  const Spacer(),
+                                  if (showOverdue)
+                                    Container(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 8,
+                                        vertical: 4,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        gradient: const LinearGradient(
+                                          colors: [Color(0xFFF87171), Color(0xFFDC2626)],
                                         ),
-                                        const SizedBox(width: 4),
-                                        Text(
-                                          AppString.featured.tr,
-                                          style: const TextStyle(
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          const Icon(
+                                            Icons.warning_amber_rounded,
+                                            size: 12,
                                             color: Colors.white,
-                                            fontSize: 10,
-                                            fontWeight: FontWeight.w700,
                                           ),
-                                        ),
-                                      ],
+                                          const SizedBox(width: 4),
+                                          Text(
+                                            AppString.courseOverdue.tr,
+                                            style: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 10,
+                                              fontWeight: FontWeight.w700,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                  ),
                                 ],
                               ),
                             ],
@@ -379,7 +397,7 @@ class CustomSlider extends GetView<HomeController> {
             return Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(
-                courses.length,
+                enrollments.length,
                 (index) => AnimatedContainer(
                   duration: const Duration(milliseconds: 400),
                   margin: const EdgeInsets.symmetric(horizontal: 4),
@@ -412,7 +430,6 @@ class CustomSlider extends GetView<HomeController> {
               ),
             );
           }),
-          const SizedBox(height: 16),
         ],
       );
     });

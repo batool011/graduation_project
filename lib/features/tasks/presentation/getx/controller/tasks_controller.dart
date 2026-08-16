@@ -8,8 +8,29 @@ class TasksController extends GetxController {
 
   final isLoading = false.obs;
   final tasks = <TaskModel>[].obs;
+  final selectedFilter = TaskFilter.all.obs;
 
-  TaskModel? get latestTask => tasks.isEmpty ? null : tasks.first;
+  List<TaskModel> get filteredTasks {
+    switch (selectedFilter.value) {
+      case TaskFilter.queue:
+        return tasks.where((task) => task.statusStage == 0).toList();
+      case TaskFilter.progress:
+        return tasks.where((task) => task.statusStage == 1).toList();
+      case TaskFilter.completed:
+        return tasks.where((task) => task.statusStage == 2).toList();
+      case TaskFilter.all:
+        return tasks.toList();
+    }
+  }
+
+  TaskModel? get latestTask {
+    final visibleTasks = filteredTasks;
+    return visibleTasks.isEmpty ? null : visibleTasks.first;
+  }
+
+  void setFilter(TaskFilter filter) {
+    selectedFilter.value = filter;
+  }
 
   Future<void> refreshTasksSilently() async {
     final result = await _repo.getTasks();
@@ -101,4 +122,11 @@ class TasksController extends GetxController {
     super.onInit();
     fetchTasks();
   }
+}
+
+enum TaskFilter {
+  all,
+  queue,
+  progress,
+  completed,
 }

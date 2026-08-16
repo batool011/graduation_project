@@ -4,6 +4,11 @@ import 'package:career/features/complaints/data/model/complaint_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+const Color _ink = Color(0xFF0F172A);
+const Color _subInk = Color(0xFF64748B);
+const Color _resolvedColor = Color(0xFF149954);
+const Color _pendingColor = Color(0xFFD8872F);
+
 class ComplaintCard extends StatelessWidget {
   final ComplaintModel complaint;
 
@@ -15,21 +20,26 @@ class ComplaintCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final normalizedStatus = complaint.status.toLowerCase();
-    final isResolved =
-        normalizedStatus == 'resolved' || normalizedStatus == 'done' || normalizedStatus == 'closed';
+
+    final isResolved = normalizedStatus == 'resolved' ||
+        normalizedStatus == 'done' ||
+        normalizedStatus == 'closed';
 
     return Container(
       margin: const EdgeInsets.only(bottom: 12),
-      padding: const EdgeInsets.all(14),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: AppColor.white,
-        borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: AppColor.primaryColor.withAlpha(30)),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(
+          color: AppColor.grey.withOpacity(0.18),
+        ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withAlpha(10),
-            blurRadius: 8,
-            offset: const Offset(0, 4),
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 14,
+            offset: const Offset(0, 8),
+            spreadRadius: -8,
           ),
         ],
       ),
@@ -37,40 +47,88 @@ class ComplaintCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
                 child: Text(
-                  complaint.title,
-                  style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                        fontWeight: FontWeight.w700,
-                      ),
+                  complaint.title.isEmpty ? '-' : complaint.title,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                    fontWeight: FontWeight.w900,
+                    color: _ink,
+                  ),
                 ),
               ),
-              _StatusBadge(status: complaint.status, isResolved: isResolved),
+              const SizedBox(width: 10),
+              _StatusBadge(
+                status: complaint.status,
+                isResolved: isResolved,
+              ),
             ],
           ),
-          const SizedBox(height: 4),
-          Text(
-            '${AppString.complaintNumber.tr}: #${complaint.id}',
-            style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                  color: Colors.grey[700],
-                ),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            complaint.description,
-            style: Theme.of(context).textTheme.bodyMedium,
-          ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 6),
           Row(
             children: [
-              Icon(Icons.schedule, size: 16, color: Colors.grey[600]),
+              const Icon(
+                Icons.tag_rounded,
+                size: 14,
+                color: _subInk,
+              ),
               const SizedBox(width: 4),
-              Text(
-                complaint.createdAt,
-                style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                      color: Colors.grey[600],
-                    ),
+              Expanded(
+                child: Text(
+                  '${AppString.complaintNumber.tr}: #${complaint.id}',
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: _subInk,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: const Color(0xFFF8FAFC),
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(
+                color: const Color(0xFFE2E8F0),
+              ),
+            ),
+            child: Text(
+              complaint.description.isEmpty ? '-' : complaint.description,
+              maxLines: 4,
+              overflow: TextOverflow.ellipsis,
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                color: const Color(0xFF334155),
+                height: 1.4,
+              ),
+            ),
+          ),
+          const SizedBox(height: 10),
+          Row(
+            children: [
+              const Icon(
+                Icons.schedule_rounded,
+                size: 14,
+                color: _subInk,
+              ),
+              const SizedBox(width: 4),
+              Expanded(
+                child: Text(
+                  complaint.createdAt.isEmpty ? '-' : complaint.createdAt,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: _subInk,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
               ),
             ],
           ),
@@ -84,29 +142,65 @@ class _StatusBadge extends StatelessWidget {
   final String status;
   final bool isResolved;
 
-  const _StatusBadge({required this.status, required this.isResolved});
+  const _StatusBadge({
+    required this.status,
+    required this.isResolved,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final bg = isResolved ? const Color(0xFFE8F8EF) : const Color(0xFFFFF5E9);
-    final textColor = isResolved ? const Color(0xFF149954) : const Color(0xFFD8872F);
+    final normalizedStatus = status.toLowerCase();
+    final isPending = normalizedStatus == 'pending';
 
-    final localizedStatus = isResolved 
-        ? AppString.resolved.tr 
-        : (status == 'pending' ? AppString.underReview.tr : status);
+    final color = isResolved
+        ? _resolvedColor
+        : isPending
+        ? _pendingColor
+        : AppColor.primaryColor;
+
+    final localizedStatus = isResolved
+        ? AppString.resolved.tr
+        : isPending
+        ? AppString.underReview.tr
+        : status;
+
+    final icon = isResolved
+        ? Icons.check_circle_rounded
+        : isPending
+        ? Icons.hourglass_top_rounded
+        : Icons.info_rounded;
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      constraints: const BoxConstraints(maxWidth: 130),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
       decoration: BoxDecoration(
-        color: bg,
-        borderRadius: BorderRadius.circular(20),
+        color: color.withOpacity(0.12),
+        borderRadius: BorderRadius.circular(999),
+        border: Border.all(
+          color: color.withOpacity(0.16),
+        ),
       ),
-      child: Text(
-        localizedStatus,
-        style: Theme.of(context).textTheme.bodySmall!.copyWith(
-              color: textColor,
-              fontWeight: FontWeight.w700,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(
+            icon,
+            size: 14,
+            color: color,
+          ),
+          const SizedBox(width: 6),
+          Flexible(
+            child: Text(
+              localizedStatus,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                color: color,
+                fontWeight: FontWeight.w800,
+              ),
             ),
+          ),
+        ],
       ),
     );
   }

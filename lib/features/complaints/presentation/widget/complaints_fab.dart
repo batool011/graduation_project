@@ -16,8 +16,33 @@ class ComplaintsFab extends GetView<ComplaintsController> {
         Get.dialog(const AddComplaintDialog());
       },
       backgroundColor: AppColor.primaryColor,
-      icon: const Icon(Icons.add_comment_outlined),
-      label: Text(AppString.newComplaint.tr),
+      foregroundColor: AppColor.white,
+      elevation: 6,
+      highlightElevation: 12,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(22),
+        side: BorderSide(
+          color: Colors.white.withOpacity(0.14),
+        ),
+      ),
+      icon: Container(
+        padding: const EdgeInsets.all(6),
+        decoration: BoxDecoration(
+          color: Colors.white.withOpacity(0.14),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: const Icon(
+          Icons.add_comment_rounded,
+          size: 20,
+        ),
+      ),
+      label: Text(
+        AppString.newComplaint.tr,
+        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+          color: AppColor.white,
+          fontWeight: FontWeight.w800,
+        ),
+      ),
     );
   }
 }

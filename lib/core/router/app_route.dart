@@ -4,6 +4,8 @@ import 'package:career/features/auth/presentation/screen/log_in_screen.dart';
 import 'package:career/features/auth/presentation/screen/register_screen.dart';
 import 'package:career/features/complaints/presentation/getx/binding/complaints_binding.dart';
 import 'package:career/features/complaints/presentation/screen/complaints_screen.dart';
+import 'package:career/features/courses/presentation/getx/binding/courses_binding.dart';
+import 'package:career/features/courses/presentation/screens/my_courses_screen.dart';
 import 'package:career/features/attendance_history/presentation/getx/binding/attendance_history_binding.dart';
 import 'package:career/features/attendance_history/presentation/screen/attendance_history_screen.dart';
 import 'package:career/features/notification/presentation/getx/binding/notification_binding.dart';
@@ -12,6 +14,12 @@ import 'package:career/features/employee_evaluation/presentation/getx/binding/em
 import 'package:career/features/employee_evaluation/presentation/screen/employee_evaluation_screen.dart';
 import 'package:career/features/on%20boarding/presentation/getx/binding/onboarding_binding.dart';
 import 'package:career/features/on%20boarding/presentation/screen/on_boarding_screen.dart';
+import 'package:career/features/payrolls/presentation/getx/binding/payroll_binding.dart';
+import 'package:career/features/payrolls/presentation/screen/payroll_screen.dart';
+import 'package:career/features/overtime_requests/presentation/getx/binding/overtime_binding.dart';
+import 'package:career/features/overtime_requests/presentation/screen/overtime_screen.dart';
+import 'package:career/features/salary_policies/presentation/getx/binding/salary_policies_binding.dart';
+import 'package:career/features/salary_policies/presentation/screen/salary_policies_screen.dart';
 import 'package:career/features/profile/presentation/getx/binding/profile_binding.dart';
 import 'package:career/features/profile/presentation/screens/profile_screen.dart';
 import 'package:career/features/saving_money/presentation/binding/savings_binding.dart';
@@ -29,6 +37,8 @@ import 'package:career/features/vacation/presentation/screen/vacation_screen.dar
 import 'package:career/features/vacation/presentation/screen/vacation_requests_screen.dart';
 import 'package:career/features/vacation/presentation/screen/vacation_request_detail_screen.dart';
 import 'package:get/get.dart';
+import '../../features/chatbot/presentation/getx/binding/chatbot_binding.dart';
+import '../../features/chatbot/presentation/screens/chatbot_screen.dart';
 import '../../features/app-main/presentation/getx/main_binding.dart';
 import '../../features/app-main/presentation/screens/main_screen.dart';
 import '../../features/splash/presentation/getx/binding/splash_binding.dart';
@@ -68,7 +78,7 @@ class AppRoute {
       page: () => SettingScreen(),
       binding: SettingBinding(),
     ),
- GetPage(
+    GetPage(
       name: RoutesName.profile,
       page: () => ProfileScreen(),
       binding: ProfileBinding(),
@@ -83,6 +93,21 @@ class AppRoute {
       name: RoutesName.employeeEvaluation,
       page: () => const EmployeeEvaluationScreen(),
       binding: EmployeeEvaluationBinding(),
+    ),
+    GetPage(
+      name: RoutesName.payrolls,
+      page: () => const PayrollScreen(),
+      binding: PayrollBinding(),
+    ),
+    GetPage(
+      name: RoutesName.overtimeRequests,
+      page: () => const OvertimeScreen(),
+      binding: OvertimeBinding(),
+    ),
+    GetPage(
+      name: RoutesName.salaryPolicies,
+      page: () => const SalaryPoliciesScreen(),
+      binding: SalaryPoliciesBinding(),
     ),
     GetPage(
       name: RoutesName.vacation,
@@ -140,6 +165,16 @@ class AppRoute {
       name: RoutesName.complaints,
       page: () => const ComplaintsScreen(),
       binding: ComplaintsBinding(),
+    ),
+    GetPage(
+      name: RoutesName.myCourses,
+      page: () => const MyCoursesScreen(),
+      binding: CoursesBinding(),
+    ),
+    GetPage(
+      name: RoutesName.chatbot,
+      page: () => const ChatbotScreen(),
+      binding: ChatbotBinding(),
     ),
   ];
 }

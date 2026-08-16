@@ -1,10 +1,9 @@
 class AppString {
-  
   static const String notification = "notification";
   static const String careerNow = "careerNow";
   static const String leaveRequest = "leaveRequest";
   static const String getStarted = "getStarted";
- 
+
   static const String loginHere = "loginHere";
   static const String loginNow = "loginNow";
   static const String login = "login";
@@ -135,7 +134,8 @@ class AppString {
   static const String communication = "communication";
   static const String problemSolving = "problemSolving";
   static const String recentEvaluations = "recentEvaluations";
-  static const String evaluationRecordForEmployee = "evaluationRecordForEmployee";
+  static const String evaluationRecordForEmployee =
+      "evaluationRecordForEmployee";
   static const String strengths = "strengths";
   static const String focusAreas = "focusAreas";
   static const String noAdditionalContent = "noAdditionalContent";
@@ -165,13 +165,13 @@ class AppString {
   static const String uploadAttachment = "UploadAttachment";
   static const String filesSelected = "filesSelected";
   static const String selectVacationType = "selectVacationType";
-    static const String fillAllFields = "fillAllFields";
-    static const String selectVacationTypeRequired = "selectVacationTypeRequired";
-    static const String invalidVacationType = "invalidVacationType";
-    static const String invalidNumberOfDays = "invalidNumberOfDays";
-    static const String vacationRequestSubmitted = "vacationRequestSubmitted";
-    static const String noVacationTypes = "noVacationTypes";
-    static const String invalidResponseFormat = "invalidResponseFormat";
+  static const String fillAllFields = "fillAllFields";
+  static const String selectVacationTypeRequired = "selectVacationTypeRequired";
+  static const String invalidVacationType = "invalidVacationType";
+  static const String invalidNumberOfDays = "invalidNumberOfDays";
+  static const String vacationRequestSubmitted = "vacationRequestSubmitted";
+  static const String noVacationTypes = "noVacationTypes";
+  static const String invalidResponseFormat = "invalidResponseFormat";
   static const String annualLeave = "annualLeave";
   static const String sickLeave = "sickLeave";
   static const String emergencyLeave = "emergencyLeave";
@@ -205,11 +205,10 @@ class AppString {
   static const String allTasks = "allTasks";
   static const String day = "day";
   // static const String days = "days";
-  static const String noCoursesAvailable= "noCoursesAvailable";
+  static const String noCoursesAvailable = "noCoursesAvailable";
   static const String unableToDisplayCourse = "unableToDisplayCourse";
   static const String courseDetails = "courseDetails";
   static const String oneplatformforallyourneeds = "oneplatformforallyourneeds";
-
 
   // Help Center FAQs
   static const String faqQuestion1 = "faqQuestion1";
@@ -235,7 +234,7 @@ class AppString {
   static const String lightMode = "lightMode";
   static const String appearance = "appearance";
 
-  //الهوم 
+  //الهوم
   static const String vacations = "vacations";
   static const String tasks = "tasks";
   static const String attendanceSchedule = "attendanceSchedule";
@@ -243,110 +242,254 @@ class AppString {
   static const String savings = "savings";
   static const String viewDetails = "viewDetails";
 
-  //الدورات 
-static const String courseContents = "courseContents";
-static const String filesCount = "filesCount";
-static const String startCourse = "startCourse";
-static const String view = "view";
-static const String noDescription = "noDescription";
-static const String featured = "featured";
-static const String students = "students";
-static const String watch = "watch";
-static const String download = "download";
-static const String fileSize = "fileSize";
-static const String courseTarget = "courseTarget";
-static const String file = "file";
-static const String files = "files";
-//الاجازات 
-static const String vacationDetails = "vacationDetails";
-static const String requestNumber = "requestNumber";
-static const String reason = "reason";
-static const String attachments = "attachments";
-static const String duration = "duration";
-static const String days = "days";
-static const String status = "status";
-static const String attachment = "attachment";
-static const String noAttachments = "noAttachments";
-static const String failedToLoadDetails = "failedToLoadDetails";
-static const String retry = "retry";
-static const String invalidAttachmentLink = "invalidAttachmentLink";
-static const String failedToOpenAttachment = "failedToOpenAttachment";
-static const String error = "error";
-static const String vacationRequests = "vacationRequests";
-static const String attendanceHistory = "attendanceHistory";
+  //الدورات
+  static const String courseContents = "courseContents";
+  static const String filesCount = "filesCount";
+  static const String startCourse = "startCourse";
+  static const String view = "view";
+  static const String noDescription = "noDescription";
+  static const String featured = "featured";
+  static const String students = "students";
+  static const String watch = "watch";
+  static const String download = "download";
+  static const String fileSize = "fileSize";
+  static const String courseTarget = "courseTarget";
+  static const String file = "file";
+  static const String files = "files";
+  //الاجازات
+  static const String vacationDetails = "vacationDetails";
+  static const String requestNumber = "requestNumber";
+  static const String reason = "reason";
+  static const String attachments = "attachments";
+  static const String duration = "duration";
+  static const String days = "days";
+  static const String status = "status";
+  static const String attachment = "attachment";
+  static const String noAttachments = "noAttachments";
+  static const String failedToLoadDetails = "failedToLoadDetails";
+  static const String retry = "retry";
+  static const String invalidAttachmentLink = "invalidAttachmentLink";
+  static const String failedToOpenAttachment = "failedToOpenAttachment";
+  static const String error = "error";
+  static const String vacationRequests = "vacationRequests";
+  static const String attendanceHistory = "attendanceHistory";
+  static const String payrolls = "payrolls";
+  static const String payrollSummary = "payrollSummary";
+  static const String payrollEndpoint = "payrollEndpoint";
+  static const String requestUrl = "requestUrl";
+  static const String responseData = "responseData";
+  static const String perPage = "perPage";
+  static const String basicSalary = "basicSalary";
+  static const String workingDays = "workingDays";
+  static const String presentDays = "presentDays";
+  static const String absenceDays = "absenceDays";
+  static const String unpaidLeaveDays = "unpaidLeaveDays";
+  static const String lateMinutes = "lateMinutes";
+  static const String earlyLeaveMinutes = "earlyLeaveMinutes";
+  static const String dayRate = "dayRate";
+  static const String hourRate = "hourRate";
+  static const String minuteRate = "minuteRate";
+  static const String deductions = "deductions";
+  static const String totalDeduction = "totalDeduction";
+  static const String netSalary = "netSalary";
+  static const String calculatedAt = "calculatedAt";
+  static const String metric = "metric";
+  static const String metricUnit = "metricUnit";
+  static const String amount = "amount";
+  static const String policy = "policy";
+  static const String noPayrollData = "noPayrollData";
+  static const String payrollDetails = "payrollDetails";
+  static const String payrollRates = "payrollRates";
+  static const String overtimeRequests = "overtimeRequests";
+  static const String requestOvertime = "requestOvertime";
+  static const String overtimeRequestForm = "overtimeRequestForm";
+  static const String overtimeDate = "overtimeDate";
+  static const String overtimeMinutes = "overtimeMinutes";
+  static const String overtimeReason = "overtimeReason";
+  static const String overtimeShiftId = "overtimeShiftId";
+  static const String overtimeSubmitted = "overtimeSubmitted";
+  static const String noOvertimeRequests = "noOvertimeRequests";
+  static const String overtimeRequestHistory = "overtimeRequestHistory";
+  static const String overtimeEndpoint = "overtimeEndpoint";
+  static const String shift = "shift";
+  static const String salaryPolicies = "salaryPolicies";
+  static const String salaryPoliciesEndpoint = "salaryPoliciesEndpoint";
+  static const String salaryPolicyDetails = "salaryPolicyDetails";
+  static const String unitOfMeasurement = "unitOfMeasurement";
+  static const String discountType = "discountType";
+  static const String discountValue = "discountValue";
+  static const String salaryPolicyName = "salaryPolicyName";
+  static const String policyValue = "policyValue";
+  static const String companyId = "companyId";
+  static const String createdAt = "createdAt";
+  static const String noSalaryPolicies = "noSalaryPolicies";
 
-static const String late = "late";
-static const String overtime = "overtime";
+  static const String late = "late";
+  static const String overtime = "overtime";
 
-static const String workingHours = "workingHours";
-static const String minutes = "minutes";
-static const String noAttendanceRecords = "noAttendanceRecords";
-static const String pullToRefresh = "pullToRefresh";
-static const String selectMonthAndYear = "selectMonthAndYear";
-static const String month = "month";
-static const String year = "year";
-static const String changePeriod = "changePeriod";
-static const String refresh = "refresh";
-static const String record = "record";
+  static const String workingHours = "workingHours";
+  static const String minutes = "minutes";
+  static const String noAttendanceRecords = "noAttendanceRecords";
+  static const String pullToRefresh = "pullToRefresh";
+  static const String selectMonthAndYear = "selectMonthAndYear";
+  static const String month = "month";
+  static const String year = "year";
+  static const String changePeriod = "changePeriod";
+  static const String refresh = "refresh";
+  static const String record = "record";
 
-static const String request = "request";
-static const String noVacationRequests = "noVacationRequests";
-static const String updateDataOrSendNew = "updateDataOrSendNew";
-static const String durationDays = "durationDays";
-//البروفايل
-static const String profile = "profile";
-static const String personalInformation = "personalInformation";
-static const String username = "username";
-static const String email = "email";
-static const String joinDate = "joinDate";
-static const String accountStatus = "accountStatus";
-static const String approved = "approved";
-static const String pending = "pending";
-static const String rejected = "rejected";
-static const String currentShift = "currentShift";
-static const String shiftTime = "shiftTime";
-static const String documents = "documents";
-static const String noDocuments = "noDocuments";
-static const String personalIdPhoto = "personalIdPhoto";
-static const String employmentContract = "employmentContract";
-static const String documentsCount = "documentsCount";
-static const String noData = "noData";
-static const String failedToLoadProfile = "failedToLoadProfile";
-static const String profileUpdated = "profileUpdated";
-static const String refreshProfile = "refreshProfile";
-static const String editProfile = "editProfile";
-//الشكاااوي 
+  static const String request = "request";
+  static const String noVacationRequests = "noVacationRequests";
+  static const String updateDataOrSendNew = "updateDataOrSendNew";
+  static const String durationDays = "durationDays";
+  //البروفايل
+  static const String profile = "profile";
+  static const String personalInformation = "personalInformation";
+  static const String username = "username";
+  static const String email = "email";
+  static const String joinDate = "joinDate";
+  static const String accountStatus = "accountStatus";
+  static const String approved = "approved";
+  static const String pending = "pending";
+  static const String rejected = "rejected";
+  static const String currentShift = "currentShift";
+  static const String shiftTime = "shiftTime";
+  static const String documents = "documents";
+  static const String noDocuments = "noDocuments";
+  static const String personalIdPhoto = "personalIdPhoto";
+  static const String employmentContract = "employmentContract";
+  static const String documentsCount = "documentsCount";
+  static const String noData = "noData";
+  static const String failedToLoadProfile = "failedToLoadProfile";
+  static const String profileUpdated = "profileUpdated";
+  static const String refreshProfile = "refreshProfile";
+  static const String editProfile = "editProfile";
+  //الشكاااوي
 
-static const String addNewComplaint = "addNewComplaint";
-static const String writeClearTitle = "writeClearTitle";
-static const String complaintTitle = "complaintTitle";
-static const String complaintTitleHint = "complaintTitleHint";
-static const String complaintDetails = "complaintDetails";
-static const String complaintDetailsHint = "complaintDetailsHint";
-static const String submit = "submit";
-static const String complaintNumber = "complaintNumber";
-static const String resolved = "resolved";
-static const String underReview = "underReview";
-static const String newComplaint = "newComplaint";
-static const String complaintsTracking = "complaintsTracking";
-static const String total = "total";
-static const String noComplaints = "noComplaints";
-static const String startNewComplaint = "startNewComplaint";
+  static const String addNewComplaint = "addNewComplaint";
+  static const String writeClearTitle = "writeClearTitle";
+  static const String complaintTitle = "complaintTitle";
+  static const String complaintTitleHint = "complaintTitleHint";
+  static const String complaintDetails = "complaintDetails";
+  static const String complaintDetailsHint = "complaintDetailsHint";
+  static const String submit = "submit";
+  static const String complaintNumber = "complaintNumber";
+  static const String resolved = "resolved";
+  static const String underReview = "underReview";
+  static const String newComplaint = "newComplaint";
+  static const String complaintsTracking = "complaintsTracking";
+  static const String total = "total";
+  static const String noComplaints = "noComplaints";
+  static const String startNewComplaint = "startNewComplaint";
 
-static const String totalScore = "totalScore";
-static const String failedToLoadEvaluation = "failedToLoadEvaluation";
-static const String noEvaluationData = "noEvaluationData";
-static const String evaluationNotFetched = "evaluationNotFetched";
-static const String evaluationId = "evaluationId";
-static const String employeeIdLabel = "employeeIdLabel";
-static const String weight = "weight";
-static const String score = "score";
-static const String noAdditionalNotes = "noAdditionalNotes";
+  static const String totalScore = "totalScore";
+  static const String failedToLoadEvaluation = "failedToLoadEvaluation";
+  static const String noEvaluationData = "noEvaluationData";
+  static const String evaluationNotFetched = "evaluationNotFetched";
+  static const String evaluationId = "evaluationId";
+  static const String employeeIdLabel = "employeeIdLabel";
+  static const String weight = "weight";
+  static const String score = "score";
+  static const String noAdditionalNotes = "noAdditionalNotes";
 
-static const String uploadPersonalIdPhoto = "uploadPersonalIdPhoto";
-static const String uploadEmploymentContract = "uploadEmploymentContract";
-static const String personalIdPhotoHint = "personalIdPhotoHint";
-static const String employmentContractHint = "employmentContractHint";
-static const String fileSelected = "fileSelected";
-static const String removeFile = "removeFile";
+  static const String uploadPersonalIdPhoto = "uploadPersonalIdPhoto";
+  static const String uploadEmploymentContract = "uploadEmploymentContract";
+  static const String personalIdPhotoHint = "personalIdPhotoHint";
+  static const String employmentContractHint = "employmentContractHint";
+  static const String fileSelected = "fileSelected";
+  static const String removeFile = "removeFile";
+  static const String today = "today";
+  static const String yesterday = "yesterday";
+  static const String newNotification = "newNotification";
+  static const String delete = 'delete';
+  static const String deleteNotificationTitle = 'deleteNotificationTitle';
+  static const String deleteNotificationMessage = 'deleteNotificationMessage';
+  static const String deleteAllNotificationsTitle = 'deleteAllNotificationsTitle';
+  static const String deleteAllNotificationsMessage = 'deleteAllNotificationsMessage';
+
+  // My Courses (employee training)
+  static const String myCourses = "myCourses";
+  static const String allCourses = "allCourses";
+  static const String courseStatusAssigned = "courseStatusAssigned";
+  static const String courseStatusInProgress = "courseStatusInProgress";
+  static const String courseStatusCompleted = "courseStatusCompleted";
+  static const String courseStatusFailed = "courseStatusFailed";
+  static const String courseOverdue = "courseOverdue";
+  static const String courseDueDate = "courseDueDate";
+  static const String courseProgress = "courseProgress";
+  static const String courseMandatory = "courseMandatory";
+  static const String courseOptional = "courseOptional";
+  static const String noCoursesAssigned = "noCoursesAssigned";
+  static const String noCoursesAssignedSubtitle = "noCoursesAssignedSubtitle";
+  static const String noCoursesForFilter = "noCoursesForFilter";
+  static const String clearFilter = "clearFilter";
+  static const String materials = "materials";
+  static const String noCourseMaterialsYet = "noCourseMaterialsYet";
+  static const String markedAsViewed = "markedAsViewed";
+
+  // Exam
+  static const String examTitle = "examTitle";
+  static const String startExam = "startExam";
+  static const String retryExam = "retryExam";
+  static const String viewExamResults = "viewExamResults";
+  static const String noExamForCourse = "noExamForCourse";
+  static const String question = "question";
+  static const String submitAnswers = "submitAnswers";
+  static const String submitExamConfirmTitle = "submitExamConfirmTitle";
+  static const String submitExamConfirmMessage = "submitExamConfirmMessage";
+  static const String answerAllQuestions = "answerAllQuestions";
+  static const String examPassedTitle = "examPassedTitle";
+  static const String examPassedMessage = "examPassedMessage";
+  static const String examFailedTitle = "examFailedTitle";
+  static const String examFailedMessage = "examFailedMessage";
+  static const String yourScore = "yourScore";
+  static const String passScore = "passScore";
+  static const String correctAnswersCount = "correctAnswersCount";
+  static const String backToCourse = "backToCourse";
+  static const String examAttemptsHistory = "examAttemptsHistory";
+  static const String attemptNumber = "attemptNumber";
+  static const String noPreviousAttempts = "noPreviousAttempts";
+
+  // Overtime (redesign additions)
+  static const String overtimeDuration = "overtimeDuration";
+  static const String customDuration = "customDuration";
+  static const String allStatuses = "allStatuses";
+  static const String loadMore = "loadMore";
+  static const String autoAssignedShiftNotice = "autoAssignedShiftNotice";
+  static const String optional = "optional";
+  static const String hours = "hours";
+
+  // Employee Evaluation (redesign additions)
+  static const String evaluationPeriod = "evaluationPeriod";
+  static const String outOfTen = "outOfTen";
+  static const String ratingExcellent = "ratingExcellent";
+  static const String ratingGood = "ratingGood";
+  static const String ratingAverage = "ratingAverage";
+  static const String ratingNeedsImprovement = "ratingNeedsImprovement";
+  static const String noEvaluationYet = "noEvaluationYet";
+  static const String noEvaluationYetSubtitle = "noEvaluationYetSubtitle";
+  static const String unableToLoadEvaluation = "unableToLoadEvaluation";
+  static const String kpiCount = "kpiCount";
+
+  // Chatbot
+  static const String assistant = "assistant";
+  static const String askAssistant = "askAssistant";
+  static const String assistantSubtitle = "assistantSubtitle";
+  static const String typeYourQuestion = "typeYourQuestion";
+  static const String assistantWelcome = "assistantWelcome";
+  static const String suggestedVacationBalance = "suggestedVacationBalance";
+  static const String suggestedWorkSchedule = "suggestedWorkSchedule";
+  static const String suggestedEvaluation = "suggestedEvaluation";
+  static const String suggestedHowToVacation = "suggestedHowToVacation";
+  static const String assistantError = "assistantError";
+  static const String clearChat = "clearChat";
+  static const String clearChatConfirmTitle = "clearChatConfirmTitle";
+  static const String clearChatConfirmMessage = "clearChatConfirmMessage";
+
+  // Home categories
+  static const String timeAndRequests = "timeAndRequests";
+  static const String performanceAndGrowth = "performanceAndGrowth";
+  static const String payAndSupport = "payAndSupport";
+  static const String taskNotFound = "taskNotFound";
+  static const String page = "page";
 }

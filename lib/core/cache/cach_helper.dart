@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CacheHelper {
@@ -24,6 +26,7 @@ class CacheHelper {
   }
 
   final String _cachedCode = "cachedCode";
+  static const String _profileShiftKey = 'profileShift';
 
   String getCachedLanguage() {
     final code = sharedPreferences!.getString(_cachedCode);
@@ -36,5 +39,31 @@ class CacheHelper {
 
   Future<void> cachedLanguage(String code) async {
     await sharedPreferences!.setString(_cachedCode, code);
+  }
+
+  Future<bool> cacheProfileShift(Map<String, dynamic>? shift) async {
+    if (shift == null) {
+      return await removeData(key: _profileShiftKey);
+    }
+
+    return await sharedPreferences!.setString(_profileShiftKey, jsonEncode(shift));
+  }
+
+  Map<String, dynamic>? getCachedProfileShift() {
+    final cachedShift = sharedPreferences!.getString(_profileShiftKey);
+    if (cachedShift == null || cachedShift.trim().isEmpty) {
+      return null;
+    }
+
+    final decoded = jsonDecode(cachedShift);
+    if (decoded is Map<String, dynamic>) {
+      return decoded;
+    }
+
+    if (decoded is Map) {
+      return decoded.cast<String, dynamic>();
+    }
+
+    return null;
   }
 }

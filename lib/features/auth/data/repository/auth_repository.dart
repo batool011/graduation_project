@@ -32,6 +32,16 @@ class AuthRepository {
     );
   }
 
+  Future<Either<AppException, Response>> refreshToken() async {
+    return ApiHandler.request(
+      () => DioHelper.postData(
+        url: ApiEndPoints.refreshToken,
+        data: const {},
+        requiresToken: true,
+      ),
+    );
+  }
+
 
   Future<Either<AppException, Response>> logout() async {
     return ApiHandler.request(

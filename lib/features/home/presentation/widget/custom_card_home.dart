@@ -1,10 +1,16 @@
 import 'package:career/core/constant/class/app_color.dart';
+import 'package:career/core/constant/class/app_size.dart';
 import 'package:flutter/material.dart';
 
+/// Home grid tile. Accepts an optional [color] so different feature
+/// categories can be told apart at a glance instead of every card being
+/// an identical solid-primary block - a white card with a colored icon
+/// badge reads as more modern and scales better once you have 8+ tiles.
 class CustomCardHome extends StatelessWidget {
   final IconData icon;
   final String title;
   final String subtitle;
+  final Color? color;
   final void Function()? onTap;
 
   const CustomCardHome({
@@ -12,63 +18,63 @@ class CustomCardHome extends StatelessWidget {
     required this.icon,
     required this.title,
     required this.subtitle,
-     this.onTap
+    this.color,
+    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        width: 120,
-        height: 140,
-        decoration: BoxDecoration(
-          color: AppColor.primaryColor,
-          borderRadius: BorderRadius.circular(24),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.08),
-              blurRadius: 12,
-              offset: const Offset(0, 6),
-            ),
-          ],
-        ),
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // الدائرة الخضرا الصغيرة للآيكون
-            Container(
-              width: 40,
-              height: 40,
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                shape: BoxShape.circle,
+    final accent = color ?? AppColor.primaryColor;
+
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(AppRadius.lg),
+        child: Container(
+          decoration: BoxDecoration(
+            color: AppColor.white,
+            borderRadius: BorderRadius.circular(AppRadius.lg),
+            border: Border.all(color: accent.withOpacity(0.14)),
+            boxShadow: AppShadow.card,
+          ),
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: 42,
+                height: 42,
+                decoration: BoxDecoration(
+                  color: accent.withOpacity(0.12),
+                  borderRadius: BorderRadius.circular(AppRadius.sm),
+                ),
+                child: Icon(icon, color: accent, size: 22),
               ),
-              child: Icon(
-                icon,
-                color: AppColor.primaryColor.withAlpha(120),
-                size: 22,
+              const SizedBox(height: 14),
+              Text(
+                title,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  color: AppColor.black,
+                  fontSize: 15,
+                  fontWeight: FontWeight.w800,
+                ),
               ),
-            ),
-            const SizedBox(height: 16),
-            Text(
-              title,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
+              const SizedBox(height: 3),
+              Text(
+                subtitle,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  color: AppColor.blackLight,
+                  fontSize: 11.5,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
-            ),
-            const SizedBox(height: 4),
-            Text(
-              subtitle,
-              style: TextStyle(
-                color: Colors.white.withOpacity(0.8),
-                fontSize: 12,
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

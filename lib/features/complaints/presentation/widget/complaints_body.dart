@@ -1,4 +1,4 @@
-import 'package:career/core/constant/class/app_size.dart';
+import 'package:career/core/constant/class/app_color.dart';
 import 'package:career/features/complaints/presentation/getx/controller/complaints_controller.dart';
 import 'package:career/features/complaints/presentation/widget/complaint_card.dart';
 import 'package:career/features/complaints/presentation/widget/complaints_summary.dart';
@@ -10,30 +10,76 @@ class ComplaintsBody extends GetView<ComplaintsController> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      if (controller.isLoading.value) {
-        return const Center(child: CircularProgressIndicator());
-      }
+    return Container(
+      color: const Color(0xFFF7F9FC),
+      child: Obx(() {
+        final isLoading = controller.isLoading.value;
+        final complaints = controller.complaints;
 
-      return RefreshIndicator(
-        onRefresh: controller.loadComplaints,
-        child: ListView(
-          physics: const AlwaysScrollableScrollPhysics(),
-          padding: EdgeInsets.all(0.02.h(context)),
-          children: [
-            ComplaintsSummary(
-              total: controller.totalCount,
-              pending: controller.pendingCount,
-              resolved: controller.resolvedCount,
+        if (isLoading && complaints.isEmpty) {
+          return const _LoadingState();
+        }
+
+        return RefreshIndicator(
+          onRefresh: controller.loadComplaints,
+          color: AppColor.primaryColor,
+          backgroundColor: Colors.white,
+          child: ListView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
+            children: [
+              ComplaintsSummary(
+                total: controller.totalCount,
+                pending: controller.pendingCount,
+                resolved: controller.resolvedCount,
+              ),
+              const SizedBox(height: 16),
+              if (complaints.isEmpty)
+                const ComplaintsEmptyState()
+              else
+                ...complaints.map(
+                      (item) => ComplaintCard(complaint: item),
+                ),
+              const SizedBox(height: 10),
+            ],
+          ),
+        );
+      }),
+    );
+  }
+}
+
+class _LoadingState extends StatelessWidget {
+  const _LoadingState();
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        width: 78,
+        height: 78,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(24),
+          border: Border.all(
+            color: Colors.grey.withOpacity(0.14),
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.05),
+              blurRadius: 18,
+              offset: const Offset(0, 10),
+              spreadRadius: -10,
             ),
-            14.verticalSpace(),
-            if (controller.complaints.isEmpty)
-              const ComplaintsEmptyState()
-            else
-              ...controller.complaints.map((item) => ComplaintCard(complaint: item)),
           ],
         ),
-      );
-    });
+        child: const Padding(
+          padding: EdgeInsets.all(18),
+          child: CircularProgressIndicator(
+            strokeWidth: 3,
+          ),
+        ),
+      ),
+    );
   }
 }

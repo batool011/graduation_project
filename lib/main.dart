@@ -1,4 +1,5 @@
 import 'package:career/core/network/token_storage.dart';
+import 'package:career/core/cache/cach_helper.dart';
 import'package:career/core/router/app_route.dart';
 import 'package:career/core/router/routes_name.dart';
 import 'package:career/core/theme/theme_controller.dart';
@@ -15,6 +16,8 @@ import 'firebase_options.dart';
 
  Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await CacheHelper().init();
 
   await AppTranslation.init();
 
