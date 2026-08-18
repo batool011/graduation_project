@@ -27,10 +27,8 @@ class OvertimeDialogActionButton extends StatelessWidget {
           gradient: isPrimary && !isDisabled
               ? LinearGradient(
                   colors: [
-                    const Color(0xFF2563EB),
-                    AppColor.primaryColor,
-                    const Color(0xFF38BDF8),
-                  ],
+                    Color(0xFF4F46E5)      ,
+                    Color(0xFF4F46E5)],
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
                 )

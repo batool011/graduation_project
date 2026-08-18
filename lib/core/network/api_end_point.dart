@@ -5,7 +5,6 @@ class ApiEndPoints {
   );
   // Auth
   static const String login = "$baseUrl/api/v1/auth/login";
-  static const String refreshToken = "$baseUrl/api/v1/auth/refresh";
   static const String register = "$baseUrl/api/v1/employees/register";
   static const String logout = "$baseUrl/api/v1/auth/logout";
   static const String currentUser = "$baseUrl/api/user";
@@ -14,6 +13,32 @@ class ApiEndPoints {
 
   // Chatbot - single endpoint, natural-language query in the body
   static const String chatbotQuery = "$baseUrl/api/v1/chatbot/query";
+
+  // Real-time (Reverb) - see REVERB_SETUP.md for how these values map to
+  // your actual server config. Only used by SavingsRealtimeService.
+  static const String reverbAppKey = String.fromEnvironment(
+    'REVERB_APP_KEY',
+    defaultValue: 'CHANGE_ME',
+  );
+  static const String reverbHost = String.fromEnvironment(
+    'REVERB_HOST',
+    defaultValue: '204.168.145.146',
+  );
+  static const int reverbPort = int.fromEnvironment(
+    'REVERB_PORT',
+    defaultValue: 8080,
+  );
+  static const String reverbScheme = String.fromEnvironment(
+    'REVERB_SCHEME',
+    defaultValue: 'https',
+  );
+  static const String broadcastingAuth = "$baseUrl/broadcasting/auth";
+
+  // Smart Savings (jam'iyya) - employee side
+  static const String savingsAssociations = "$baseUrl/api/v1/savings-associations";
+  static String savingsAssociationDetail(int id) => "$baseUrl/api/v1/savings-associations/$id";
+  static String savingsAssociationRespond(int id) => "$baseUrl/api/v1/savings-associations/$id/respond";
+  static String savingsAssociationMessages(int id) => "$baseUrl/api/v1/savings-associations/$id/messages";
 
   // Work Schedule
   static const String workSchedule = "$baseUrl/api/work-schedule";
@@ -58,6 +83,7 @@ class ApiEndPoints {
 
   // Tasks
   static const String tasks = "$baseUrl/api/v1/tasks";
+  static const String refreshToken = "$baseUrl/api/v1/refreshToken";
   // Employee Evaluation
   static const String employeeEvaluation =
       "$baseUrl/api/v1/evaluations/get-employee-evaluation";

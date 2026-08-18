@@ -492,4 +492,44 @@ class AppString {
   static const String payAndSupport = "payAndSupport";
   static const String taskNotFound = "taskNotFound";
   static const String page = "page";
+
+  // Smart Savings (jam'iyya)
+  static const String savingsAssociations = "savingsAssociations";
+  static const String savingsAssociationsSubtitle = "savingsAssociationsSubtitle";
+  static const String allAssociations = "allAssociations";
+  static const String pendingInvites = "pendingInvites";
+  static const String activeAssociations = "activeAssociations";
+  static const String completedAssociations = "completedAssociations";
+  static const String joinAssociation = "joinAssociation";
+  static const String declineInvitation = "declineInvitation";
+  static const String joinConfirmTitle = "joinConfirmTitle";
+  static const String joinConfirmMessage = "joinConfirmMessage";
+  static const String declineConfirmTitle = "declineConfirmTitle";
+  static const String declineConfirmMessage = "declineConfirmMessage";
+  static const String membersCount = "membersCount";
+  static const String payoutOrderFixed = "payoutOrderFixed";
+  static const String payoutOrderRandom = "payoutOrderRandom";
+  static const String statusOpenForJoining = "statusOpenForJoining";
+  static const String statusActive = "statusActive";
+  static const String statusCompleted = "statusCompleted";
+  static const String statusDraft = "statusDraft";
+  static const String statusCancelled = "statusCancelled";
+  static const String invitationJoined = "invitationJoined";
+  static const String invitationInvited = "invitationInvited";
+  static const String invitationDeclined = "invitationDeclined";
+  static const String yourTurn = "yourTurn";
+  static const String alreadyCollected = "alreadyCollected";
+  static const String notCollectedYet = "notCollectedYet";
+  static const String discussionRoom = "discussionRoom";
+  static const String typeYourMessage = "typeYourMessage";
+  static const String noMessagesYet = "noMessagesYet";
+  static const String noAssociations = "noAssociations";
+  static const String noAssociationsSubtitle = "noAssociationsSubtitle";
+  static const String cyclesProgress = "cyclesProgress";
+  static const String potAmount = "potAmount";
+  static const String joinDeadline = "joinDeadline";
+  static const String members = "members";
+  static const String youAreRecipient = "youAreRecipient";
+  static const String randomOrderNotice = "randomOrderNotice";
+  static const String waitingForResponse = "waitingForResponse";
 }

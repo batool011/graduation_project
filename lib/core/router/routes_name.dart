@@ -27,6 +27,7 @@ class RoutesName {
   static const profile = '/profile';
   static const myCourses = '/myCourses';
   static const chatbot = '/chatbot';
+  static const savingsAssociations = '/savingsAssociations';
 
   //saving
   static const savingCards = '/savingCards';

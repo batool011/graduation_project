@@ -39,6 +39,8 @@ import 'package:career/features/vacation/presentation/screen/vacation_request_de
 import 'package:get/get.dart';
 import '../../features/chatbot/presentation/getx/binding/chatbot_binding.dart';
 import '../../features/chatbot/presentation/screens/chatbot_screen.dart';
+import '../../features/savings_associations/presentation/getx/binding/savings_association_binding.dart';
+import '../../features/savings_associations/presentation/screens/savings_associations_screen.dart';
 import '../../features/app-main/presentation/getx/main_binding.dart';
 import '../../features/app-main/presentation/screens/main_screen.dart';
 import '../../features/splash/presentation/getx/binding/splash_binding.dart';
@@ -175,6 +177,11 @@ class AppRoute {
       name: RoutesName.chatbot,
       page: () => const ChatbotScreen(),
       binding: ChatbotBinding(),
+    ),
+    GetPage(
+      name: RoutesName.savingsAssociations,
+      page: () => const SavingsAssociationsScreen(),
+      binding: SavingsAssociationBinding(),
     ),
   ];
 }

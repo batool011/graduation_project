@@ -120,6 +120,13 @@ class HomeFeaturesSection extends StatelessWidget {
               color: const Color(0xFFDC2626),
               route: RoutesName.complaints,
             ),
+            _FeatureItem(
+              icon: Icons.savings_rounded,
+              title: AppString.savingsAssociations.tr,
+              subtitle: AppString.viewDetails.tr,
+              color: const Color(0xFFAD1457),
+              route: RoutesName.savingsAssociations,
+            ),
           ],
         ),
       ];

@@ -45,7 +45,8 @@ class _OvertimeRequestDialogState extends State<OvertimeRequestDialog> {
       child: Container(
         constraints: const BoxConstraints(maxWidth: 560),
         decoration: BoxDecoration(
-          color: Colors.white,
+          // Same color as OvertimeScreen background
+          color: const Color(0xFFF5F7FC),
           borderRadius: BorderRadius.circular(26),
           border: Border.all(color: const Color(0xFFE9EEF6)),
           boxShadow: [
@@ -68,14 +69,14 @@ class _OvertimeRequestDialogState extends State<OvertimeRequestDialog> {
                     height: 48,
                     decoration: BoxDecoration(
                       gradient: const LinearGradient(
-                        colors: [Color(0xFF2563EB), Color(0xFF38BDF8)],
+                        colors: [Color(0xFF4F46E5), Color(0xFF4F46E5)],
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                       ),
                       borderRadius: BorderRadius.circular(16),
                       boxShadow: [
                         BoxShadow(
-                          color: const Color(0xFF2563EB).withOpacity(0.22),
+                          color: const Color(0xFF4F46E5).withOpacity(0.22),
                           blurRadius: 14,
                           offset: const Offset(0, 8),
                         ),
@@ -100,9 +101,9 @@ class _OvertimeRequestDialogState extends State<OvertimeRequestDialog> {
                               .textTheme
                               .titleLarge
                               ?.copyWith(
-                                fontWeight: FontWeight.w900,
-                                color: const Color(0xFF0F172A),
-                              ),
+                            fontWeight: FontWeight.w900,
+                            color: const Color(0xFF0F172A),
+                          ),
                         ),
                         const SizedBox(height: 3),
                         Text(
@@ -126,7 +127,7 @@ class _OvertimeRequestDialogState extends State<OvertimeRequestDialog> {
                         width: 38,
                         height: 38,
                         decoration: BoxDecoration(
-                          color: const Color(0xFFF1F5F9),
+                          color: Colors.white,
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(color: const Color(0xFFE2E8F0)),
                         ),
@@ -151,13 +152,16 @@ class _OvertimeRequestDialogState extends State<OvertimeRequestDialog> {
                   width: double.infinity,
                   padding: const EdgeInsets.all(14),
                   decoration: BoxDecoration(
-                    gradient: const LinearGradient(
-                      colors: [Color(0xFFEFF4FF), Color(0xFFF9FBFF)],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
+                    color: Colors.white,
                     borderRadius: BorderRadius.circular(17),
                     border: Border.all(color: const Color(0xFFDCE7FF)),
+                    boxShadow: [
+                      BoxShadow(
+                        color: const Color(0xFF4F46E5).withOpacity(0.05),
+                        blurRadius: 12,
+                        offset: const Offset(0, 8),
+                      ),
+                    ],
                   ),
                   child: Row(
                     children: [
@@ -165,20 +169,15 @@ class _OvertimeRequestDialogState extends State<OvertimeRequestDialog> {
                         width: 38,
                         height: 38,
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: const Color(0xFFEFF4FF),
                           borderRadius: BorderRadius.circular(13),
-                          boxShadow: [
-                            BoxShadow(
-                              color:
-                                  const Color(0xFF2563EB).withOpacity(0.08),
-                              blurRadius: 10,
-                              offset: const Offset(0, 6),
-                            ),
-                          ],
+                          border: Border.all(
+                            color: const Color(0xFFDCE7FF),
+                          ),
                         ),
                         child: const Icon(
                           Icons.badge_rounded,
-                          color: Color(0xFF2563EB),
+                          color: Color(0xFF4F46E5),
                           size: 19,
                         ),
                       ),
@@ -193,9 +192,9 @@ class _OvertimeRequestDialogState extends State<OvertimeRequestDialog> {
                                   .textTheme
                                   .bodySmall
                                   ?.copyWith(
-                                    color: const Color(0xFF64748B),
-                                    fontWeight: FontWeight.w700,
-                                  ),
+                                color: const Color(0xFF64748B),
+                                fontWeight: FontWeight.w700,
+                              ),
                             ),
                             const SizedBox(height: 3),
                             Text(
@@ -208,9 +207,9 @@ class _OvertimeRequestDialogState extends State<OvertimeRequestDialog> {
                                   .textTheme
                                   .bodyMedium
                                   ?.copyWith(
-                                    color: const Color(0xFF0F172A),
-                                    fontWeight: FontWeight.w800,
-                                  ),
+                                color: const Color(0xFF0F172A),
+                                fontWeight: FontWeight.w800,
+                              ),
                             ),
                           ],
                         ),
@@ -321,7 +320,10 @@ class _OvertimeRequestDialogState extends State<OvertimeRequestDialog> {
             ? Icon(suffixIcon, color: const Color(0xFF94A3B8), size: 20)
             : null,
         filled: true,
-        fillColor: const Color(0xFFF8FAFC),
+
+        // White fields look better on the screen-colored dialog background
+        fillColor: Colors.white,
+
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 16,
           vertical: 15,

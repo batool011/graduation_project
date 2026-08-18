@@ -123,15 +123,15 @@ class TaskFilterBar extends StatelessWidget {
                 avatar: Icon(
                   item.icon,
                   size: 16,
-                  color: selected ? AppColor.primaryDark : Colors.white,
+                  color: selected ? Colors.white :AppColor.primaryDark ,
                 ),
                 label: Text(item.label),
                 labelStyle: TextStyle(
-                  color: selected ? AppColor.primaryDark : Colors.white,
+                  color: selected ? Colors.white :AppColor.primaryDark ,
                   fontWeight: FontWeight.w800,
                   fontSize: 12,
                 ),
-                selectedColor: Colors.white,
+                selectedColor:AppColor.primaryColor,
                 backgroundColor: Colors.white.withOpacity(0.14),
                 side: BorderSide(
                   color: selected ? Colors.transparent : Colors.white.withOpacity(0.18),

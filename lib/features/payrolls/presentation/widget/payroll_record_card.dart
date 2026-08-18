@@ -24,10 +24,13 @@ class _PayrollRecordCardState extends State<PayrollRecordCard> {
   Widget build(BuildContext context) {
     final record = widget.record;
 
+    final hasSavings = record.savingsAdjustments.isNotEmpty;
+
     final tabs = <String>[
       AppString.payrollSummary.tr,
       AppString.payrollRates.tr,
       AppString.deductions.tr,
+      if (hasSavings) AppString.savingsAssociations.tr,
       AppString.payrollDetails.tr,
     ];
 
@@ -35,6 +38,7 @@ class _PayrollRecordCardState extends State<PayrollRecordCard> {
       null,
       null,
       record.deductions.length,
+      if (hasSavings) record.savingsAdjustments.length,
       record.details.length,
     ];
 
@@ -207,16 +211,16 @@ class _PayrollRecordCardState extends State<PayrollRecordCard> {
   }
 
   Widget _buildContent(BuildContext context) {
-    switch (_selectedTab) {
-      case 0:
-        return PayrollSummaryTab(record: widget.record);
-      case 1:
-        return PayrollRatesTab(record: widget.record);
-      case 2:
-        return PayrollDeductionsTab(record: widget.record);
-      default:
-        return PayrollDetailsTab(record: widget.record);
-    }
+    final record = widget.record;
+    final hasSavings = record.savingsAdjustments.isNotEmpty;
+
+    // Tab order: Summary(0), Rates(1), Deductions(2), [Savings(3) if any],
+    // Details(last) - indices shift by one once the Savings tab exists.
+    if (_selectedTab == 0) return PayrollSummaryTab(record: record);
+    if (_selectedTab == 1) return PayrollRatesTab(record: record);
+    if (_selectedTab == 2) return PayrollDeductionsTab(record: record);
+    if (hasSavings && _selectedTab == 3) return PayrollSavingsTab(record: record);
+    return PayrollDetailsTab(record: record);
   }
 }
 

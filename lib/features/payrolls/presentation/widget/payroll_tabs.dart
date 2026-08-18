@@ -7,6 +7,64 @@ import 'payroll_section_title.dart';
 import 'payroll_theme.dart';
 import 'payroll_tiles.dart';
 
+class PayrollSavingsAdjustmentTile extends StatelessWidget {
+  const PayrollSavingsAdjustmentTile({super.key, required this.adjustment});
+
+  final PayrollSavingsAdjustment adjustment;
+
+  @override
+  Widget build(BuildContext context) {
+    final isPayout = adjustment.isPayout;
+    final color = isPayout ? const Color(0xFF16A34A) : const Color(0xFFAD1457);
+    final bg = isPayout ? const Color(0xFFEFFAF2) : const Color(0xFFFDE8F1);
+    final border = isPayout ? const Color(0xFFBBF7D0) : const Color(0xFFFBCFE8);
+
+    return Container(
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: bg,
+        borderRadius: BorderRadius.circular(22),
+        border: Border.all(color: border),
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 44,
+            height: 44,
+            decoration: BoxDecoration(shape: BoxShape.circle, color: color.withOpacity(0.14)),
+            child: Icon(
+              isPayout ? Icons.savings_rounded : Icons.remove_circle_outline,
+              color: color,
+              size: 22,
+            ),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  adjustment.associationName,
+                  style: TextStyle(fontWeight: FontWeight.w900, color: color, fontSize: 14),
+                ),
+                const SizedBox(height: 3),
+                Text(
+                  isPayout ? AppString.youAreRecipient.tr : AppString.monthlyAmount.tr,
+                  style: TextStyle(fontSize: 11, color: PayrollTheme.subInk),
+                ),
+              ],
+            ),
+          ),
+          Text(
+            '${isPayout ? '+' : '-'}${formatPayrollMoney(adjustment.amount)}',
+            style: TextStyle(fontWeight: FontWeight.w900, color: color, fontSize: 15),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class PayrollSummaryTab extends StatelessWidget {
   const PayrollSummaryTab({super.key, required this.record});
 
@@ -160,6 +218,40 @@ class PayrollDeductionsTab extends StatelessWidget {
                   (deduction) => Padding(
                     padding: const EdgeInsets.only(bottom: 10),
                     child: PayrollDeductionTile(deduction: deduction),
+                  ),
+                )
+                .toList(),
+          ),
+      ],
+    );
+  }
+}
+
+class PayrollSavingsTab extends StatelessWidget {
+  const PayrollSavingsTab({super.key, required this.record});
+
+  final PayrollRecord record;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        PayrollSectionTitle(
+          icon: Icons.savings_rounded,
+          title: AppString.savingsAssociations.tr,
+          count: record.savingsAdjustments.length,
+        ),
+        const SizedBox(height: 10),
+        if (record.savingsAdjustments.isEmpty)
+          PayrollEmptySectionBox(text: AppString.noData.tr)
+        else
+          Column(
+            children: record.savingsAdjustments
+                .map(
+                  (adjustment) => Padding(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: PayrollSavingsAdjustmentTile(adjustment: adjustment),
                   ),
                 )
                 .toList(),

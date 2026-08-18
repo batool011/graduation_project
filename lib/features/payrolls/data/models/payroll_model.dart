@@ -14,6 +14,7 @@ class PayrollRecord {
   final List<PayrollDeduction> deductions;
   final double totalDeduction;
   final double netSalary;
+  final List<PayrollSavingsAdjustment> savingsAdjustments;
   final List<PayrollDetail> details;
   final DateTime? calculatedAt;
 
@@ -33,6 +34,7 @@ class PayrollRecord {
     required this.deductions,
     required this.totalDeduction,
     required this.netSalary,
+    required this.savingsAdjustments,
     required this.details,
     required this.calculatedAt,
   });
@@ -64,6 +66,16 @@ class PayrollRecord {
           <PayrollDeduction>[],
       totalDeduction: _doubleValue(json['total_deduction']),
       netSalary: _doubleValue(json['net_salary']),
+      savingsAdjustments:
+          (json['savings_adjustments'] as List?)
+              ?.whereType<Map>()
+              .map(
+                (item) => PayrollSavingsAdjustment.fromJson(
+                  item.cast<String, dynamic>(),
+                ),
+              )
+              .toList() ??
+          <PayrollSavingsAdjustment>[],
       details:
           (json['details'] as List?)
               ?.whereType<Map>()
@@ -156,6 +168,31 @@ class PayrollDeduction {
       amount: PayrollRecord._doubleValue(json['amount']),
     );
   }
+}
+
+class PayrollSavingsAdjustment {
+  final int? associationId;
+  final String associationName;
+  final String type; // 'deduction' | 'payout'
+  final double amount;
+
+  const PayrollSavingsAdjustment({
+    required this.associationId,
+    required this.associationName,
+    required this.type,
+    required this.amount,
+  });
+
+  factory PayrollSavingsAdjustment.fromJson(Map<String, dynamic> json) {
+    return PayrollSavingsAdjustment(
+      associationId: json['association_id'] is int ? json['association_id'] as int : null,
+      associationName: json['association_name']?.toString().trim() ?? 'Savings Association',
+      type: json['type']?.toString().trim() ?? 'deduction',
+      amount: PayrollRecord._doubleValue(json['amount']),
+    );
+  }
+
+  bool get isPayout => type == 'payout';
 }
 
 class PayrollDetail {

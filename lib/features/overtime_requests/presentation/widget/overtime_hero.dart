@@ -115,13 +115,13 @@ class OvertimeHero extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 12),
-                  Expanded(
-                    child: OvertimeHeroStat(
-                      icon: Icons.view_list_rounded,
-                      value: '$perPage',
-                      label: AppString.perPage.tr,
-                    ),
-                  ),
+                  // Expanded(
+                  //   child: OvertimeHeroStat(
+                  //     icon: Icons.view_list_rounded,
+                  //     value: '$perPage',
+                  //     label: AppString.perPage.tr,
+                  //   ),
+                  // ),
                 ],
               ),
             ],
